@@ -1683,11 +1683,11 @@ function logOut() {
   checkIfScroll();
 }
 
-/* function needToLogIn() {
+ function needToLogIn() {
   if (sessionStorage.getItem("currentUserID") === "" || sessionStorage.getItem("currentUserID") === null) {
     $('#needToLogin').modal('show');
   }
-} */
+} 
 
 
 
