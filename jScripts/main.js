@@ -1683,11 +1683,11 @@ function logOut() {
   checkIfScroll();
 }
 
- function needToLogIn() {
+/*  function needToLogIn() {
   if (sessionStorage.getItem("currentUserID") === "" || sessionStorage.getItem("currentUserID") === null) {
     $('#needToLogin').modal('show');
   }
-} 
+}  */
 
 
 
@@ -1823,11 +1823,9 @@ function onBoardingPlayAudio() {
 }
 
 function mapPlayAudio() {
-  if (sessionStorage.getItem("currentStationNumCompleted") != 4 || sessionStorage.getItem("currentStationNumCompleted") != 6 || sessionStorage.getItem("currentStationNumCompleted") != 8) {
     setTimeout(() => {
       document.getElementById('mapRecord').play()
     }, 100);
-  }
 }
 
 
