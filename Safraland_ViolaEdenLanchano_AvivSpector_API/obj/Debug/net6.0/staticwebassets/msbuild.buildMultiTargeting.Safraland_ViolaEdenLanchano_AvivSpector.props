@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Safraland_ViolaEdenLanchano_AvivSpector.props" />
+</Project>
