@@ -319,7 +319,7 @@ function readURL(input) {
 /* פונקציה לשליפת פרטי המשתמש הנוכחי */
 async function getUserByID(userID) {
   //  קריאה לבסיס הנתונים ושליפת התחנות מהקונטרולר (הכתובת)
-  const url = `https://localhost:7067/api/Users/userByID/${userID}`;
+  const url = `./api/Users/userByID/${userID}`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
@@ -420,7 +420,7 @@ async function saveNewUser(e) {
   }
 
 
-  const url = `https://localhost:7067/api/Users/insertUser`;
+  const url = `./api/Users/insertUser`;
   // שמירת הפרמטרים לשליפה: סוג השליפה
   const params = {
     method: 'POST',
@@ -463,7 +463,7 @@ async function userNickNameInput() {
   const UserNameInput = document.getElementById("nickNameRegistration");
   const favColorInput = document.querySelector('input[name="favColor"]:checked');
 
-  const url = `https://localhost:7067/api/Users/AllUsersName`;
+  const url = `./api/Users/AllUsersName`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
@@ -620,7 +620,7 @@ async function entrance() {
   const UserNameInput = document.getElementById("nickNameLogin").value;
 
   // קריאה לבסיס הנתונים ושליפת שמות המשתמשים
-  const url = `https://localhost:7067/api/Users/AllUsersName`;
+  const url = `./api/Users/AllUsersName`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
@@ -754,7 +754,7 @@ async function shareImage() {
 /* פונקציה לשליפת ופרטי התחנה הנוכחית של המשתמש */
 async function getStationByID(userID, currentStation) {
   //  קריאה לבסיס הנתונים ושליפת התחנות מהקונטרולר (הכתובת)
-  const url = `https://localhost:7067/api/Stations/stationByID/${userID}/${currentStation}`;
+  const url = `./api/Stations/stationByID/${userID}/${currentStation}`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
@@ -796,7 +796,7 @@ async function updateStation() {
   station.push(stationObj);
 
   // קריאה לשיטה בקונטרולר
-  const url = `https://localhost:7067/api/Stations/updateStation`;
+  const url = `./api/Stations/updateStation`;
   // שמירת הפרמטרים לשליפה: סוג השליפה
   const params = {
     method: 'POST',
@@ -977,7 +977,7 @@ async function resetAllStationsAndActivities() {
 
 
   // קריאה לשיטה בקונטרולר
-  const url = `https://localhost:7067/api/Stations/resetAllStationAndActivities`;
+  const url = `./api/Stations/resetAllStationAndActivities`;
   // שמירת הפרמטרים לשליפה: סוג השליפה
   const params = {
     method: 'POST',
@@ -1291,7 +1291,7 @@ function deletPhotoPopupAudio() {
 /* פונקציה לשליפת פרטי המשתמש הנוכחי, פרטי התחנה הנוכחית ופרטי הפעילות הנוכחית */
 async function getActivityByID(userID, currentStation, currentActivity) {
   //  קריאה לבסיס הנתונים ושליפת התחנות מהקונטרולר (הכתובת)
-  const url = `https://localhost:7067/api/Activities/activityByID/${userID}/${currentStation}/${currentActivity}`;
+  const url = `./api/Activities/activityByID/${userID}/${currentStation}/${currentActivity}`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
@@ -1359,7 +1359,7 @@ async function updateActivity(type, currentActivity) {
   });
 
   // קריאה לשיטה בקונטרולר
-  const url = `https://localhost:7067/api/Activities/updateActivity`;
+  const url = `./api/Activities/updateActivity`;
   // שמירת הפרמטרים לשליפה: סוג השליפה
   const params = {
     method: 'POST',
@@ -1426,7 +1426,7 @@ async function resetStationAndActivities() {
   userObjToEdit.stationsList.push(stationObj);
 
   // קריאה לשיטה בקונטרולר
-  const url = `https://localhost:7067/api/Stations/resetStationAndActivities`;
+  const url = `./api/Stations/resetStationAndActivities`;
   // שמירת הפרמטרים לשליפה: סוג השליפה
   const params = {
     method: 'POST',
@@ -1571,7 +1571,7 @@ function checkActivitiesNum() {
 /* פונקציה לשליפת פרטי המשתמש הנוכחי מצומצמים למען עריכת הגדרות */
 async function userByIDSettings(userID) {
   //  קריאה לבסיס הנתונים ושליפת התחנות מהקונטרולר (הכתובת)
-  const url = `https://localhost:7067/api/Users/userByIDSettings/${userID}`;
+  const url = `./api/Users/userByIDSettings/${userID}`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
@@ -1644,7 +1644,7 @@ async function updateUserInfo() {
 
 
   // קריאה לשיטה בקונטרולר
-  const url = `https://localhost:7067/api/Users/updateUserByID`;
+  const url = `./api/Users/updateUserByID`;
   // שמירת הפרמטרים לשליפה: סוג השליפה
   const params = {
     method: 'POST',
@@ -4514,7 +4514,7 @@ let groupAllStations = 0;
 /* פונקציה לשליפת הפרטי של כל המשתמשים והצגתם בטבלת נתונים */
 async function usersCountForDataTable() {
   // קריאה לבסיס הנתונים ושליפת שמות המשתמשים
-  const url = `https://localhost:7067/api/Users/AllUsersName`;
+  const url = `./api/Users/AllUsersName`;
   // שמירת הפרמטרים לשליפה: סוג השליפה ומבנה הנתונים שיוחזר
   const params = {
     method: 'GET',
