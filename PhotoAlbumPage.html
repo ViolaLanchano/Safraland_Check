@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+</head>
+<!-- onload="showCharacterANDcheckStation()" -->
+
+<body id="mapBackground" lang="he" dir="rtl" onload="checkStationsNum(), addPhotoToAlbum()">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+    <section class="mt-3 ms-1 me-1 ms-sm-3 me-sm-3">
+        <div class="d-flex justify-content-between">
+            <div class="me-1">
+                <a href="./Map.html">
+                    <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                </a>
+            </div>
+            <div class="d-flex align-items-center position-relative">
+                <div id="mapProgressBarDiv" class="d-flex">
+                    <img id="1star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="2star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="3star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="4star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="5star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="6star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="7star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    <img id="8star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                </div>
+                <img src="./images/mapPage/MapProgressBarUncompleted.svg">
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <h1 class="titleH1 pt-4 mt-2">התמונות שלי</h1>
+            <img id="medal" class="position-absolute d-none" src="" alt="מדליה" style="transform: translate(-5rem, -5rem)">
+            <p class="changeFontWeigth mt-3">לחצו על תמונה כדי להגדיל אותה</p>
+
+            <div class="d-flex justify-content-center gap-4 mt-4 pt-3">
+                <div class="polaroid photoAlbumRight" data-bs-toggle="modal" data-bs-target="#photoAlbum-MusicStation">
+                    <img id="musicStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם המוזיקה">
+                    <p class="mb-0 captionsForPloariod">עולם המוזיקה</p>
+                </div>
+
+                <div class="polaroid photoAlbumMiddle" data-bs-toggle="modal"
+                    data-bs-target="#photoAlbum-MyWorldStation">
+                    <img id="myRoomStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מהעולם שלי ">
+                    <p class="mb-0 captionsForPloariod">העולם שלי</p>
+                </div>
+
+                <div class="polaroid photoAlbumLeft" data-bs-toggle="modal" data-bs-target="#photoAlbum-DimotStation">
+                    <img id="dimotStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם הדימות">
+                    <p class="mb-0 captionsForPloariod">עולם הדימות</p>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-4 mt-5">
+                <div class="polaroid photoAlbumRight" data-bs-toggle="modal"
+                    data-bs-target="#photoAlbum-TreatmentStation">
+                    <img id="treatmentStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם הבדיקות">
+                    <p class="mb-0 captionsForPloariod">עולם הבדיקות</p>
+                </div>
+
+                <div class="polaroid photoAlbumMiddle" data-bs-toggle="modal" data-bs-target="#photoAlbum-FoodStation">
+                    <img id="foodStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם האוכל">
+                    <p class="mb-0 captionsForPloariod">עולם האוכל</p>
+                </div>
+
+                <div class="polaroid photoAlbumLeft" data-bs-toggle="modal"
+                    data-bs-target="#photoAlbum-EducationalStation">
+                    <img id="educationalStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם הידע">
+                    <p class="mb-0 captionsForPloariod">עולם הידע</p>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-center gap-5 mt-5">
+                <div class="polaroid photoAlbumRight" data-bs-toggle="modal" data-bs-target="#photoAlbum-GamingStation">
+                    <img id="gamingStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם המשחקים">
+                    <p class="mb-0 captionsForPloariod">עולם המשחקים</p>
+                </div>
+
+                <div class="polaroid photoAlbumLeft" data-bs-toggle="modal" data-bs-target="#photoAlbum-CinemaStation">
+                    <img id="cinemaStationPloariod" class="photoSize" src="./images/rectanglePhotoAlbum.svg"
+                        alt="תמונה מעולם הסרטים">
+                    <p class="mb-0 captionsForPloariod">עולם הסרטים</p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <img class="userCharacter smallRigthPosition" alt="">
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מעולם המוזיקה -->
+            <div class="modal fade" id="photoAlbum-MusicStation" aria-labelledby="photoAlbum-MusicStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="musicStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מעולם המוזיקה">
+                            <p class="mb-0">עולם המוזיקה</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מתחנת העולם שלי -->
+            <div class="modal fade" id="photoAlbum-MyWorldStation" aria-labelledby="photoAlbum-MyWorldStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="myRoomStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מהעולם שלי">
+                            <p class="mb-0">העולם שלי</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מעולם הדימות -->
+            <div class="modal fade" id="photoAlbum-DimotStation" aria-labelledby="photoAlbum-DimotStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="dimotStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מעולם הדימות">
+                            <p class="mb-0">עולם הדימות</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מעולם הבדיקות -->
+            <div class="modal fade" id="photoAlbum-TreatmentStation" aria-labelledby="photoAlbum-TreatmentStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="treatmentStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מעולם הבדיקות">
+                            <p class="mb-0">עולם הבדיקות</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מעולם האוכל -->
+            <div class="modal fade" id="photoAlbum-FoodStation" aria-labelledby="photoAlbum-FoodStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="foodStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מעולם האוכל">
+                            <p class="mb-0">עולם האוכל</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מעולם הידע -->
+            <div class="modal fade" id="photoAlbum-EducationalStation"
+                aria-labelledby="photoAlbum-EducationalStationStationLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="educationalStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מהעולם הידע">
+                            <p class="mb-0">עולם הידע</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מתחנת עולם המשחקים -->
+            <div class="modal fade" id="photoAlbum-GamingStation" aria-labelledby="photoAlbum-GamingStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="gamingStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מעולם המשחקים">
+                            <p class="mb-0">עולם המשחקים</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פופ-אפ הגדלת תמונה מתחנת עולם הסרטים -->
+            <div class="modal fade" id="photoAlbum-CinemaStation" aria-labelledby="photoAlbum-CinemaStationLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-body pt-1">
+                        <div class="polaroid">
+                            <img id="cinemaStationPloariodBigger" src="./images/rectanglePhotoAlbum.svg"
+                                alt="תמונה מעולם הסרטים">
+                            <p class="mb-0">עולם הסרטים</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</section>
+
+<!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+<section>
+    <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel" data-bs-backdrop="static"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="padding-top: 143px;">
+                <div class="modal-body mt-3">
+                    <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי להינות מהמשחק, עליכם להפוך את המסך</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>

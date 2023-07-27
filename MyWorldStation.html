@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+</head>
+
+<body id="body" lang="he" dir="rtl"
+    onload="needToLogIn(), showCharacterImages(), checkIfStationAlreadyCompleted(), myRoomDragAndDrop()">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <section>
+            <div class="d-flex mt-2 ms-1 me-1 pt-3 align-items-center justify-content-around">
+                <div class="me-1">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                </div>
+                <div style="transform: translateY(-5px);">
+                    <div class="d-flex align-items-center">
+                        <div id="activitiesProgressBarDiv" class="d-flex">
+                            <img id="1activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="2activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="3activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="4activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="5activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="6activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="7activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                        </div>
+                        <img class="justify-content-center" src="./images/activitiesProgressBarUncompleted.svg" alt="">
+                    </div>
+                </div>
+                <div class="ms-1">
+                    <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                        onclick="changeAudioStep_MyWorldStation(), playAudioStep_MyWorldStation()">
+                    <audio id="myWorldStationRecords" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <!-- שלב 1 -->
+            <div class="step firstStep mt-4 mt-md-1 active" data-step="step1">
+                <div class="bubbleTextBig p-2">
+                    <h2 class="mt-4 pt-3 pe-1">ברוכים הבאים לחדר האשפוז!</h2>
+                    <p class="bubbleTextBigP">זה המקום בו תנוחו, תאכלו ותישנו בזמן תקופת האשפוז.</p>
+                    <p class="bubbleTextBigP">לכל הילדים בספרא יש מיטה בחדר האשפוז שהיא רק שלהם :)</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 2 - הקדמה לפעילות סידור בחדר האשפוז -->
+            <div class="step mt-4 mt-md-1" data-step="step2">
+                <div class="bubbleTextBig p-2">
+                    <img class="position-absolute" src="./images/myWorldStation/bedAndinfusion.svg" alt="" style="transform: translate(-1rem, 9rem);">
+                    <p class="bubbleTextBigP mt-5 pt-3">בואו ונכיר את החפצים הנמצאים בחדר האשפוז ויחד נסדר אותם במקום
+                        המתאים.</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 3 - פעילות גרירה בחדר האשפוז -->
+            <div id="1activityStation" class="step mt-2 mt-md-1" data-step="step3">
+                <h3 class="bubbleTextBigP changeFontWeigth" style="width: 17rem;">גררו את החפצים ממחסן החפצים למקום המתאים להם בחדר</h3>
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionCardMiddle" style="max-width: 4rem; margin-top: -1rem;"
+                        alt="">
+                </div>
+                <div id="roomSign" class="d-flex justify-content-center mt-3" data-Room="myWorldStation">
+                    <img src="./images/myWorldStation/emptyRoom.svg" alt="" style="width: 20rem;">
+                    <img class="position-absolute postionAbsoluteMiddle" src="./images/myWorldStation/roomSign.svg"
+                        alt="" style="max-width: 7rem;">
+                    <p id="staffMemberName" class="position-absolute postionAbsoluteMiddle" style="margin-top: 3.7rem;">
+                    </p>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center position-relative">
+                    <div id="ballonsTarget" class="d-flex justify-content-center position-absolute">
+                        <img id="ballonsFrame" class="droppable-myRoom" src="./images/myWorldStation/ballonsFrame.svg"
+                            alt="מסגרת למיקום הבלונים" data-droppable="ballons">
+                        <img id="ballonsTag" class="position-absolute mt-3" src="./images/myWorldStation/ballonsTag.svg"
+                            alt="" style="width: 3rem;">
+                    </div>
+                    <div id="sofaTarget" class="align-items-center d-flex justify-content-center position-absolute">
+                        <img id="sofaFrame" class="droppable-myRoom" src="./images/myWorldStation/sofaFrame.svg"
+                            alt="מסגרת למיקום הכורסא" data-droppable="sofa">
+                        <img id="sofaTag" class="position-absolute" src="./images/myWorldStation/sofaTag.svg" alt=""
+                            style="width: 3rem;">
+                    </div>
+                    <div id="disinfectantTarget" class="d-flex position-absolute">
+                        <img id="disinfectantFrame" class="droppable-myRoom p-3"
+                            src="./images/myWorldStation/disinfectantFrame.svg" alt="מסגרת למיקום סבון החיטוי"
+                            data-droppable="disinfectant">
+                        <img id="disinfectantTag" class="position-absolute mt-4 ms-1"
+                            src="./images/myWorldStation/disinfectantTag.svg" alt="" style="width: 4rem;">
+                    </div>
+                    <div id="emergencyButtonTarget" class="d-flex position-absolute">
+                        <img id="emergencyButtonFrame" class="droppable-myRoom p-2"
+                            src="./images/myWorldStation/emergencyButtonFrame.svg" alt="מסגרת למיקום לחצן הקריאה"
+                            data-droppable="emergencyButton">
+                        <img id="emergencyButtonTag" class="position-absolute mt-3"
+                            src="./images/myWorldStation/emergencyButtonTag.svg" alt="" style="width: 4rem;">
+                    </div>
+                    <div id="sleepBedTarget" class="d-flex justify-content-center position-absolute">
+                        <img id="sleepBedFrame" class="droppable-myRoom" src="./images/myWorldStation/bedFrame.svg"
+                            alt="מסגרת למיקום המיטה" data-droppable="sleepBed">
+                        <img id="sleepBedTag" class="position-absolute mt-2" src="./images/myWorldStation/bedTag.svg"
+                            alt="" style="width: 3rem;">
+                    </div>
+                    <div id="patientBoardTarget" class="d-flex position-absolute">
+                        <img id="patientBoardFrame" class="droppable-myRoom p-2"
+                            src="./images/myWorldStation/patientBoardFrame.svg" alt="מסגרת למיקום לוח המטופל"
+                            data-droppable="patientBoard">
+                        <img id="patientBoardTag" class="position-absolute mt-4"
+                            src="./images/myWorldStation/patientBoardTag.svg" alt="" style="width: 4rem;">
+                    </div>
+                    <div id="infusionTarget" class="d-flex justify-content-center position-absolute">
+                        <img id="infusionFrame" class="droppable-myRoom" src="./images/myWorldStation/infusionFrame.svg"
+                            alt="מסגרת למיקום עמוד האינפוזיה" data-droppable="infusion">
+                        <img id="infusionTag" class="position-absolute mt-3"
+                            src="./images/myWorldStation/infusionTag.svg" alt="" style="width: 6.5rem;">
+                    </div>
+                </div>
+
+
+                <p class="changeFontWeigth mt-2 mb-0">מחסן חפצים</p>
+                <div class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/myWorldStation/imgStorageFrame.svg" alt="" style="width: 20rem;">
+
+                    <div id="sofaDiv" class="d-flex align-items-center position-absolute">
+                        <img id="sofa" class="draggable-myRoom" src="./images/myWorldStation/sofa.svg" alt="כורסא"
+                            data-draggable="sofa">
+                        <img class="stickerSize position-absolute ms-2" src="./images/myWorldStation/sofaSticker.svg"
+                            alt="">
+                    </div>
+                    <div id="emergencyButtonDiv" class="d-flex align-items-center position-absolute">
+                        <img id="emergencyButton" class="draggable-myRoom"
+                            src="./images/myWorldStation/emergencyButton.svg" alt="לחצן מצוקה"
+                            data-draggable="emergencyButton">
+                        <img class="stickerSize position-absolute"
+                            src="./images/myWorldStation/emergencyButtonSticker.svg" alt="">
+                    </div>
+                    <div id="ballonsDiv" class="d-flex justify-content-center align-items-center position-absolute">
+                        <img id="ballons" class="draggable-myRoom" src="./images/myWorldStation/ballons.svg"
+                            alt="בלונים" data-draggable="ballons">
+                        <img class="stickerSize position-absolute mt-5" src="./images/myWorldStation/ballonsSticker.svg"
+                            alt="">
+                    </div>
+                    <div id="infusionDiv" class="d-flex justify-content-center align-items-center position-absolute">
+                        <img id="infusion" class="draggable-myRoom" src="./images/myWorldStation/infusion.svg"
+                            alt="עירוי" data-draggable="infusion">
+                        <img class="stickerSize position-absolute ms-1 mt-5"
+                            src="./images/myWorldStation/infusionSticker.svg" alt="">
+                    </div>
+                    <div id="sleepBedDiv" class="d-flex justify-content-center align-items-center position-absolute">
+                        <img id="sleepBed" class="draggable-myRoom" src="./images/myWorldStation/bed.svg" alt="מיטה"
+                            data-draggable="sleepBed">
+                        <img class="stickerSize position-absolute mt-3" src="./images/myWorldStation/bedSticker.svg"
+                            alt="">
+                    </div>
+                    <div id="patientBoardDiv"
+                        class="d-flex justify-content-center align-items-center position-absolute">
+                        <img id="patientBoard" class="draggable-myRoom" src="./images/myWorldStation/patientBoard.svg"
+                            alt="לוח מטופל" data-draggable="patientBoard">
+                        <img class="stickerSize position-absolute" src="./images/myWorldStation/patientBoardSticker.svg"
+                            alt="">
+                    </div>
+                    <div id="disinfectantDiv"
+                        class="d-flex justify-content-center align-items-center position-absolute">
+                        <img id="disinfectant" class="draggable-myRoom" src="./images/myWorldStation/disinfectant.svg"
+                            alt="חומר חיטוי" data-draggable="disinfectant">
+                        <img class="stickerSize position-absolute  ms-4 mt-4"
+                            src="./images/myWorldStation/disinfectantSticker.svg" alt="">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ משימת גרירה חדר האשפוז -->
+            <div class="modal fade" id="winMessage_dragAndDrop_myRoom"
+                aria-labelledby="winMessage_dragAndDrop_myRoomLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="myRoomFeedback_myWorldStationRecord" class="audio">
+                    <source src="./audio/myWorldStation/myRoomFeedback_myWorldStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p class="mt-md-5 mt-3 mb-4 popupWiderP">
+                                סיימתם לסדר את כל
+                                החפצים בחדר! </p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="updateActivity('noCorrectAnswer',1041)">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 4 - הקדמה לפעילות הכרת הצוות -->
+            <div class="step mt-4 mt-md-1" data-step="step4">
+                <div class="bubbleTextBig p-2">
+                    <p class="bubbleTextBigP mt-5">במהלך היום מגיעים לבקר בחדרים שלנו אנשי צוות שונים.</p>
+                    <p class="bubbleTextBigP">בואו נגלה יחד מי הם ובמה הם יכולים לעזור לנו.
+                    </p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 5 - הכרת הצוות הרפואי -->
+            <div id="2activityStation" class="step mt-4 mt-md-1" data-step="step5">
+                <div class="position-absolute postionAbsoluteMiddle" style="margin-top: -6.5rem;">
+                    <img src="./images/myWorldStation/MedicalStaffTitle.svg" style="width: 13rem;" alt="">
+                    <h3
+                        class="staffRoleTitles changeFontWeigth titleH1Stations position-absolute postionAbsoluteMiddle">
+                        הצוות הרפואי</h3>
+                </div>
+
+                <div class="align-items-center d-flex justify-content-center" style="margin-top: 6rem;">
+                    <img class="shortWhiteCard" src="./images/backgrounds/shortWhiteCard.svg" alt="">
+                    <p class="position-absolute bubbleTextBigP" style="width: 17.4rem;">הצוות הרפואי אחראי על הטיפולים
+                        והבדיקות הרפואיות שאנחנו עוברים.
+                        הוא פה כדי לעזור לנו להרגיש טוב יותר. </p>
+                </div>
+                <div>
+                    <img class="userCharacter characterPositionCardMiddle"
+                        style="max-width: 4rem; margin-right: -9.5rem; margin-top: -2rem;" alt="">
+                </div>
+                <p class="position-absolute postionAbsoluteMiddle changeFontWeigth mt-2">הכירו את
+                    אנשי הצוות:</p>
+                <fieldset class="staffMembers d-flex justify-content-center align-items-end mt-5 pt-3">
+                    <div>
+                        <input type="radio" id="nurse" name="staff" value="אחות" onclick="showStaffRole('nurse')"
+                            checked>
+                        <label for="nurse">
+                            <img src="./images/myWorldStation/nurses.svg" alt="אחים ואחיות">
+                        </label>
+                        <div id="nurseName" class="staffMembersRole">
+                            <img src="./images/myWorldStation/shadow.svg" alt="">
+                            <p class="titleH1Stations changeFontWeigth mb-0" style="font-size: 1.5rem;">אחים ואחיות</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="doctor" name="staff" value="רופא" onclick="showStaffRole('doctor')">
+                        <label for="doctor">
+                            <img src="./images/myWorldStation/doctors.svg" alt="רופאים ורופאות">
+                        </label>
+                        <div id="doctorName" class="noOpacity">
+                            <img src="./images/myWorldStation/shadow.svg" alt="">
+                            <p class="titleH1Stations changeFontWeigth mb-0" style="font-size: 1.5rem;">רופאים ורופאות</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn" onclick="updateActivity('noCorrectAnswer',1042)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 6 - הכרת צוות כוח העזר -->
+            <div id="3activityStation" class="step mt-4 mt-md-1" data-step="step6">
+                <div class="position-absolute postionAbsoluteMiddle" style="margin-top: -5.7rem;">
+                    <img src="./images/myWorldStation/auxiliaryForceTitle.svg" style="width: 13rem;" alt="">
+                    <h3
+                        class="staffRoleTitles changeFontWeigth titleH1Stations position-absolute postionAbsoluteMiddle">
+                        צוות כוח העזר</h3>
+                </div>
+
+                <div class="align-items-center d-flex justify-content-center" style="margin-top: 6rem;">
+                    <img class="shortWhiteCard" src="./images/backgrounds/shortWhiteCard.svg" alt="">
+                    <p class="position-absolute bubbleTextBigP" style="width: 17rem;">צוות כוח העזר כאן כדי לעזור לנו
+                        להרגיש הכי קרוב לבית, לדאוג שיהיו לנו מצעים נקיים, מקלחת נעימה ואוכל טעים.</p>
+                </div>
+                <div>
+                    <img class="userCharacter characterPositionCardMiddle"
+                        style="max-width: 4rem; margin-right: -9.5rem;" alt="">
+                </div>
+                <p class="position-absolute postionAbsoluteMiddle changeFontWeigth ps-2 pe-2 mt-2">
+                    הכירו את
+                    תפקידי הצוות:</p>
+                <fieldset class="staffMembers d-flex justify-content-center align-items-end mt-5 ps-3 pe-3">
+                    <div>
+                        <input type="radio" id="auxiliaryForceFood" name="staff2" value="הגשת אוכל" checked
+                            onclick="showStaffRole('auxiliaryForceFood')">
+                        <label for="auxiliaryForceFood">
+                            <img src="./images/myWorldStation/auxiliaryForceFood.svg" alt="הגשת אוכל">
+                        </label>
+                        <img id="auxiliaryForceFoodName" class="staffMembersRole d-block mt-3"
+                            src="./images/myWorldStation/shadow.svg" alt="">
+                    </div>
+
+                    <div>
+                        <input type="radio" id="auxiliaryForceBed" name="staff2" value="סידור המיטה"
+                            onclick="showStaffRole('auxiliaryForceBed')">
+                        <label for="auxiliaryForceBed">
+                            <img src="./images/myWorldStation/auxiliaryForceBed.svg" alt="סידור המיטה">
+                        </label>
+                        <img id="auxiliaryForceBedName" class="noOpacity d-block mt-3"
+                            src="./images/myWorldStation/shadow.svg" alt="">
+                    </div>
+
+                    <div>
+                        <input type="radio" id="auxiliaryForceShower" name="staff2" value="מקלחת"
+                            onclick="showStaffRole('auxiliaryForceShower')">
+                        <label for="auxiliaryForceShower">
+                            <img src="./images/myWorldStation/auxiliaryForceShower.svg" alt="מקלחת">
+                        </label>
+                        <img id="auxiliaryForceShowerName" class="noOpacity d-block mt-3"
+                            src="./images/myWorldStation/shadow.svg" alt="">
+                    </div>
+                </fieldset>
+
+                <div class="buttonsDiv mt-4">
+                    <button type="button" class="next-btn" onclick="updateActivity('noCorrectAnswer',1043)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 7 - הקדמה לפעילות שאלות חד ברירה -->
+            <div class="step mt-4 mt-md-1" data-step="step7">
+                <div class="bubbleTextBig p-2">
+                    <p class="bubbleTextBigP mt-5 ps-1">עכשיו אחרי שהכרנו את הצוות הרפואי וצוות כוח העזר, חושבים
+                        שתצליחו להתאים בין איש הצוות לצוות אליו הוא שייך?</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 8 - פעילות שאלות חד ברירה - חלק 1 -->
+            <div id="4activityStation" class="step mt-4 mt-md-1" data-step="step8-10">
+                <h3 class="changeFontWeigth bubbleTextMiddleP">לאיזה צוות לדעתכם שייכת הדמות הבאה?</h3>
+
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionCardMiddle" alt="">
+                </div>
+
+                <div>
+                    <img class="d-block postionAbsoluteMiddle" src="./images/myWorldStation/nurse.svg" alt="אחות"
+                        style="width: 8rem;">
+                    <img class="d-block postionAbsoluteMiddle" src="./images/myWorldStation/shadow.svg" alt="">
+                    <p class="titleH1Stations changeFontWeigth mb-0" style="font-size: 1.5rem;">אחות</p>
+                </div>
+
+                <form class="radioDisractors">
+                    <fieldset>
+                        <div class="d-flex justify-content-center gap-5">
+                            <input type="radio" id="medicalStaff" name="answer" value="צוות רפואי"
+                                onchange="changeBtnState('radio')">
+                            <label for="medicalStaff">
+                                <img src="./images/myWorldStation/medicalStaffDistractor.svg" alt="צוות רפואי">
+                            </label>
+
+                            <input type="radio" id="auxiliaryForce" name="answer" value="צוות כוח עזר"
+                                onchange="changeBtnState('radio')">
+                            <label for="auxiliaryForce">
+                                <img src="./images/myWorldStation/auxiliaryForceDistractor.svg" alt="צוות רפואי">
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="buttonsDiv">
+                    <button id="confirmBtnRadio1" type="button" class="confirmBtnRadio modalBtns opacityImg disabled"
+                        data-bs-toggle="modal" data-bs-target="#correctAnswerLevel8-MyWorldStation" onclick="feedback_myWorldStation('1')">
+                        <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 8 -->
+            <div class="modal fade" id="correctAnswerLevel8-MyWorldStation"
+                aria-labelledby="correctAnswerLevel8-MyWorldStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="staffQuestionsFeedback1_myWorldStationRecord" class="audio">
+                    <source src="./audio/myWorldStation/staffQuestionsFeedback1_myWorldStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-2 mt-sm-4">
+                            <img src="./images/myWorldStation/nurse.svg" alt="אחות" style="width:4rem;">
+                            <p class="popupWiderP" style="width: 10rem">האחות היא חלק <b>מהצוות הרפואי</b></p>
+                            <img class="modalImages pt-2" src="./images/myWorldStation/medicalStaffDistractor.svg"
+                                alt="צוות רפואי" style="width: 5rem; margin-top: -1.5rem;">
+                        </div>
+                        <div>
+                            <button type="button" class="modalBtns next-btn popupMyWorldStationBtn"
+                                data-bs-dismiss="modal" onclick="updateActivity('radio',1044)" style="float: unset;">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 9 - פעילות שאלות חד ברירה - חלק 2 -->
+            <div id="5activityStation" class="step mt-4 mt-md-1" data-step="step8-10">
+                <h3 class="changeFontWeigth bubbleTextMiddleP">לאיזה צוות לדעתכם שייכת הדמות הבאה?</h3>
+
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionCardMiddle" alt="">
+                </div>
+
+                <div>
+                    <img class="d-block postionAbsoluteMiddle" src="./images/myWorldStation/auxiliaryForceFood.svg"
+                        alt="הגשת אוכל" style="width: 6rem;">
+                    <img class="d-block postionAbsoluteMiddle" src="./images/myWorldStation/shadow.svg" alt="">
+                    <p class="titleH1Stations changeFontWeigth noOpacity mb-0" style="font-size: 1.5rem;">הגשת אוכל</p>
+                </div>
+
+                <form class="radioDisractors">
+                    <fieldset>
+                        <div class="d-flex justify-content-center gap-5">
+                            <input type="radio" id="medicalStaff2" name="answer" value="צוות רפואי"
+                                onchange="changeBtnState('radio')">
+                            <label for="medicalStaff2">
+                                <img src="./images/myWorldStation/medicalStaffDistractor.svg" alt="צוות רפואי">
+                            </label>
+
+                            <input type="radio" id="auxiliaryForce2" name="answer" value="צוות כוח עזר"
+                                onchange="changeBtnState('radio')">
+                            <label for="auxiliaryForce2">
+                                <img src="./images/myWorldStation/auxiliaryForceDistractor.svg" alt="צוות רפואי">
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="buttonsDiv">
+                    <button id="confirmBtnRadio2" type="button" class="confirmBtnRadio modalBtns opacityImg disabled"
+                        data-bs-toggle="modal" data-bs-target="#correctAnswerLevel9-MyWorldStation" onclick="feedback_myWorldStation('2')">
+                        <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 9 -->
+            <div class="modal fade" id="correctAnswerLevel9-MyWorldStation"
+                aria-labelledby="correctAnswerLevel9-MyWorldStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="staffQuestionsFeedback2_myWorldStationRecord" class="audio">
+                    <source src="./audio/myWorldStation/staffQuestionsFeedback2_myWorldStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-2 mt-sm-4">
+                            <img src="./images/myWorldStation/auxiliaryForceFood.svg" alt="הגשת אוכל"
+                                style="width:3.5rem;">
+                            <p class="popupWiderP">הגשת אוכל, היא אחד מהתפקידים של <b>צוות
+                                    כוח העזר</b></p>
+                            <img class="modalImages pt-2" src="./images/myWorldStation/auxiliaryForceDistractor.svg"
+                                alt="צוות כוח העזר" style="width: 5rem; margin-top: -1.5rem;">
+                        </div>
+                        <div>
+                            <button type="button" class="modalBtns next-btn popupMyWorldStationBtn"
+                                data-bs-dismiss="modal" onclick="updateActivity('radio',1045)" style="float: unset;">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 10 - פעילות שאלות חד ברירה - חלק 3 -->
+            <div id="6activityStation" class="step mt-4 mt-md-1" data-step="step8-10">
+                <h3 class="changeFontWeigth bubbleTextMiddleP">לאיזה צוות לדעתכם שייכת הדמות הבאה?</h3>
+
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionCardMiddle" alt="">
+                </div>
+
+                <div>
+                    <img class="d-block postionAbsoluteMiddle" src="./images/myWorldStation/doctor.svg" alt="רופא"
+                        style="width: 8rem;">
+                    <img class="d-block postionAbsoluteMiddle" src="./images/myWorldStation/shadow.svg" alt="">
+                    <p class="titleH1Stations changeFontWeigth mb-0" style="font-size: 1.5rem;">רופא</p>
+                </div>
+
+                <form class="radioDisractors">
+                    <fieldset>
+                        <div class="d-flex justify-content-center gap-5">
+                            <input type="radio" id="medicalStaff3" name="answer" value="צוות רפואי"
+                                onchange="changeBtnState('radio')">
+                            <label for="medicalStaff3">
+                                <img src="./images/myWorldStation/medicalStaffDistractor.svg" alt="צוות רפואי">
+                            </label>
+
+                            <input type="radio" id="auxiliaryForce3" name="answer" value="צוות כוח עזר"
+                                onchange="changeBtnState('radio')">
+                            <label for="auxiliaryForce3">
+                                <img src="./images/myWorldStation/auxiliaryForceDistractor.svg" alt="צוות רפואי">
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="buttonsDiv">
+                    <button id="confirmBtnRadio3" type="button" class="confirmBtnRadio modalBtns opacityImg disabled"
+                        data-bs-toggle="modal" data-bs-target="#correctAnswerLevel10-MyWorldStation" onclick="feedback_myWorldStation('3')">
+                        <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 10 -->
+            <div class="modal fade" id="correctAnswerLevel10-MyWorldStation"
+                aria-labelledby="correctAnswerLevel10-MyWorldStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="staffQuestionsFeedback3_myWorldStationRecord" class="audio">
+                    <source src="./audio/myWorldStation/staffQuestionsFeedback3_myWorldStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-2 mt-sm-4">
+                            <img src="./images/myWorldStation/doctor.svg" alt="רופא" style="width:4rem;">
+                            <p class="popupWiderP" style="width: 10rem">הרופא הוא חלק <b>מהצוות הרפואי</b></p>
+                            <img class="modalImages pt-2" src="./images/myWorldStation/medicalStaffDistractor.svg"
+                                alt="צוות רפואי" style="width: 5rem; margin-top: -1.5rem;">
+                        </div>
+                        <div>
+                            <button type="button" class="modalBtns next-btn popupMyWorldStationBtn"
+                                data-bs-dismiss="modal" onclick="updateActivity('radio',1046)" style="float: unset;">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 11 - פידבק אמצע -->
+            <div class="step mt-4 mt-md-1" data-step="step11">
+                <div class="bubbleTextNarrow p-2">
+                    <p class="changeFontWeigth me-1 mt-4 pt-1 mb-0">עוד משימה אחת ונזכה בכוכב!</p>
+                    <p class="bubbleTextNarrowP" style="width: 13rem;">לכו לחדר האשפוז שלכם והסתכלו סביבכם. איזה פינה
+                        בחדר
+                        אתם הכי
+                        אוהבים?</p>
+                </div>
+                <div class="mt-3">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 12 - צילום תמונה -->
+            <div id="7activityStation" class="step mt-4" data-step="step12">
+                <div>
+                    <h3 class="changeFontWeigth bubbleTextBigP">רוצים לשתף אותי? <br>מוזמנים להצטלם בחדר שלכם בפינה שאתם
+                        הכי
+                        אוהבים</br></h3>
+                </div>
+
+                <!-- כפתורי צילום והעלאת תמונה -->
+                <div id="m-uploadInputs" class="mt-4">
+                    <div class="pt-2">
+                        <p class="mb-1">ואל תשכחו לחייך :)</p>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="mt-4">
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="takePicture" id="takePicture" capture="camera"
+                                    onchange="readURL(this)">
+                                <label for="takePicture">
+                                    <img src="./images/buttons/cameraBtn.svg" alt="צילום">
+                                </label>
+                            </div>
+
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="pickPhoto" id="pickPhoto"
+                                    onchange="readURL(this)">
+                                <label for="pickPhoto">
+                                    <img src="./images/buttons/galleryBtn.svg" alt="גלריה">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- אפשרות דילוג -->
+                    <div>
+                        <div class="bubbleTextWider mt-4 pt-4">
+                            <p class="bubbleTextWiderP">לא רוצים להצטלם? לחצו על כפתור ״דלג״</p>
+                        </div>
+                        <div style="margin-top: -3.4rem;">
+                            <img class="userCharacter photoStepCharacterPosition mt-5" alt="">
+                        </div>
+                        <div class="buttonsDiv">
+                            <button id="skipBtn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropSkip" onclick="stopAudio(), skipPopupAudio()">
+                                <img src="./images/buttons/skipBtn.svg" alt="דלג">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - דלג על משימה -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropSkip" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropSkipLabel" aria-hidden="true">
+                    <audio id="skipPopupAudio" class="audio">
+                        <source src="./audio/skipActivity.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupSkipP">האם אתם בטוחים שאתם רוצים <b>לדלג</b>
+                                    על המשימה?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" data-bs-dismiss="modal" class="next-btn modalBtns"
+                                    style="width: 6rem;"
+                                    onclick="updateActivity('noCorrectAnswer',1047), changeToFinishBackground(), stopAudio()">
+                                    <img src="./images/buttons/yesBtn.svg" alt=כן">
+                                </button>
+                                <button type="button" data-bs-dismiss="modal" class="modalBtns" style="width: 6rem;" onclick="stopAudio(), checkIfScroll()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- הצגת תמונה + כפתורי מחיקה ושיתוף -->
+                <div id="previewImageDiv" class="d-none mt-5">
+                    <!-- כפתור מחק -->
+                    <button id="deleteBtn" class="pe-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdropDelete" onclick="stopAudio(), deletPhotoPopupAudio()">
+                        <img src="./images/buttons/deleteBtn.svg" alt="מחיקת תמונה">
+                    </button>
+                    <!-- הצגת תמונה -->
+                    <img id="previewImage" alt="התמונה שהעלת">
+                    <!-- כפתור שיתוף -->
+                    <button id="shareBtn" class="ps-4" type="button" onclick="shareImage()">
+                        <img src="./images/buttons/shareBtn.svg" alt="שיתוף תמונה">
+                    </button>
+
+                    <div>
+                        <div class="bubbleTextWider mt-4"  style="padding-top: 1.6rem; height: 6rem;">
+                            <p class="bubbleTextWiderP">איזו פינה קסומה!</p>
+                        </div>
+                    </div>
+                    <!-- תמונה דמות -->
+                    <div class="mt-4">
+                        <img class="userCharacter photoStepCharacterPosition" alt="">
+                    </div>
+                    <div class="buttonsDiv">
+                        <button type="button" class="next-btn"
+                            onclick="updateActivity('photo',1047), changeToFinishBackground()">
+                            <img src="./images/buttons/sendBtn.svg" alt="שליחה">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - מחיקת תמונה  -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropDelete" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropDeleteLabel" aria-hidden="true">
+                    <audio id="deletPhotoPopupAudio" class="audio">
+                        <source src="./audio/deletePhoto.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content m-4">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>למחוק</b> את
+                                    התמונה
+                                    שצילמתם?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" onclick="deleteImage(), stopAudio(), checkIfScroll()"
+                                    style="width: 6rem;">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" style="width: 6rem;" onclick="stopAudio()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 13 - סיום תחנה -->
+            <div id="finalStep" class="step finalStep" data-step="step13">
+                <audio id="finishStationFeedbackAudio" class="audio">
+                    <source src="./audio/finishStationFeedback.mp3" type="audio/mpeg">
+                </audio>
+                <div id="finishMyWorldStationSign" class="mt-5">
+                    <h2 class="finishStationSignH2">כל הכבוד!</h2>
+                    <p class="finishStationSignP changeFontWeigth mt-5 pe-3 ps-3">סיימנו את התחנה וזכינו בכוכב!</p>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionStationsFinishPage" alt="">
+                </div>
+                <div class="buttonsDiv d-flex justify-content-between" style="right: 0%; left: 0%;">
+                    <button type="button" class="float-end regularBtns" data-bs-toggle="modal"
+                        data-bs-target="#playAgain">
+                        <img src="./images/buttons/playAgainBtn.svg" alt="שחקו שוב">
+                    </button>
+                    <button type="button" class="regularBtns" onclick="updateStation()">
+                        <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ לאחר לחיצה על ״שחקו שוב״ -->
+            <div class="popupModal modal fade" id="playAgain" aria-labelledby="playAgainLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content mt-3">
+                        <div class="modal-body d-flex justify-content-center pt-1 pt-md-3">
+                            <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>להתחיל מחדש</b> את כל
+                                המשימות בתחנה זו?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center gap-5">
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                                onclick="resetStationAndActivities(), removeFinishBackground()">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </button>
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--  הודעה במידה והמשתמש סיים את התחנה, נכנס שוב ורוצה לבצע אותה מחדש -->
+            <div id="msgDiv" class="step mt-5" data-step="startAgain">
+                <div class="bubbleTextBig p-3">
+                    <h2 class="mt-3">שלום, אנחנו שוב כאן!</h2>
+                    <p class="bubbleTextBigP pt-2 ps-1">תרצו שנבצע את כל המשימות בתחנה <b>מההתחלה</b>?</p>
+                    <div class="d-flex justify-content-center mt-3 gap-5">
+                        <button type="button" class="modalBtns" onclick="resetStationAndActivities()">
+                            <img src="./images/buttons/yesBtn.svg" alt="כן">
+                        </button>
+                        <a href="./Map.html" class="modalBtns">
+                            <img src="./images/buttons/noBtn.svg" alt="לא">
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+            </div>
+
+
+            <!-- הודעה במידה והמשתמש סרק את הברקוד מבלי להיות מחובר -->
+            <div class="modal popupModal fade" id="needToLogin" aria-labelledby="needToLoginLabel"
+                data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-3">
+                            <p class="popupWiderP" style="margin-top: -2rem;">כדי להינות מהמשחק, עליכם להתחבר אליו</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center pb-0">
+                            <a class="regularBtns" href="./Registration.html">
+                                <img src="./images/buttons/registrationBtn.svg" alt="הרשמה למשחק">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

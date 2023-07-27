@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+</head>
+
+<body lang="he" dir="rtl" onload="checkIfScroll()">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <form id="RegistrationForm" onsubmit="saveNewUser(event)" style="height: 100%;">
+            <!-- שלב 1 -->
+            <!-- הזנת שם -->
+            <div class="step container active mt-3" data-step="step1" style="height: 100%;">
+                <div class="d-flex align-items-center justify-content-between">
+                    <img src="./images/safraLogo.png" alt="" style="width: 8rem;">
+                    <div>
+                        <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                            onclick="changeAudioStep_Registration(), playAudioStep_Registration()">
+                        <audio id="RegistrationRecords" class="audio">
+                            <source src="./audio/registration/step1_registration.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+                <div>
+                    <img src="./images/logo.png" alt="" class="pt-3 mt-2" style="max-width: 15rem;">
+                    <img src="./images/penguinHandUpOnly.svg" alt="" class="loginAndRegistrationCharacter mt-3">
+                    <p class="mt-4">משתמשים חדשים?</p>
+                    <h2>בואו נתחיל לשחק!</h2>
+
+                    <div class="form-group mt-2">
+                        <label for="nickName">
+                            <h3>מהו השם או הכינוי שלכם?</h3>
+                        </label>
+                        <input type="text" id="nickNameRegistration" name="nick-name" placeholder="הקלידו כאן" required
+                            oninput="userNickNameInput()">
+                        <p id="msgAboutNickName" class="noOpacity mb-1">הכינוי תפוס, אנא בחרו כינוי אחר</p>
+                    </div>
+
+                    <!-- בחירת צבע אהוב -->
+                    <div id="favColor" class="mt-4">
+                        <h3>איזה צבע אתם הכי אוהבים?</h3>
+                        <fieldset class="d-flex justify-content-center mt-2 gap-1">
+                            <input type="radio" id="blueRadioBtn" name="favColor" value="כחול"
+                                onchange="userNickNameInput()" />
+                            <label for="blueRadioBtn">
+                                <img src="./images/RegistrationPage/blueBtn.svg" alt="כחול">
+                            </label>
+                            <input type="radio" id="greenRadioBtn" name="favColor" value="ירוק"
+                                onchange="userNickNameInput()" />
+                            <label for="greenRadioBtn">
+                                <img src="./images/RegistrationPage/greenBtn.svg" alt="ירוק"> </label>
+                            <input type="radio" id="redRadioBtn" name="favColor" value="אדום"
+                                onchange="userNickNameInput()" />
+                            <label for="redRadioBtn">
+                                <img src="./images/RegistrationPage/redBtn.svg" alt="אדום"> </label>
+                            <input type="radio" id="yellowRadioBtn" name="favColor" value="צהוב"
+                                onchange="userNickNameInput()" />
+                            <label for="yellowRadioBtn">
+                                <img src="./images/RegistrationPage/yellowBtn.svg" alt="צהוב"> </label>
+                            <input type="radio" id="purpleRadioBtn" name="favColor" value="סגול"
+                                onchange="userNickNameInput()" />
+                            <label for="purpleRadioBtn">
+                                <img src="./images/RegistrationPage/purpleBtn.svg" alt="סגול"> </label>
+                        </fieldset>
+                    </div>
+                    <div class="mt-4 mb-3">
+                        <span>התחברתם כבר בעבר? <span><a href="./Login.html">לחצו כאן</a></span></span>
+                    </div>
+                    <div class="buttonsDiv">
+                        <button id="nickNameNextBtnRegistration" type="button" disabled class="next-btn opacityImg"
+                            onclick="onBoardingPlayAudio()">
+                            <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- התחלת הסבר ממשק משתמש -->
+            <div id="onBoardingExplanation" class="container step" data-step="onBoardingExplanation">
+                <audio id="onBoardingExplanationRecord" class="audio">
+                    <source src="./audio/registration/onBoardingExplanation_registration.mp3" type="audio/mpeg">
+                </audio>
+                <section>
+                    <div class="d-flex pt-3 align-items-center justify-content-between">
+                        <div>
+                            <img id="mapBtn" src="./images/buttons/mapBtn.svg" alt="למפה"
+                                onclick="addOverlay('mapBtn')">
+                        </div>
+                        <div>
+                            <img id="audioBtn" src="./images/buttons/audioBtn.svg" alt="כפתור שמע"
+                                onclick="addOverlay('audioBtn')">
+                        </div>
+                    </div>
+                </section>
+                <div class="bubbleTextBig mt-4" style="margin-right: 0.5rem; margin-left: 0.5rem; height: 17rem;">
+                    <div class="pt-3">
+                        <h3 class="changeFontWeigth mt-2">שלום!</h3>
+                        <p class="bubbleTextBigP mt-2" style="width: 17rem;">לפני שנתחיל חשוב שתכירו את הכפתורים שילוו
+                            אתכם לאורך המשחק.
+                        </p>
+                        <p class="changeFontWeigth mt-2 mb-0">בואו נתחיל!</p>
+                        <p class="bubbleTextBigP" style="width: 15rem;">
+                            לחצו על הכפתורים השונים וגלו את תפקידם.
+                        </p>
+                    </div>
+                    <div class="mt-5">
+                        <img class="bigRigthPosition" src="./images/penguinHandUp.svg" alt=""
+                            style="max-width: 47%; filter: drop-shadow(0px 0px 2px white);">
+                    </div>
+
+                    <div class="buttonsDiv mt-md-3">
+                        <button id="nextBtn" type="button" class="regularBtns" onclick="addOverlay('nextBtn')">
+                            <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- הסבר על כפתור המפה -->
+            <div id="mapBtnOnBoarding" class="step container" data-step="mapBtnOnBoarding">
+                <audio id="mapBtnOnBoardingRecord" class="audio">
+                    <source src="./audio/registration/mapBtnOnBoarding_registration.mp3" type="audio/mpeg">
+                </audio>
+                <div class="d-flex pt-3 align-items-center justify-content-between">
+                    <div>
+                        <img src="./images/buttons/mapBtn.svg" class="overlayBtn" alt="למפה">
+                    </div>
+                    <div>
+                        <img class="opacityImg" src="./images/buttons/audioBtn.svg" alt="כפתור שמע">
+                    </div>
+                </div>
+                <div class="position-absolute postionAbsoluteMiddle" style="z-index: 1;">
+                    <img src="./images/arrow.svg" alt="" class="arrowOnBoardingMapBtn">
+                </div>
+                <div class="popupModal pt-4">
+                    <div class="modal-content mt-5" style="padding-top: 10px;">
+                        <h3 class="changeFontWeigth mt-4 pt-2">כפתור המפה</h3>
+                        <p class="bubbleTextBigP mt-2">בלחיצה על כפתור זה תוכלו להגיע ולחזור למפת העולמות</p>
+                        <button type="button" class="regularBtns mb-4 mt-3" onclick="addOverlay('confirmBtn')">
+                            <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <img class="bigRigthPosition" src="./images/penguinHandUp.svg" alt=""
+                        style="max-width: 35%; filter: drop-shadow(0px 0px 2px white);">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="regularBtns opacityImg">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- הסבר על כפתור האודיו -->
+            <div id="audioBtnOnBoarding" class="step container" data-step="audioBtnOnBoarding">
+                <audio id="audioBtnOnBoardingRecord" class="audio">
+                    <source src="./audio/registration/audioBtnOnBoarding_registration.mp3" type="audio/mpeg">
+                </audio>
+                <div class="d-flex pt-3 align-items-center justify-content-between">
+                    <div>
+                        <img class="opacityImg" src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </div>
+                    <div>
+                        <img src="./images/buttons/audioBtn.svg" class="overlayBtn" alt="כפתור שמע">
+                    </div>
+                </div>
+                <div class="position-absolute postionAbsoluteMiddle" style="z-index: 1;">
+                    <img src="./images/arrow.svg" class="arrowOnBoardingAudioBtn" alt="">
+                </div>
+                <div class="popupModal pt-4">
+                    <div class="modal-content mt-5" style="padding: 10px;">
+                        <h3 class="changeFontWeigth mt-4 pt-2">כפתור השמע</h3>
+                        <p class="bubbleTextBigP mt-2">בלחיצה על כפתור זה תוכלו לשמוע כל פעם את מה שכתוב על המסך</p>
+                        <button type="button" class="regularBtns mb-4 mt-3" onclick="addOverlay('confirmBtn')">
+                            <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <img class="bigRigthPosition" src="./images/penguinHandUp.svg" alt=""
+                        style="max-width: 35%; filter: drop-shadow(0px 0px 2px white);">
+                </div>
+
+                <div class="buttonsDiv">
+                    <button type="button" class="regularBtns opacityImg">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- הסבר על כפתור הבא -->
+            <div id="nextBtnOnBoarding" class="step container" data-step="nextBtnOnBoarding">
+                <audio id="nextBtnOnBoardingRecord" class="audio">
+                    <source src="./audio/registration/nextBtnOnBoarding_registration.mp3" type="audio/mpeg">
+                </audio>
+                <div class="d-flex pt-3 align-items-center justify-content-between">
+                    <div>
+                        <img class="opacityImg" src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </div>
+                    <div>
+                        <img class="opacityImg" src="./images/buttons/audioBtn.svg" alt="כפתור שמע">
+                    </div>
+                </div>
+                <div>
+                    <img class="bigRigthPosition" src="./images/penguinHandUp.svg" alt=""
+                        style="max-width: 35%; filter: drop-shadow(0px 0px 2px white); transform: scaleX(-1);">
+                </div>
+                <div class="popupModal">
+                    <div class="modal-content mt-5" style="padding: 10px;">
+                        <h3 class="changeFontWeigth mt-4 pt-2">כפתור ״הבא״</h3>
+                        <p class="bubbleTextNarrowP" style="width: 13rem;">בלחיצה על כפתור זה תוכלו להתקדם ולעבור בין המסכים</p>
+                        <button type="button" class="regularBtns mb-4 mt-3" onclick="addOverlay('confirmBtn')">
+                            <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                        </button>
+                    </div>
+                    <div class="position-absolute postionAbsoluteMiddle" style="z-index: 1;">
+                        <img src="./images/arrow.svg" alt="" class="arrowOnBoardingNextBtn">
+                    </div>
+                </div>
+
+                <div class="buttonsDiv">
+                    <button type="button" class="regularBtns overlayBtn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 2 -->
+            <div id="afterOnBoarding" class="step align-items-center mt-4" style="height: 100%;">
+                <div class="container">
+                    <div>
+                        <div>
+                            <img src="./images/RegistrationPage/step1.svg" alt="">
+                        </div>
+                        <div style="text-align: left; transform: translate(0rem, -2rem)">
+                            <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                                onclick="document.getElementById('genderAndAgeRecord').play()">
+                            <audio id="genderAndAgeRecord" class=" audio">
+                                <source src="./audio/registration/step2_registration.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <h1 class="titleH1 pt-4" style="margin-top: -2rem">יצירת פרופיל</h1>
+                    <h2 class="changeFontWeigth mt-4">בואו נכיר אתכם</h2>
+                    <h3>בחרו, האם אתם בת או בן?</h3>
+                    <!-- הזנת מגדר -->
+                    <div id="genderCharacterBtn" class="form-group mt-4">
+                        <fieldset class=" d-flex justify-content-center mb-4 mb-md-3 gap-4">
+                            <input type="radio" id="girl" name="gender" value="בת" onchange="ageAndGenderInput()">
+                            <label for="girl">
+                                <img src="./images/RegistrationPage/girl.svg" alt=בת">
+                            </label>
+                            <input type="radio" id="boy" name="gender" value="בן" required
+                                onchange="ageAndGenderInput()">
+                            <label for="boy">
+                                <img src="./images/RegistrationPage/boy.svg" alt="בן">
+                            </label>
+                        </fieldset>
+                    </div>
+
+                    <!-- הזנת גיל -->
+                    <div id="ageBtn">
+                        <h3>בני כמה אתם?</h3>
+                        <fieldset class="d-flex justify-content-center mt-3 mb-4 mb-lg-0 gap-2 ps-3 pe-3">
+                            <input type="radio" id="age3_5" name="age" value="3_5" required
+                                onchange="ageAndGenderInput()">
+                            <label for="age3_5">
+                                <img src="./images/RegistrationPage/age3_5.svg" alt="גיל 3 עד 5">
+                            </label>
+                            <input type="radio" id="age6_10" name="age" value="6_10" required
+                                onchange="ageAndGenderInput()">
+                            <label for="age6_10">
+                                <img src="./images/RegistrationPage/age6_10.svg" alt="גיל 6 עד 10">
+                            </label>
+                            <input type="radio" id="age11_13" name="age" value="11_13" onchange="ageAndGenderInput()">
+                            <label for="age11_13">
+                                <img src="./images/RegistrationPage/age11_13.svg" alt="גיל 11 עד 13">
+                            </label>
+                            <input type="radio" id="age14_16" name="age" value="14_16" required
+                                onchange="ageAndGenderInput()">
+                            <label for="age14_16">
+                                <img src="./images/RegistrationPage/age14_16.svg" alt="גיל 14 עד 16">
+                            </label>
+                        </fieldset>
+                    </div>
+                    <div class="buttonsDiv d-flex justify-content-between mt-md-3">
+                        <button type="button" class="regularBtns" onclick="addOverlay('previousBtn')">
+                            <img src="./images/RegistrationPage/previousBtn.svg" alt="הקודם">
+                        </button>
+                        <button id="AgeAndGenderNextBtn" type="button" class="next-btn opacityImg" disabled>
+                            <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- שלב 3 -->
+            <div class="step align-items-center mt-4">
+                <div class="container">
+                    <div>
+                        <div>
+                            <img src="./images/RegistrationPage/step2.svg" alt="">
+                        </div>
+                        <div style="text-align: left; transform: translate(0rem, -2rem)">
+                            <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                                onclick="document.getElementById('ChoosingCharacterRecord').play()">
+                            <audio id="ChoosingCharacterRecord" class=" audio">
+                                <source src="./audio/registration/step3_registration.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <h1 class="titleH1 pt-4" style="margin-top: -2rem">יצירת פרופיל</h1>
+                    <h2 id="h2ChoosingCharacter" class="changeFontWeigth mt-4">בחרו דמות שתצטרף אליכם למשחק
+                    </h2>
+
+                    <div id="slider">
+                        <input type="radio" name="character" class="radio1"
+                            value="./images/characters/penguinCharacter.svg" id="s1" checked
+                            onchange="showCharacterImages()">
+                        <input type="radio" name="character" class="radio2"
+                            value="./images/characters/teddyBearCharacter.svg" id="s2" onchange="showCharacterImages()">
+                        <input type="radio" name="character" class="radio3" value="./images/characters/catCharacter.svg"
+                            id="s3" onchange="showCharacterImages()">
+                        <input type="radio" name="character" class="radio4"
+                            value="./images/characters/lionCharacter.svg" id="s4" onchange="showCharacterImages()">
+                        <input type="radio" name="character" class="radio5"
+                            value="./images/characters/bunnyCharacter.svg" id="s5" onchange="showCharacterImages()">
+
+                        <label for="s1" id="slide1">
+                            <img class="dropShadowFilter" src="./images/characters/penguinCharacter.svg" checked
+                                alt="פינגווין">
+                        </label>
+                        <label for="s2" id="slide2">
+                            <img src="./images/characters/teddyBearCharacter.svg" alt="דובי">
+                        </label>
+                        <label for="s3" id="slide3">
+                            <img src="./images/characters/catCharacter.svg" alt="חתולה">
+                        </label>
+                        <label for="s4" id="slide4">
+                            <img src="./images/characters/lionCharacter.svg" alt="אריה">
+                        </label>
+                        <label for="s5" id="slide5">
+                            <img src="./images/characters/bunnyCharacter.svg" alt="ארנבת">
+                        </label>
+                    </div>
+
+                    <div id="carouselNavControlDiv" class="d-flex justify-content-evenly mt-2">
+                        <button class="carouselNavControl" type="button" onclick="carouselNav('previous')">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carouselNavControl" type="button" onclick="carouselNav('next')">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <div class="buttonsDiv d-flex justify-content-between" style="position: absolute;">
+                        <button type="button" class="previous-btn">
+                            <img src="./images/RegistrationPage/previousBtn.svg" alt="הקודם">
+                        </button>
+                        <button type="button" class="next-btn">
+                            <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 4 -->
+            <div class="step mt-4">
+                <div class="container">
+                    <div>
+                        <div>
+                            <img src="./images/RegistrationPage/step3.svg" alt="">
+                        </div>
+                        <div style="text-align: left; transform: translate(0rem, -2rem)">
+                            <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                                onclick="document.getElementById('WelcomeRecord').play()">
+                            <audio id="WelcomeRecord" class=" audio">
+                                <source src="./audio/registration/step4_registration.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <h1 class="titleH1 pt-4" style="margin-top: -2rem">יצירת פרופיל</h1>
+                    <div class="bubbleTextBig mt-4" style="margin-right: 0.5rem; margin-left: 0.5rem;">
+                        <div class="pt-3">
+                            <h3 class="changeFontWeigth mt-4">ברוכים הבאים לספראלנד!</h3>
+                            <p class="bubbleTextBigP mt-2">חוויית העולמות הרפואיים של ספרא. יחד נצא להרפתקה ברחבי בית
+                                חולים, נאסוף כוכבים ולבסוף נקבל תעודת הצטיינות של בית החולים.
+                            </p>
+                        </div>
+                    </div>
+                    <img class="userCharacter bigRigthPosition" alt="" style="max-width: 47%;">
+
+                    <div class="buttonsDiv d-flex justify-content-between">
+                        <button type="button" class="previous-btn" style="margin-left: 6%;">
+                            <img src="./images/RegistrationPage/previousBtn.svg" alt="הקודם">
+                        </button>
+                        <button type="submit" class="submit-btn">
+                            <img src="./images/RegistrationPage/letsStart.svg" alt="בואו נתחיל">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+
+        <!-- פופ-אפ לאחר סיום ההיכרות עם הממשק  -->
+        <div class="modal fade" id="onBoardingPopup" aria-labelledby="onBoardingPopupLabel" data-bs-backdrop="static"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <audio id="onBoardingFeedbackRecord" class="audio">
+                            <source src="./audio/registration/onBoardingFeedback_registration.mp3" type="audio/mpeg">
+                        </audio>
+                        <p class="mt-3 mt-md-5 mb-4 popupWiderP">עכשיו אחרי שהכרתם את הכפתורים השונים אתם כבר ממש
+                            מוכנים.</p>
+                        <p class="mt-2 popupWiderP">לחצו על כפתור “הבא” והירשמו למשחק.</p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center" class="pt-0">
+                        <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                            onclick="addOverlay('nextBtnPopup')">
+                            <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

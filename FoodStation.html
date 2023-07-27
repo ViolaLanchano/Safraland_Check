@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+</head>
+
+<body id="body" lang="he" dir="rtl"
+    onload="needToLogIn(), showCharacterImages(), checkIfStationAlreadyCompleted(), foodPyramidDragAndDrop(), myHealthyPlate()">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <section>
+            <div class="d-flex mt-2 ms-1 me-1 pt-3 align-items-center justify-content-around">
+                <div class="me-1">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                </div>
+                <div style="transform: translateY(-5px);">
+                    <div class="d-flex align-items-center">
+                        <div id="activitiesProgressBarDiv" class="d-flex">
+                            <img id="1activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="2activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="3activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="4activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="5activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="6activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="7activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                        </div>
+                        <img class="justify-content-center" src="./images/activitiesProgressBarUncompleted.svg">
+                    </div>
+                </div>
+                <div class="ms-1">
+                    <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                        onclick="changeAudioStep_FoodStation(), playAudioStep_FoodStation()">
+                    <audio id="foodStationRecords" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <!-- שלב 1 -->
+            <div class="step firstStep mt-4 mt-md-1 active" data-step="step1">
+                <div class="bubbleTextBig p-2">
+                    <h2 class="mt-5 pt-3 pe-1">ברוכים הבאים לבית הקפה!</h2>
+                    <p class="bubbleTextBigP pt-2 ps-1">המקום בו תוכלו להתפנק בין הארוחות במשהו קטן וטעים.</p>
+                </div>
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 2 - הידעתם -->
+            <div class="step mt-4 mt-md-1" data-step="step2">
+                <div class="bubbleTextBig pt-4">
+                    <img class="lampIconShadow" src="./images/lampIcon.svg" alt="" style="width: 2.5rem;">
+                    <h2>הידעתם?</h2>
+                    <p class="bubbleTextBigP pe-2 ps-2 pt-1">אוכל הוא הדלק של הגוף שלנו, ובאמצעות תזונה בריאה נוכל לעזור
+                        לגוף שלנו להיות בריא יותר.
+                    </p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 3 - היכרות עם פירמידת המזון -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step3">
+                <div class="bubbleTextBig p-2">
+                    <img class="position-absolute" src="./images/foodStation/foodBags.svg" alt="" style=" margin: 0 auto;
+                        left: 0; margin-top: 9rem ;right: -4%;">
+                    <p class="bubbleTextBigP mt-5"><b>פירמידת המזון</b> עוזרת לנו לדעת מה חשוב לנו לאכול ועד כמה מומלץ
+                        לנו
+                        לאכול או להפחית מכל קבוצת מזון.</p>
+                    <p class="pt-3 changeFontWeigth">בואו נכיר אותה יחד!</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 4 - הכרת פירמידת המזון -->
+            <div id="1activityStation" class="step mt-3" data-step="step4">
+                <h3 class="changeFontWeigth bubbleTextBigP" style="width: 17rem;">לחצו על סימני השאלה והכירו את הקומות
+                    השונות בפרמידת המזון </h3>
+                <div class="d-flex justify-content-center position-relative"
+                    style="transform: scaleX(-1) translateX(3rem);">
+                    <div class="mt-3 position-absolute">
+                        <div class="bubbleTextWider pt-3" style="transform: unset; width: 11rem;">
+                            <p class="bubbleTextWiderP" style="transform: scaleX(-1) translateX(-0.2rem);">בקודקוד
+                                הפרמידה
+                                יש מאכלים שכדאי לאכול מהם הכי פחות
+                            </p>
+                        </div>
+                        <img class="userCharacter smallRigthPosition mt-2" alt="" style="max-width: 5rem;">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <div class="position-relative" style="margin-top: 6rem;">
+                        <!-- מתוקים -->
+                        <div class="d-flex justify-content-center align-items-center"
+                            onclick="clickPyramidLevel('sweets')">
+                            <img class="foodPyramidLevels" src="./images/foodStation/foodPyramidSweets.svg"
+                                alt="קומה למתוקים" style="width: 6rem;">
+                            <img id="sweetsQuestionMarkPyramid" class="position-absolute questionMarkPyramid"
+                                src="./images/buttons/questionMarkBtn.svg" alt=""
+                                style="transform: translateY(0.5rem);">
+                            <img id="sweetsLabel" class="foodPyramidLabels me-5 position-absolute"
+                                src="./images/foodStation/sweetsLabel.svg" alt="תגית מתוקים">
+
+                            <!-- קומה לאחר לחיצה -->
+                            <div id="sweetsGroupDiv" class="noOpacity">
+                                <audio id="sweetsLevelRecord" class="audio">
+                                    <source src="./audio/foodStation/sweetsLevelRecord.mp3" type="audio/mpeg">
+                                </audio>
+                                <img id="sweetsGroup" src="./images/foodStation/sweetsGroup.svg" alt="מאכלים מתוקים">
+                                <p id="sweetsLabelText" class="position-absolute changeFontWeigth">מתוקים</p>
+                            </div>
+                        </div>
+
+                        <!-- שומנים -->
+                        <div class="d-flex justify-content-center align-items-center"
+                            onclick="clickPyramidLevel('fats')">
+                            <img class="foodPyramidLevels" src="./images/foodStation/foodPyramidFats.svg"
+                                alt="קומה לשומנים" style="width: 9rem;">
+                            <img id="fatsQuestionMarkPyramid" class="position-absolute questionMarkPyramid"
+                                src="./images/buttons/questionMarkBtn.svg" alt="">
+                            <img id="fatsLabel" class="foodPyramidLabels me-5 position-absolute"
+                                src="./images/foodStation/fatsLabel.svg" alt="תגית שומנים">
+
+                            <!-- קומה לאחר לחיצה -->
+                            <div id="fatsGroupDiv" class="noOpacity">
+                                <audio id="fatsLevelRecord" class="audio">
+                                    <source src="./audio/foodStation/fatsLevelRecord.mp3" type="audio/mpeg">
+                                </audio>
+                                <img id="fatsGroup" src="./images/foodStation/fatsGroup.svg" alt="מאכלים בעלי שומן">
+                                <p id="fatsLabelText" class="position-absolute changeFontWeigth">שומנים</p>
+                            </div>
+                        </div>
+
+                        <!-- חלבונים -->
+                        <div class="d-flex justify-content-center align-items-center"
+                            onclick="clickPyramidLevel('proteins')">
+                            <img class="foodPyramidLevels" src="./images/foodStation/foodPyramidProteins.svg"
+                                alt="קומה לחלבונים" style="width: 12rem;">
+                            <img id="proteinsQuestionMarkPyramid" class="position-absolute questionMarkPyramid"
+                                src="./images/buttons/questionMarkBtn.svg" alt="">
+                            <img id="proteinsLabel" class="foodPyramidLabels me-5 position-absolute"
+                                src="./images/foodStation/proteinsLabel.svg" alt="תגית חלבונים">
+
+                            <!-- קומה לאחר לחיצה -->
+                            <div id="proteinsGroupDiv" class="noOpacity">
+                                <audio id="proteinsLevelRecord" class="audio">
+                                    <source src="./audio/foodStation/proteinsLevelRecord.mp3" type="audio/mpeg">
+                                </audio>
+                                <img id="proteinsGroup" src="./images/foodStation/proteinsGroup.svg"
+                                    alt="מאכלים בעלי חלבון">
+                                <p id="proteinsLabelText" class="position-absolute changeFontWeigth">חלבונים</p>
+                            </div>
+                        </div>
+
+                        <!-- ויטמנים -->
+                        <div class="d-flex justify-content-center align-items-center"
+                            onclick="clickPyramidLevel('vitamins')">
+                            <img class="foodPyramidLevels" src="./images/foodStation/foodPyramidVitamins.svg"
+                                alt="קומה לויטמינים" style="width: 15rem;">
+                            <img id="vitaminsQuestionMarkPyramid" class="position-absolute questionMarkPyramid"
+                                src="./images/buttons/questionMarkBtn.svg" alt="">
+                            <img id="vitaminsLabel" class="foodPyramidLabels me-5 position-absolute"
+                                src="./images/foodStation/vitaminsLabel.svg" alt="תגית ויטמינים">
+
+                            <!-- קומה לאחר לחיצה -->
+                            <div id="vitaminsGroupDiv" class="noOpacity">
+                                <audio id="vitaminsLevelRecord" class="audio">
+                                    <source src="./audio/foodStation/vitaminsLevelRecord.mp3" type="audio/mpeg">
+                                </audio>
+                                <img id="vitaminsGroup" src="./images/foodStation/vitaminsGroup.svg"
+                                    alt="מאכלים בעלי ויטמינים">
+                                <p id="vitaminsLabelText" class="position-absolute changeFontWeigth">פירות וירקות</p>
+                            </div>
+                        </div>
+
+                        <!-- פחמימות -->
+                        <div class="d-flex justify-content-center align-items-center"
+                            onclick="clickPyramidLevel('carbohydrates')">
+                            <img class="foodPyramidLevels" src="./images/foodStation/foodPyramidCarbohydrates.svg"
+                                alt="קומה לפחמימות" style="width: 18.5rem;">
+                            <img id="carbohydratesQuestionMarkPyramid" class="position-absolute questionMarkPyramid"
+                                src="./images/buttons/questionMarkBtn.svg" alt="">
+                            <img id="carbohydratesLabel" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/carbohydratesLabel.svg" alt="תגית פחמימות">
+
+                            <!-- קומה לאחר לחיצה -->
+                            <div id="carbohydratesGroupDiv" class="noOpacity">
+                                <audio id="carbohydratesLevelRecord" class="audio">
+                                    <source src="./audio/foodStation/carbohydratesLevelRecord.mp3" type="audio/mpeg">
+                                </audio>
+                                <img id="carbohydratesGroup" src="./images/foodStation/carbohydratesGroup.svg"
+                                    alt="מאכלים פחמימתיים">
+                                <p id="carbohydratesLabelText" class="position-absolute changeFontWeigth">דגנים</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonsDiv pt-4">
+                    <button id="pyramidLevelsBtn" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1021)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 5 - הקדמה לפעילות פירמידת המזון -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step5">
+                <div class="bubbleTextBig p-2">
+                    <p class="bubbleTextBigP mt-5">עכשיו שהכרנו את פירמידת המזון, חושבים שתצליחו להתאים בין מאכלים
+                        שונים
+                        לקומה המתאימה להם בפירמידה?</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 6 - פעילות גרירה פירמידת המזון - חלק 1 -->
+            <div id="2activityStation" class="step mt-3 container" data-step="step6-9">
+                <p class="changeFontWeigth bubbleTextBigP">גררו את המאכל לקומה המתאימה לו בפירמידת המזון</p>
+                <div class="position-relative">
+                    <div class="d-flex justify-content-center align-items-center position-absolute">
+                        <img class="smallShelf" src="./images/foodStation/smallShelf.svg" alt="מדף">
+                        <img id="shelfPyramidChallah" class="draggable-foodPyramid" data-draggable="carbohydrates"
+                            src="./images/foodStation/challah.svg" alt="חלה">
+                        <p class="position-absolute changeFontWeigth shelfPyramidText">חלה</p>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="" style="margin-right: -9rem; margin-top: 9rem;">
+                </div>
+                <div class="foodPyramidLevels foodPyramidLevelsDragAndDrop">
+                    <div style="text-align: left;">
+
+                        <!-- מתוקים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidSweets.svg" alt="קומה למתוקים"
+                                style="width: 4.7rem;">
+                            <img id="sweetsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/sweetsLabel.svg" alt="תגית מתוקים">
+                            <p id="sweetsLabelTextHalf" class="changeFontWeigth">מתוקים</p>
+                        </div>
+                        <!-- שומנים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidFats.svg" alt="קומה לשומנים"
+                                style="width: 6rem;">
+                            <img id="fatsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/fatsLabel.svg" alt="תגית שומנים">
+                            <p id="fatsLabelTextHalf" class="changeFontWeigth">שומנים</p>
+                        </div>
+                        <!-- חלבונים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidProteins.svg" alt="קומה לחלבונים"
+                                style="width: 8rem;">
+                            <img id="proteinsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/proteinsLabel.svg" alt="תגית חלבונים">
+                            <p id="proteinsLabelTextHalf" class="changeFontWeigth">חלבונים</p>
+                        </div>
+                        <!-- ויטמינים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidVitamins.svg" alt="קומה לויטמינים"
+                                style="width: 10rem;">
+                            <img id="vitaminsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/vitaminsLabel.svg" alt="תגית ויטמינים">
+                            <p id="vitaminsLabelTextHalf" class="changeFontWeigth">פירות <br>וירקות</br></p>
+                        </div>
+                        <!-- פחמימות -->
+                        <div id="carbohydratesDroppedDiv-FP">
+                            <img id="carbohydratesLevel" class="droppable-foodPyramid"
+                                src="./images/foodStation/halfFoodPyramidCarbohydrates.svg" alt="קומה לפחמימות"
+                                data-droppable="carbohydrates" style="width: 12.5rem;">
+                            <img id="carbohydratesLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/carbohydratesLabel.svg" alt="תגית פחמימות">
+                            <p id="carbohydratesLabelTextHalf" class="changeFontWeigth">דגנים
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 7 - פעילות גרירה פירמידת המזון - חלק 2 -->
+            <div id="3activityStation" class="step mt-3 container" data-step="step6-9">
+                <p class="changeFontWeigth bubbleTextBigP">גררו את המאכל לקומה המתאימה לו בפירמידת המזון</p>
+                <div class="position-relative">
+                    <div class="d-flex justify-content-center align-items-center position-absolute">
+                        <img class="smallShelf" src="./images/foodStation/smallShelf.svg" alt="מדף">
+                        <img id="shelfPyramidCheeseAndHotDog" class="draggable-foodPyramid" data-draggable="proteins"
+                            src="./images/foodStation/cheeseAndHotDog.svg" alt="גבינה ונקניקיה">
+                        <p class="position-absolute changeFontWeigth shelfPyramidText">גבינה ונקניקיה</p>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="" style="margin-right: -9rem; margin-top: 9rem;">
+                </div>
+                <div class="foodPyramidLevels foodPyramidLevelsDragAndDrop">
+                    <div style="text-align: left;">
+
+                        <!-- מתוקים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidSweets.svg" alt="קומה למתוקים"
+                                style="width: 4.7rem;">
+                            <img id="sweetsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/sweetsLabel.svg" alt="תגית מתוקים">
+                            <p id="sweetsLabelTextHalf" class="changeFontWeigth">מתוקים</p>
+                        </div>
+                        <!-- שומנים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidFats.svg" alt="קומה לשומנים"
+                                style="width: 6rem;">
+                            <img id="fatsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/fatsLabel.svg" alt="תגית שומנים">
+                            <p id="fatsLabelTextHalf" class="changeFontWeigth">שומנים</p>
+                        </div>
+                        <!-- חלבונים -->
+                        <div id="proteinsDroppedDiv-FP">
+                            <img id="proteinsLevel" class="droppable-foodPyramid"
+                                src="./images/foodStation/halfFoodPyramidProteins.svg" alt="קומה לחלבונים"
+                                data-droppable="proteins" style="width: 8rem;">
+                            <img id="proteinsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/proteinsLabel.svg" alt="תגית חלבונים">
+                            <p id="proteinsLabelTextHalf" class="changeFontWeigth">חלבונים</p>
+                        </div>
+                        <!-- ויטמינים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidVitamins.svg" alt="קומה לויטמינים"
+                                style="width: 10rem;">
+                            <img id="vitaminsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/vitaminsLabel.svg" alt="תגית ויטמינים">
+                            <p id="vitaminsLabelTextHalf" class="changeFontWeigth">פירות <br>וירקות</br< /p>
+                        </div>
+                        <!-- פחמימות -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidCarbohydrates.svg" alt="קומה לפחמימות"
+                                style="width: 12.5rem;">
+                            <img id="carbohydratesLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/carbohydratesLabel.svg" alt="תגית פחמימות">
+                            <p id="carbohydratesLabelTextHalf" class="changeFontWeigth">דגנים
+                            </p>
+                            <img class="carbohydratesDropped-foodPyramid position-absolute"
+                                src="./images/foodStation/challah.svg" alt="חלה">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 8 - פעילות גרירה פירמידת המזון - חלק 3 -->
+            <div id="4activityStation" class="step mt-3 container" data-step="step6-9">
+                <p class="changeFontWeigth bubbleTextBigP">גררו את המאכל לקומה המתאימה לו בפירמידת המזון</p>
+                <div class="position-relative">
+                    <div class="d-flex justify-content-center align-items-center position-absolute">
+                        <img class="smallShelf" src="./images/foodStation/smallShelf.svg" alt="מדף">
+                        <img id="shelfPyramidCake" class="draggable-foodPyramid" data-draggable="sweets"
+                            src="./images/foodStation/cake.svg" alt="עוגה">
+                        <p class="position-absolute changeFontWeigth shelfPyramidText">עוגה</p>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="" style="margin-right: -9rem; margin-top: 9rem;">
+                </div>
+                <div class="foodPyramidLevels foodPyramidLevelsDragAndDrop">
+                    <div style="text-align: left;">
+
+                        <!-- מתוקים -->
+                        <div id="sweetsDroppedDiv-FB">
+                            <img id="sweetsLevel" class="droppable-foodPyramid"
+                                src="./images/foodStation/halfFoodPyramidSweets.svg" alt="קומה למתוקים"
+                                data-droppable="sweets" style="width: 4.7rem;">
+                            <img id="sweetsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/sweetsLabel.svg" alt="תגית מתוקים">
+                            <p id="sweetsLabelTextHalf" class="changeFontWeigth">מתוקים</p>
+                        </div>
+                        <!-- שומנים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidFats.svg" alt="קומה לשומנים"
+                                style="width: 6rem;">
+                            <img id="fatsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/fatsLabel.svg" alt="תגית שומנים">
+                            <p id="fatsLabelTextHalf" class="changeFontWeigth">שומנים</p>
+                        </div>
+                        <!-- חלבונים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidProteins.svg" alt="קומה לחלבונים"
+                                style="width: 8rem;">
+                            <img id="proteinsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/proteinsLabel.svg" alt="תגית חלבונים">
+                            <p id="proteinsLabelTextHalf" class="changeFontWeigth">חלבונים</p>
+                            <img class="proteinsDropped-foodPyramid position-absolute"
+                                src="./images/foodStation/cheeseAndHotDog.svg" alt="גבינה ונקניקיה">
+                        </div>
+                        <!-- ויטמינים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidVitamins.svg" alt="קומה לויטמינים"
+                                style="width: 10rem;">
+                            <img id="vitaminsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/vitaminsLabel.svg" alt="תגית ויטמינים">
+                            <p id="vitaminsLabelTextHalf" class="changeFontWeigth">פירות <br>וירקות</br< /p>
+                        </div>
+                        <!-- פחמימות -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidCarbohydrates.svg" alt="קומה לפחמימות"
+                                style="width: 12.5rem;">
+                            <img id="carbohydratesLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/carbohydratesLabel.svg" alt="תגית פחמימות">
+                            <p id="carbohydratesLabelTextHalf" class="changeFontWeigth">דגנים
+                            </p>
+                            <img class="carbohydratesDropped-foodPyramid position-absolute"
+                                src="./images/foodStation/challah.svg" alt="חלה">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- שלב 9 - פעילות גרירה פירמידת המזון - חלק 4 -->
+            <div id="5activityStation" class="step mt-3 container" data-step="step6-9">
+                <p class="changeFontWeigth bubbleTextBigP">גררו את המאכל לקומה המתאימה לו בפירמידת המזון</p>
+                <div class="position-relative">
+                    <div class="d-flex justify-content-center align-items-center position-absolute">
+                        <img class="smallShelf" src="./images/foodStation/smallShelf.svg" alt="מדף">
+                        <img id="shelfPyramidWwatermelon" class="draggable-foodPyramid" data-draggable="vitamins"
+                            src="./images/foodStation/watermelon.svg" alt="אבטיח">
+                        <p class="position-absolute changeFontWeigth shelfPyramidText">אבטיח</p>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="" style="margin-right: -9rem; margin-top: 9rem;">
+                </div>
+                <div class="foodPyramidLevels foodPyramidLevelsDragAndDrop">
+                    <div style="text-align: left;">
+
+                        <!-- מתוקים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidSweets.svg" alt="קומה למתוקים"
+                                style="width: 4.7rem;">
+                            <img id="sweetsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/sweetsLabel.svg" alt="תגית מתוקים">
+                            <p id="sweetsLabelTextHalf" class="changeFontWeigth">מתוקים</p>
+                            <img class="sweetsDropped-foodPyramid position-absolute" src="./images/foodStation/cake.svg"
+                                alt="עוגה">
+                        </div>
+                        <!-- שומנים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidFats.svg" alt="קומה לשומנים"
+                                style="width: 6rem;">
+                            <img id="fatsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/fatsLabel.svg" alt="תגית שומנים">
+                            <p id="fatsLabelTextHalf" class="changeFontWeigth">שומנים</p>
+                        </div>
+                        <!-- חלבונים -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidProteins.svg" alt="קומה לחלבונים"
+                                style="width: 8rem;">
+                            <img id="proteinsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/proteinsLabel.svg" alt="תגית חלבונים">
+                            <p id="proteinsLabelTextHalf" class="changeFontWeigth">חלבונים</p>
+                            <img class="proteinsDropped-foodPyramid position-absolute"
+                                src="./images/foodStation/cheeseAndHotDog.svg" alt="גבינה ונקניקיה">
+                        </div>
+                        <!-- ויטמינים -->
+                        <div id="vitaminsDroppedDiv-FP">
+                            <img id="vitaminsLevel" class="droppable-foodPyramid"
+                                src="./images/foodStation/halfFoodPyramidVitamins.svg" alt="קומה לויטמינים"
+                                data-droppable="vitamins" style="width: 10rem;">
+                            <img id="vitaminsLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/vitaminsLabel.svg" alt="תגית ויטמינים">
+                            <p id="vitaminsLabelTextHalf" class="changeFontWeigth">פירות <br>וירקות</br< /p>
+                        </div>
+                        <!-- פחמימות -->
+                        <div>
+                            <img src="./images/foodStation/halfFoodPyramidCarbohydrates.svg" alt="קומה לפחמימות"
+                                style="width: 12.5rem;">
+                            <img id="carbohydratesLabelHalf" class="foodPyramidLabels position-absolute"
+                                src="./images/foodStation/carbohydratesLabel.svg" alt="תגית פחמימות">
+                            <p id="carbohydratesLabelTextHalf" class="changeFontWeigth">דגנים
+                            </p>
+                            <img class="carbohydratesDropped-foodPyramid position-absolute"
+                                src="./images/foodStation/challah.svg" alt="חלה">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- פופ-אפ משימת גרירה פירדמידה -->
+            <div class="modal fade" id="correctAnswersFoodPyramid" aria-labelledby="correctAnswersFoodPyramidLabel"
+                data-bs-backdrop="static" aria-hidden="true">
+                <audio id="foodPyramidFeedback_foodStationRecord" class="audio">
+                    <source src="./audio/foodStation/foodPyramidFeedback_foodStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p class="mt-md-5 mt-3 popupWiderP">הצלחתם להתאים בין המאכלים השונים לקומה המתאימה להם
+                                בפירמידת
+                                המזון.</p>
+                            <p class="mt-2 changeFontWeigth">כל הכבוד!</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center"
+                            onclick="updateActivity('noCorrectAnswer',1025);">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 10 - פידבק אמצע -->
+            <div class="step pt-4" data-step="step10">
+                <div class="bubbleTextNarrow">
+                    <p class="bubbleTextNarrowP pt-4 ps-1">סיימנו עוד שלב בדרך להשגת הכוכב!</p>
+                    <p class="bubbleTextNarrowP mt-1"><b>יש לי אתגר בשבילכם!</b></p>
+                    <p class="pt-1">מוכנים?</p>
+                </div>
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 11 - הקדמה לפעילות ״הצלחת הבריאה שלי״ -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step11">
+                <div class="bubbleTextBig p-2">
+                    <img class="position-absolute shadowFilter" src="./images/foodStation/plate.svg" alt=""
+                        style="transform: translate(0rem, 9rem);">
+                    <p class="bubbleTextBigP mt-4 pt-4"><b>אתגר ״הצלחת הבריאה שלי״</b></p>
+                    <p class="bubbleTextBigP pt-2">עליכם לבחור מאכלים שאתם אוהבים ולהרכיב את הצלחת הבריאה שלכם.</p>
+                </div>
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn" onclick="myHealthyPlate()">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 12 - פעילות ״הצלחת הבריאה שלי״ -->
+            <div id="6activityStation" class="step mt-1" data-step="step12">
+                <div>
+                    <h1 class="titleH1"
+                        style="font-size: 1.4rem; background-size: 17rem auto; height: 6rem; padding-top: 2.2rem;">הצלחת
+                        הבריאה
+                        שלי</h1>
+                    <p class="mt-3 mb-0 me-4 ms-4 ps-3 pe-3">בחרו מאכלים שאתם אוהבים וגררו אותם למקום המתאים להם בצלחת
+                    </p>
+                </div>
+                <img class="userCharacter characterPositionCardMiddle" style="margin-top: 0rem; max-width: 4rem;"
+                    alt="">
+                <!-- מדף פירות וירקות -->
+                <div style="margin-top: 5rem;">
+                    <div class="d-flex justify-content-center position-relative gap-5">
+                        <!-- מדף פירות -->
+                        <div id="fruitsDraggableDiv" style="margin-right: 5rem;">
+                            <div id="watermelonDiv">
+                                <img id="watermelon" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/watermelon.svg" alt="אבטיח" style="width: 2rem;">
+                            </div>
+                            <div id="bananaDiv">
+                                <img id="banana" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/banana.svg" alt="בננה" style=" width: 2rem;">
+                            </div>
+                            <div id="pearDiv">
+                                <img id="pear" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/pear.svg" alt="אגס" style="width: 1.5rem;">
+                            </div>
+                            <div id="orangeDiv">
+                                <img id="orange" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/orange.svg" alt="תפוז" style="width: 2.7rem;">
+                            </div>
+                            <div id="appleDiv">
+                                <img id="apple" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/apple.svg" alt="תפוח" style="width: 1.6rem;">
+                            </div>
+                            <div id="greenGrapesDiv">
+                                <img id="greenGrapes" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/greenGrapes.svg" alt="ענבים ירוקים" style="width: 2rem;">
+                            </div>
+                            <div id="purpleGrapesDiv">
+                                <img id="purpleGrapes" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/purpleGrapes.svg" alt="ענבים סגולים" style="width: 2rem;">
+                            </div>
+                            <div id="peachDiv">
+                                <img id="peach" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/peach.svg" alt="אפרסק" style="width: 1.7rem;">
+                            </div>
+                            <div id="strawberryDiv">
+                                <img id="strawberry" data-draggable="fruits" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/strawberry.svg" alt="תות" style="width: 1.5rem;">
+                            </div>
+                        </div>
+
+                        <!-- מדף ירקות -->
+                        <div>
+                            <div id="cornDiv">
+                                <img id="corn" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/corn.svg" alt="תירס" style="width: 4rem;">
+                            </div>
+                            <div id="lettuceDiv">
+                                <img id="lettuce" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/lettuce.svg" alt="חסה" style="width: 3.8rem;">
+                            </div>
+                            <div id="carrotDiv">
+                                <img id="carrot" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/carrot.svg" alt="גזר" style="width: 2rem;">
+                            </div>
+                            <div id="gambaDiv">
+                                <img id="gamba" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/gamba.svg" alt="גמבה" style="width: 3.5rem;">
+                            </div>
+                            <div id="cucumberDiv">
+                                <img id="cucumber" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/cucumber.svg" alt="מלפפון" style="width: 3rem;">
+                            </div>
+                            <div id="tomatoDiv">
+                                <img id="tomato" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/tomato.svg" alt="עגבניה" style="width: 2.2rem;">
+                            </div>
+                            <div id="mushroomsDiv">
+                                <img id="mushrooms" data-draggable="vegetables" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/mushrooms.svg" alt="פטריות" style="width: 2.2rem;">
+                            </div>
+                        </div>
+                    </div>
+                    <img src="./images/foodStation/vegetablesAndFruitsShelf.svg" alt="" style="width: 14rem;">
+                </div>
+
+
+                <!-- מדף חלבונים ופחמימות -->
+                <div class="mt-5 pt-3">
+                    <div class="d-flex justify-content-center position-relative" style="gap: 8rem;">
+                        <!-- מדף חלבונים -->
+                        <div>
+                            <div id="milkDiv">
+                                <img id="milk" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/milk.svg" alt="חלב" style="width: 2.1rem;">
+                            </div>
+                            <div id="eggDiv">
+                                <img id="egg" data-draggable="proteins" class="draggable-myHealthyPlate "
+                                    src="./images/foodStation/egg.svg" alt="ביצה" style="width: 2rem;">
+                            </div>
+                            <div id="cheeseDiv">
+                                <img id="cheese" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/cheese.svg" alt="גבינה צהובה" style="width: 2.2rem;">
+                            </div>
+                            <div id="cottageDiv">
+                                <img id="cottage" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/cottage.svg" alt="קוטג" style="width: 2rem;">
+                            </div>
+                            <div id="yogurtDiv">
+                                <img id="yogurt" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/yogurt.svg" alt="יוגורט" style="width: 1.3rem;">
+                            </div>
+                            <div id="chickenDiv">
+                                <img id="chicken" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/chicken.svg" alt="עוף" style="width: 3.3rem;">
+                            </div>
+                            <div id="hotDogDiv">
+                                <img id="hotDog" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/hotDog.svg" alt="נקניקיה" style="width: 2.8rem;">
+                            </div>
+                            <div id="fishDiv">
+                                <img id="fish" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/fish.svg" alt="דג" style="width: 4rem;">
+                            </div>
+                            <div id="steakDiv">
+                                <img id="steak" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/steak.svg" alt="סטייק" style="width: 2rem;">
+                            </div>
+                            <div id="sardinesDiv">
+                                <img id="sardines" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/sardines.svg" alt="סרדינים" style="width: 2.9rem;">
+                            </div>
+                            <div id="hamburgerDiv">
+                                <img id="hamburger" data-draggable="proteins" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/hamburger.svg" alt="המבורגר" style="width: 1.7rem;">
+                            </div>
+                        </div>
+
+                        <!-- מדף פחמימות -->
+                        <div>
+                            <div id="pastaDiv">
+                                <img id="pasta" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/pasta.svg" alt="פסטה" style="width: 2rem;">
+                            </div>
+                            <div id="riceDiv">
+                                <img id="rice" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/rice.svg" alt="אורז" style="width: 2rem;">
+                            </div>
+                            <div id="challahDiv">
+                                <img id="challah" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/challah.svg" alt="חלה" style="width: 4rem;">
+                            </div>
+                            <div id="baguetteBigDiv">
+                                <img id="baguetteBig" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/baguetteBig.svg" alt="בגאט גדול" style="width: 3.6rem;">
+                            </div>
+                            <div id="baguetteSmallDiv">
+                                <img id="baguetteSmall" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/baguetteSmall.svg" alt="באגט קטן" style="width: 4.2rem;">
+                            </div>
+                            <div id="bagelDiv">
+                                <img id="bagel" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/bagel.svg" alt="בייגל" style="width: 3.5rem;">
+                            </div>
+                            <div id="spelledBreadDiv">
+                                <img id="spelledBread" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/spelledBread.svg" alt="לחם כוסמין" style="width: 3rem;">
+                            </div>
+                            <div id="hamburgerBunDiv">
+                                <img id="hamburgerBun" data-draggable="carbohydrates" class="draggable-myHealthyPlate"
+                                    src="./images/foodStation/hamburgerBun.svg" alt="לחמניית המבורגר"
+                                    style="width: 2rem;">
+                            </div>
+                        </div>
+                    </div>
+                    <img class="mt-1" src="./images/foodStation/proteinsAndCarbohydratesShelf.svg" alt=""
+                        style="width: 19rem;">
+                </div>
+
+                <div class="mt-4 d-flex justify-content-center align-items-center position-relative">
+                    <div class="position-absolute">
+                        <div class="d-flex justify-content-center">
+                            <div id="fruitsDroppedDiv">
+                                <img id="redQuarter" class="droppable-myHealthyPlate quarterWidth"
+                                    data-droppable="fruits" src="./images/foodStation/redQuarter.svg"
+                                    alt="מקום בצלחת לפירות">
+                            </div>
+                            <div id="carbohydratesDroppedDiv">
+                                <img id="orangeQuarter" class="droppable-myHealthyPlate quarterWidth"
+                                    data-droppable="carbohydrates" src="./images/foodStation/orangeQuarter.svg"
+                                    alt="מקום בצלחת לפחמימות">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div id="proteinsDroppedDiv">
+                                <img id="purpleQuarter" class="droppable-myHealthyPlate quarterWidth"
+                                    data-droppable="proteins" src="./images/foodStation/purpleQuarter.svg"
+                                    alt="מקום בצלחת לחלבונים">
+                            </div>
+                            <div id="vegetablesDroppedDiv">
+                                <img id="greenQuarter" class="droppable-myHealthyPlate quarterWidth"
+                                    data-droppable="vegetables" src="./images/foodStation/greenQuarter.svg"
+                                    alt="מקום בצלחת לירקות">
+                            </div>
+                        </div>
+                    </div>
+                    <img src="./images/foodStation/plateAndTablecloth.svg" alt="" style="width: 20rem;">
+                </div>
+
+                <div class="buttonsDiv mt-2">
+                    <button id="myHealthyPlateBtn" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1026)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 13 - סיכום לפעילות ״הצלחת הבריאה שלי״ -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step13">
+                <div class="bubbleTextBig p-2">
+                    <p class="bubbleTextBigP mt-4"><b>וואו! איזה צלחת נהדרת!</b></p>
+                    <p class="bubbleTextBigP pt-2">רגע לפני שנסיים ונקבל כוכב, <br>חשוב שנזכור! </br>
+                        אכילה מגוונת עוזרת לגוף שלנו
+                        לגדול ולהתפתח.</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 14 - צילום תמונה -->
+            <div id="7activityStation" class="step mt-2" data-step="step14">
+                <div>
+                    <h3 class="bubbleTextBigP changeFontWeigth mb-2">חושבים שתצליחו ליצור עם הגוף בפנטומימה, את אחד
+                        המאכלים
+                        המופיעים בתמונה?</h3>
+                    <img src="./images/foodStation/foodForPhoto.svg" alt="תמונה של סוכריה, גזר, רימון, בננה ובייגלה">
+                </div>
+
+                <!-- כפתורי צילום והעלאת תמונה -->
+                <div id="m-uploadInputs" class="mt-2">
+                    <div>
+                        <p class="mb-0">רוצים לשתף אותי?</p>
+                        <p class="ps-4 pe-4">מוזמנים לצלם את עצמכם</p>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="mt-2">
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="takePicture" id="takePicture" capture="camera"
+                                    onchange="readURL(this)">
+                                <label for="takePicture">
+                                    <img src="./images/buttons/cameraBtn.svg" alt="צילום">
+                                </label>
+                            </div>
+
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="pickPhoto" id="pickPhoto"
+                                    onchange="readURL(this)">
+                                <label for="pickPhoto">
+                                    <img src="./images/buttons/galleryBtn.svg" alt="גלריה">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- אפשרות דילוג -->
+                    <div>
+                        <div class="bubbleTextWider mt-3" style="height: 6.3rem; padding-top: 1.2rem;">
+                            <p class="bubbleTextWiderP">לא רוצים להצטלם? לחצו על כפתור ״דלג״</p>
+                        </div>
+                        <div style="margin-top: -3.4rem;">
+                            <img class="userCharacter photoStepCharacterPosition mt-5" alt="">
+                        </div>
+                        <div class="buttonsDiv">
+                            <button id="skipBtn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropSkip" onclick="stopAudio(), skipPopupAudio(), checkIfScroll()">
+                                <img src="./images/buttons/skipBtn.svg" alt="דלג">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - דלג על משימה -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropSkip" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropSkipLabel" aria-hidden="true">
+                    <audio id="skipPopupAudio" class="audio">
+                        <source src="./audio/skipActivity.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupSkipP">האם אתם בטוחים שאתם רוצים <b>לדלג</b>
+                                    על המשימה?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" data-bs-dismiss="modal" class="next-btn modalBtns"
+                                    style="width: 6rem;"
+                                    onclick="updateActivity('noCorrectAnswer',1027), changeToFinishBackground(), stopAudio()">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" data-bs-dismiss="modal" class="modalBtns" style="width: 6rem;" onclick="stopAudio(), checkIfScroll()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- הצגת תמונה + כפתורי מחיקה ושיתוף -->
+                <div id="previewImageDiv" class="d-none mt-5">
+                    <!-- כפתור מחק -->
+                    <button id="deleteBtn" class="pe-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdropDelete" onclick="stopAudio(), deletPhotoPopupAudio()">
+                        <img src="./images/buttons/deleteBtn.svg" alt="מחיקת תמונה">
+                    </button>
+                    <!-- הצגת תמונה -->
+                    <img id="previewImage" alt="התמונה שהעלת">
+                    <!-- כפתור שיתוף -->
+                    <button id="shareBtn" class="ps-4" type="button" onclick="shareImage()">
+                        <img src="./images/buttons/shareBtn.svg" alt="שיתוף תמונה">
+                    </button>
+
+                    <div>
+                        <div class="bubbleTextWider mt-4 pt-3" style="height: 6rem;">
+                            <p class="bubbleTextWiderP">וואו זה נראה בדיוק כמו בתמונה!</p>
+                        </div>
+                    </div>
+                    <!-- תמונה דמות -->
+                    <div>
+                        <img class="userCharacter photoStepCharacterPosition" alt="">
+                    </div>
+                    <div class="buttonsDiv">
+                        <button type="button" class="next-btn"
+                            onclick="updateActivity('photo',1027), changeToFinishBackground()">
+                            <img src="./images/buttons/sendBtn.svg" alt="שליחה">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - מחיקת תמונה  -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropDelete" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropDeleteLabel" aria-hidden="true">
+                    <audio id="deletPhotoPopupAudio" class="audio">
+                        <source src="./audio/deletePhoto.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content m-4">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>למחוק</b> את
+                                    התמונה
+                                    שצילמתם?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" onclick="deleteImage(), stopAudio() , checkIfScroll()"
+                                    style="width: 6rem;">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" style="width: 6rem;" onclick="stopAudio()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 15 - סיום תחנה -->
+            <div id="finalStep" class="step finalStep" data-step="step15">
+                <audio id="finishStationFeedbackAudio" class="audio">
+                    <source src="./audio/finishStationFeedback.mp3" type="audio/mpeg">
+                </audio>
+                <div id="finishFoodStationSign" class="mt-5">
+                    <h2 class="finishStationSignH2">כל הכבוד!</h2>
+                    <p class="finishStationSignP changeFontWeigth mt-5 pe-3 ps-3">סיימנו את התחנה וזכינו בכוכב!</p>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionStationsFinishPage" alt="">
+                </div>
+                <div class="buttonsDiv d-flex justify-content-between" style="right: 0%; left: 0%;">
+                    <button type="button" class="float-end regularBtns" data-bs-toggle="modal"
+                        data-bs-target="#playAgain">
+                        <img src="./images/buttons/playAgainBtn.svg" alt="שחקו שוב">
+                    </button>
+                    <button type="button" class="regularBtns" onclick="updateStation()">
+                        <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ לאחר לחיצה על ״שחקו שוב״ -->
+            <div class="popupModal modal fade" id="playAgain" aria-labelledby="playAgainLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content mt-3">
+                        <div class="modal-body d-flex justify-content-center pt-1 pt-md-3">
+                            <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>להתחיל מחדש</b> את כל
+                                המשימות בתחנה זו?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center gap-5">
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                                onclick="resetStationAndActivities(), removeFinishBackground()">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </button>
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--  הודעה במידה והמשתמש סיים את התחנה, נכנס שוב ורוצה לבצע אותה מחדש -->
+            <div id="msgDiv" class="step mt-5" data-step="startAgain">
+                <div class="bubbleTextBig p-3">
+                    <h2 class="mt-3">שלום, אנחנו שוב כאן!</h2>
+                    <p class="bubbleTextBigP pt-2 ps-1">תרצו שנבצע את כל המשימות בתחנה <b>מההתחלה</b>?</p>
+                    <div class="d-flex justify-content-center mt-3 gap-5">
+                        <button type="button" class="modalBtns" onclick="resetStationAndActivities()">
+                            <img src="./images/buttons/yesBtn.svg" alt="כן">
+                        </button>
+                        <a href="./Map.html" class="modalBtns">
+                            <img src="./images/buttons/noBtn.svg" alt="לא">
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+            </div>
+
+
+            <!-- הודעה במידה והמשתמש סרק את הברקוד מבלי להיות מחובר -->
+            <div class="modal popupModal fade" id="needToLogin" aria-labelledby="needToLoginLabel"
+                data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-3">
+                            <p class="popupWiderP" style="margin-top: -2rem;">כדי להינות מהמשחק, עליכם להתחבר אליו</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center pb-0">
+                            <a class="regularBtns" href="./Registration.html">
+                                <img src="./images/buttons/registrationBtn.svg" alt="הרשמה למשחק">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+</head>
+
+<body id="body" lang="he" dir="rtl" onload="needToLogIn(), showCharacterImages(), checkIfStationAlreadyCompleted()">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <section>
+            <div class="d-flex mt-2 ms-1 me-1 pt-3 align-items-center justify-content-around">
+                <div class="me-1">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                </div>
+                <div style="transform: translateY(-5px);">
+                    <div class="d-flex align-items-center">
+                        <div id="activitiesProgressBarDiv" class="d-flex">
+                            <img id="1activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="2activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="3activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="4activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="5activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="6activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="7activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                        </div>
+                        <img class="justify-content-center" src="./images/activitiesProgressBarUncompleted.svg">
+                    </div>
+                </div>
+                <div class="ms-1">
+                    <img src="./images/buttons/audioBtn.svg" alt=""
+                        onclick="changeAudioStep_MusicStation(), playAudioStep_MusicStation()">
+                    <audio id="musicStationRecords" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <!-- שלב 1 -->
+            <div class="step firstStep mt-4 mt-md-1 active" data-step="step1">
+                <div class="bubbleTextBig p-2">
+                    <h2 class="mt-5 pe-1">ברוכים הבאים לחדר המוזיקה!</h2>
+                    <p class="bubbleTextBigP pt-2 ps-1">בחדר המוזיקה של ספרא, תוכלו לנגן בכלי נגינה שונים ואפילו, להקליט
+                        את
+                        עצמכם
+                        שרים ומנגנים.</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!--  שלב 2 - הידעתם -->
+            <div class="step mt-4 mt-md-1" data-step="step2">
+                <div class="bubbleTextNarrow pt-2">
+                    <img class="lampIconShadow" src="./images/lampIcon.svg" alt="">
+                    <h2>הידעתם?</h2>
+                    <p class="bubbleTextNarrowP">מוזיקה יכולה להשפיע על איך שאנחנו מרגישים!</p>
+                </div>
+                <div class="mt-3">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 3 -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step3">
+                <div class="bubbleTextBig p-2">
+                    <h2 class="changeFontWeigth mt-4 pt-3">יש לי רעיון!</h2>
+                    <p class="bubbleTextBigP pt-2">בואו נשמע יחד מוזיקה ונראה איך היא גורמת לנו להרגיש.</p>
+                    <p class="pt-3 changeFontWeigth">מוכנים?</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/RegistrationPage/letsStart.svg" alt="בואו נתחיל">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 4 - שאלת חד ברירה -->
+            <div id="1activityStation" class="step mt-4" data-step="step4">
+                <h3 class="changeFontWeigth">הקשיבו למנגינה,</h3>
+                <h3 class="changeFontWeigth mt-2">איך היא גרמה לכם להרגיש?</h3>
+                <div>
+                    <img class="userCharacter characterPositionCardMiddle" alt=""
+                        style="max-width: 3.5rem; margin-top: 0rem;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img src="./images/musicStation/speakers.svg" alt="">
+                </div>
+                <audio id="melodyAudio" class="audio" controls onplay="stopMusicRecord()">
+                    <source src="./audio/musicStation/funnyMusic.mp3" type="audio/mpeg">
+                </audio>
+                <form id="facesMusic" class="mt-4">
+                    <fieldset class="d-flex justify-content-center ps-2 pe-2 gap-2 gap-md-5">
+                        <input type="radio" id="calm" name="answer" value="רוגע" onchange="changeBtnState('radio')">
+                        <label for="calm">
+                            <img src="./images/musicStation/faces/calmFace.svg" alt="רוגע">
+                        </label>
+
+                        <input type="radio" id="sadness" name="answer" value="עצב" onchange="changeBtnState('radio')">
+                        <label for="sadness">
+                            <img src="./images/musicStation/faces/sadFace.svg" alt="עצב">
+                        </label>
+
+                        <input type="radio" id="happiness" name="answer" value="שמחה"
+                            onchange="changeBtnState('radio')">
+                        <label for="happiness">
+                            <img src="./images/musicStation/faces/happyFace.svg" alt="שמחה">
+                        </label>
+                    </fieldset>
+                </form>
+                <div class="buttonsDiv">
+                    <button id="confirmBtnRadio1" type="submit" class="next-btn confirmBtnRadio opacityImg disabled"
+                        onclick="updateActivity('radio',1001)">
+                        <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 5 - צילום תמונה -->
+            <div id="2activityStation" class="step mt-4" data-step="step5">
+                <div>
+                    <h3 class="changeFontWeigth">הסתכלו סביבכם,</h3>
+                    <h3 class="changeFontWeigth">איזה כלי נגינה אתם הכי אוהבים?</h3>
+                </div>
+
+                <!-- כפתורי צילום והעלאת תמונה -->
+                <div id="m-uploadInputs" class="mt-4">
+                    <div>
+                        <p class="mb-1">רוצים לשתף אותי?</p>
+                        <p class="bubbleTextBigP">מוזמנים להצטלם בחדר המוזיקה עם כלי הנגינה האהוב עליכם</p>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="mt-4">
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="takePicture" id="takePicture" capture="camera"
+                                    onchange="readURL(this)">
+                                <label for="takePicture">
+                                    <img src="./images/buttons/cameraBtn.svg" alt="צילום">
+                                </label>
+                            </div>
+
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="pickPhoto" id="pickPhoto"
+                                    onchange="readURL(this)">
+                                <label for="pickPhoto">
+                                    <img src="./images/buttons/galleryBtn.svg" alt="גלריה">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- אפשרות דילוג -->
+                    <div>
+                        <div class="bubbleTextWider mt-4 pt-4">
+                            <p class="bubbleTextWiderP">לא רוצים להצטלם? לחצו על כפתור ״דלג״</p>
+                        </div>
+                        <div style="margin-top: -3.4rem;">
+                            <img class="userCharacter photoStepCharacterPosition mt-5" alt="">
+                        </div>
+                        <div class="buttonsDiv">
+                            <button id="skipBtn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropSkip" onclick="stopAudio(), skipPopupAudio()">
+                                <img src="./images/buttons/skipBtn.svg" alt="דלג">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - דלג על משימה -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropSkip" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropSkipLabel" aria-hidden="true">
+                    <audio id="skipPopupAudio" class="audio">
+                        <source src="./audio/skipActivity.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupSkipP">האם אתם בטוחים שאתם רוצים <b>לדלג</b>
+                                    על המשימה?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" data-bs-dismiss="modal" class="next-btn modalBtns"
+                                    style="width: 6rem;" onclick="updateActivity('noCorrectAnswer',1002), stopAudio()">
+                                    <img src="./images/buttons/yesBtn.svg" alt=כן">
+                                </button>
+                                <button type="button" data-bs-dismiss="modal" class="modalBtns" style="width: 6rem;" onclick="stopAudio(), checkIfScroll()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- הצגת תמונה + כפתורי מחיקה ושיתוף -->
+                <div id="previewImageDiv" class="d-none mt-5">
+                    <!-- כפתור מחק -->
+                    <button id="deleteBtn" class="pe-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdropDelete"  onclick="stopAudio(), deletPhotoPopupAudio()">
+                        <img src="./images/buttons/deleteBtn.svg" alt="מחיקת תמונה">
+                    </button>
+                    <!-- הצגת תמונה -->
+                    <img id="previewImage" alt="התמונה שהעלת">
+                    <!-- כפתור שיתוף -->
+                    <button id="shareBtn" class="ps-4" type="button" onclick="shareImage()">
+                        <img src="./images/buttons/shareBtn.svg" alt="שיתוף תמונה">
+                    </button>
+
+                    <div>
+                        <div class="bubbleTextWider mt-4" style="padding-top: 1.6rem; height: 6rem;">
+                            <p class="bubbleTextWiderP">וואו איזה כלי נגינה!</p>
+                        </div>
+                    </div>
+                    <!-- תמונה דמות -->
+                    <div>
+                        <img class="userCharacter photoStepCharacterPosition" alt="">
+                    </div>
+                    <div class="buttonsDiv">
+                        <button type="button" class="next-btn" onclick="updateActivity('photo',1002)">
+                            <img src="./images/buttons/sendBtn.svg" alt="שליחה">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - מחיקת תמונה  -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropDelete" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropDeleteLabel" aria-hidden="true">
+                    <audio id="deletPhotoPopupAudio" class="audio">
+                        <source src="./audio/deletePhoto.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content m-4">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>למחוק</b> את
+                                    התמונה
+                                    שצילמתם?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" onclick="deleteImage(), stopAudio(), checkIfScroll()"
+                                    style="width: 6rem;">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" style="width: 6rem;" onclick="stopAudio()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- שלב 6 - פידבק אמצע -->
+            <div class="step mt-4" data-step="step6">
+                <div class="bubbleTextNarrow pt-5">
+                    <h2>אנחנו מתקדמים מצויין!</h2>
+                    <p class="bubbleTextNarrowP">סיימנו עוד שלב בדרך להשגת הכוכב!</p>
+                </div>
+                <div class="mt-3">
+                    <img class="userCharacter bigRigthPosition" alt="" style="max-width: 60%; height: auto;">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 7 - פתיח לפעילות שמיעת כלי נגינה -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step7">
+                <div class="bubbleTextBig p-2">
+                    <img class="position-absolute" src="./images/musicStation/musicalInstruments.svg" alt="" style="margin: 0 auto;
+                    left: 0; right: 3%;">
+                    <p class="bubbleTextBigP pt-5 pe-3 ps-3">האם ידעתם שלכל כלי נגינה יש צליל שמיוחד רק לו?</p>
+                    <p class="bubbleTextBigP pt-3 pe-3 ps-3">בואו נקשיב יחד לצלילים.</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 8 - שמיעת כלי נגינה -->
+            <div id="3activityStation" class="step mt-4 mt-md-1 pt-md-3" data-step="step8">
+                <h3 class="changeFontWeigth bubbleTextBigP">לחצו על כלי הנגינה והקשיבו לצלילים שלהם</h3>
+                <div>
+                    <img class="userCharacter characterPositionCardMiddle" alt=""
+                        style="margin-top: -1.5rem; max-width: 4rem;">
+                </div>
+                <div class="MusicalInstruments" style="margin-top: -1rem;">
+                    <div class="d-flex justify-content-evenly position-relative">
+                        <!-- פעמון -->
+                        <div class="mt-5 d-flex justify-content-center align-items-end">
+                            <a onclick="playMusicalInstrumentsAudio('bell')">
+                                <img src="./images/musicStation/musicalInstruments/bell.svg" alt="פעמון">
+                            </a>
+                            <audio id="bell" class="audio">
+                                <source src="./audio/musicStation/musicalInstruments/bell.mp3" type="audio/mpeg">
+                            </audio>
+                            <img id="bellNotes" class="position-absolute d-none"
+                                src="./images/musicStation/musicalNotes.svg" alt="">
+                        </div>
+
+                        <!-- תוף -->
+                        <div class="mt- d-flex justify-content-center align-items-end">
+                            <a onclick="playMusicalInstrumentsAudio('drum')">
+                                <img src="./images/musicStation/musicalInstruments/drum.svg" alt="תוף">
+                            </a>
+                            <audio id="drum" class="audio">
+                                <source src="./audio/musicStation/musicalInstruments/drums.mp3" type="audio/mpeg">
+                            </audio>
+                            <img id="drumNotes" class="position-absolute d-none"
+                                src="./images/musicStation/musicalNotes.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-evenly position-relative">
+                        <!-- קסילופון -->
+                        <div class="mt-5 d-flex justify-content-center align-items-end">
+                            <a onclick="playMusicalInstrumentsAudio('xylophone')">
+                                <img src="./images/musicStation/musicalInstruments/xylophone.svg" alt="קסילופון">
+                            </a>
+                            <audio id="xylophone" class="audio">
+                                <source src="./audio/musicStation/musicalInstruments/xylophone.mp3" type="audio/mpeg">
+                            </audio>
+                            <img id="xylophoneNotes" class="position-absolute d-none"
+                                src="./images/musicStation/musicalNotes.svg" alt="">
+                        </div>
+
+                        <!-- חצוצרה -->
+                        <div class="mt-5 d-flex justify-content-center align-items-end">
+                            <a onclick="playMusicalInstrumentsAudio('trumpet')" ;>
+                                <img src="./images/musicStation/musicalInstruments/trumpet.svg" alt="חצוצרה">
+                            </a>
+                            <audio id="trumpet" class="audio">
+                                <source src="./audio/musicStation/musicalInstruments/trumpet.mp3" type="audio/mpeg">
+                            </audio>
+                            <img id="trumpetNotes" class="position-absolute d-none"
+                                src="./images/musicStation/musicalNotes.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-evenly position-relative">
+                        <!-- גיטרה -->
+                        <div class="mt-5 d-flex justify-content-center align-items-end">
+                            <a onclick="playMusicalInstrumentsAudio('guitar')">
+                                <img src="./images/musicStation/musicalInstruments/guitar.svg" alt="גיטרה">
+                            </a>
+                            <audio id="guitar" class="audio">
+                                <source src="./audio/musicStation/musicalInstruments/guitar.mp3" type="audio/mpeg">
+                            </audio>
+                            <img id="guitarNotes" class="position-absolute d-none"
+                                src="./images/musicStation/musicalNotes.svg" alt="">
+                        </div>
+
+                        <!-- פסנתר -->
+                        <div class="mt-5 d-flex justify-content-center align-items-end">
+                            <a onclick="playMusicalInstrumentsAudio('piano')">
+                                <img src="./images/musicStation/musicalInstruments/piano.svg" alt="פסנתר">
+                            </a>
+                            <audio id="piano" class="audio">
+                                <source src="./audio/musicStation/musicalInstruments/piano.mp3" type="audio/mpeg">
+                            </audio>
+                            <img id="pianoNotes" class="position-absolute d-none"
+                                src="./images/musicStation/musicalNotes.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="buttonsDiv mt-2">
+                    <button type="button" class="next-btn" onclick="updateActivity('noCorrectAnswer',1003)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+            <!-- שלב 9 - פתיח לפעילות זיהוי כלי נגינה -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step9">
+                <div class="bubbleTextNarrow p-5">
+                    <p class="bubbleTextNarrowP">בואו נקשיב יחד למנגינות וננסה לזהות איזה כלי נגינה נשמעים בהן!</p>
+                </div>
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="" style="max-width: 60%; height: auto;">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 10 - שאלות רב ברירה מס׳ 1 -->
+            <div id="4activityStation" class="step mt-4" data-step="step10-11">
+                <h3 class="changeFontWeigth bubbleTextBigP">יכולים לזהות את כלי הנגינה
+                    שמשתתף בקטע המוזיקה?</h3>
+                <div>
+                    <img class="userCharacter characterPositionCardMiddle" alt=""
+                        style="max-width: 3.5rem; margin-top: 0rem;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img src="./images/musicStation/speakers.svg" alt="" style="width: 12rem;">
+                </div>
+                <audio class="audio musicStationAudio" controls onplay="stopMusicRecord()">
+                    <source src="./audio/musicStation/pianoMusic.mp3" type="audio/mpeg">
+                </audio>
+                <p class="mt-3">זיהיתם כלי נגינה? לחצו עליו</p>
+                <form class="disractors mt-5">
+                    <fieldset class="d-flex justify-content-center ps-2 pe-2 gap-2 gap-md-5">
+                        <input type="checkbox" id="piano2" name="checkbox-answer" value="פסנתר"
+                            onchange="changeBtnState('checkbox')">
+                        <label for="piano2">
+                            <img src="./images/musicStation/musicalInstruments/piano.svg" alt="פסנתר">
+                        </label>
+
+                        <input type="checkbox" id="drum2" name="checkbox-answer" value="תוף"
+                            onchange="changeBtnState('checkbox')">
+                        <label for="drum2">
+                            <img src="./images/musicStation/musicalInstruments/drum.svg" alt="תוף">
+                        </label>
+
+                        <input type="checkbox" id="bell2" name="checkbox-answer" value="פעמון"
+                            onchange="changeBtnState('checkbox')">
+                        <label for="bell2">
+                            <img src="./images/musicStation/musicalInstruments/bell.svg" alt="פעמון">
+                        </label>
+                    </fieldset>
+                </form>
+                <div class="buttonsDiv">
+                    <button id="confirmBtnCheckbox1" type="button"
+                        class="confirmBtnCheckbox modalBtns opacityImg disabled" onclick="stopMusicRecord(), feedback_musicStation('1')"
+                        data-bs-toggle="modal" data-bs-target="#correctAnswerLevel10-MusicStation">
+                        <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 10 -->
+            <div class="modal fade" id="correctAnswerLevel10-MusicStation"
+                aria-labelledby="correctAnswerLevel10-MusicStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="musicalInstrumentFeedback1_musicStationRecord" class="audio">
+                    <source src="./audio/musicStation/records/musicalInstrumentFeedback1_musicStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-center">
+                                <p class="mt-md-5 mt-3 popupWiderP">כלי הנגינה שהופיע בקטע ששמענו
+                                    הוא:</p>
+                            </div>
+                            <div class="d-flex justify-content-center p-3">
+                                <img class="modalImages" src="./images/musicStation/musicalInstruments/piano.svg"
+                                    alt="פסנתר">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="updateActivity('checkbox',1004)">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 11 - שאלות רב ברירה מס׳ 2 -->
+            <div id="5activityStation" class="step mt-4" data-step="step10-11">
+                <h3 class="changeFontWeigth bubbleTextBigP mb-0">יכולים לזהות את כלי הנגינה
+                    שמשתתף בקטע המוזיקה?</h3>
+                <div>
+                    <img class="userCharacter characterPositionCardMiddle" alt=""
+                        style="max-width: 3.5rem; margin-top: 0rem;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img src="./images/musicStation/earphones.svg" alt=""
+                        style="transform: translate(-5px, 27px); width: 14rem;"">
+                </div>
+                <audio class=" audio musicStationAudio" controls onplay="stopMusicRecord()">
+                    <source src="./audio/musicStation/guitarMusic.mp3" type="audio/mpeg">
+                    </audio>
+                    <p class="mt-3">זיהיתם כלי נגינה? לחצו עליהם</p>
+                    <form class="disractors mt-4">
+                        <fieldset class="d-flex justify-content-center ps-2 pe-2 gap-2 gap-md-5">
+                            <input type="checkbox" id="trumpet2" name="checkbox-answer" value="חצוצרה"
+                                onchange="changeBtnState('checkbox')">
+                            <label for="trumpet2">
+                                <img src="./images/musicStation/musicalInstruments/trumpet.svg" alt="חצוצרה">
+                            </label>
+
+                            <input type="checkbox" id="xylophone2" name="checkbox-answer" value="קסילופון"
+                                onchange="changeBtnState('checkbox')">
+                            <label for="xylophone2">
+                                <img src="./images/musicStation/musicalInstruments/xylophone.svg" alt="קסילופון">
+                            </label>
+
+                            <input type="checkbox" id="guitar2" name="checkbox-answer" value="גיטרה"
+                                onchange="changeBtnState('checkbox')">
+                            <label for="guitar2">
+                                <img src="./images/musicStation/musicalInstruments/guitar.svg" alt="גיטרה">
+                            </label>
+                        </fieldset>
+                    </form>
+                    <div class="buttonsDiv">
+                        <button id="confirmBtnCheckbox2" type="button"
+                            class="confirmBtnCheckbox modalBtns opacityImg disabled" onclick="stopMusicRecord(), feedback_musicStation('2')"
+                            data-bs-toggle="modal" data-bs-target="#correctAnswerLevel11-MusicStation">
+                            <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- פופ-אפ תשובה שלב 11 -->
+                <div class="modal fade" id="correctAnswerLevel11-MusicStation"
+                    aria-labelledby="correctAnswerLevel11-MusicStationLabel" data-bs-backdrop="static"
+                    aria-hidden="true">
+                    <audio id="musicalInstrumentFeedback2_musicStationRecord" class="audio">
+                        <source src="./audio/musicStation/records/musicalInstrumentFeedback2_musicStation.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-center">
+                                    <p class="mt-md-5 mt-3 popupWiderP">כלי הנגינה שהופיע בקטע ששמענו הוא:</p>
+                                </div>
+                                <div class="d-flex justify-content-center p-3">
+                                    <img class="modalImages" src="./images/musicStation/musicalInstruments/guitar.svg"
+                                        alt="גיטרה">
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                    onclick="updateActivity('checkbox',1005)">
+                                    <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- שלב 12 - שאלות רב ברירה מס׳ 3 -->
+                <div id="6activityStation" class="step mt-4" data-step="step12-13">
+                    <h3 class="changeFontWeigth bubbleTextBigP">יכולים לזהות את 2 כלי הנגינה
+                        שמשתתפים בקטע המוזיקה?</h3>
+                    <div>
+                        <img class="userCharacter characterPositionCardMiddle" alt=""
+                            style="max-width: 4.5rem; margin-top: 0.5rem;">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img src="./images/musicStation/speakers.svg" alt="" style="width: 12rem;">
+                    </div>
+                    <audio class="audio musicStationAudio" controls onplay="stopMusicRecord()">
+                        <source src="./audio/musicStation/trumpetsAndDrumsMusic.mp3" type="audio/mpeg">
+                    </audio>
+                    <p class="mt-3">זיהיתם כלי נגינה? לחצו עליהם</p>
+                    <form class="disractors mt-3">
+                        <fieldset>
+                            <div class="d-flex justify-content-center gap-3 gap-md-4">
+                                <input type="checkbox" id="piano3" name="checkbox-answer" value="פסנתר"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="piano3">
+                                    <img src="./images/musicStation/musicalInstruments/piano.svg" alt="פסנתר">
+                                </label>
+
+                                <input type="checkbox" id="drum3" name="checkbox-answer" value="תוף"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="drum3">
+                                    <img src="./images/musicStation/musicalInstruments/drum.svg" alt="תוף">
+                                </label>
+
+                                <input type="checkbox" id="xylophone3" name="checkbox-answer" value="קסילופון"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="xylophone3">
+                                    <img src="./images/musicStation/musicalInstruments/xylophone.svg" alt="קסילופון">
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4 gap-4">
+                                <input type="checkbox" id="bell3" name="checkbox-answer" value="פעמון"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="bell3">
+                                    <img src="./images/musicStation/musicalInstruments/bell.svg" alt="פעמון">
+                                </label>
+
+                                <input type="checkbox" id="trumpet3" name="checkbox-answer" value="חצוצרה"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="trumpet3">
+                                    <img src="./images/musicStation/musicalInstruments/trumpet.svg" alt="חצוצרה">
+                                </label>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="buttonsDiv mt-2">
+                        <button id="confirmBtnCheckbox3" type="button"
+                            class="confirmBtnCheckbox modalBtns opacityImg disabled" onclick="stopMusicRecord(), feedback_musicStation('3')"
+                            data-bs-toggle="modal" data-bs-target="#correctAnswerLevel12-MusicStation">
+                            <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- פופ-אפ תשובה שלב 12 -->
+                <div class="modal fade" id="correctAnswerLevel12-MusicStation"
+                    aria-labelledby="correctAnswerLevel12-MusicStationLabel" data-bs-backdrop="static"
+                    aria-hidden="true">
+                    <audio id="musicalInstrumentFeedback3_musicStationRecord" class="audio">
+                        <source src="./audio/musicStation/records/musicalInstrumentFeedback3_musicStation.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-center">
+                                    <p class="mt-md-5 mt-3 popupWiderP">כלי הנגינה שהופיעו בקטע ששמענו הם:</p>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3 p-3">
+                                    <img class="modalImages" src="./images/musicStation/musicalInstruments/drum.svg"
+                                        alt="תוף">
+                                    <img class="modalImages" src="./images/musicStation/musicalInstruments/trumpet.svg"
+                                        alt="חצוצרה">
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                    onclick="updateActivity('checkbox',1006)">
+                                    <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- שלב 13 - שאלות רב ברירה מס׳ 4 -->
+                <div id="7activityStation" class="step mt-4" data-step="step12-13">
+                    <h3 class="changeFontWeigth bubbleTextBigP mb-0">יכולים לזהות את 2 כלי הנגינה
+                        שמשתתפים בקטע המוזיקה?</h3>
+                    <div>
+                        <img class="userCharacter characterPositionCardMiddle" alt=""
+                            style="max-width: 3.5rem; margin-top: 0rem;">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <img src="./images/musicStation/earphones.svg" alt=""
+                            style="transform: translate(-5px, 27px); width: 12rem;">
+                    </div>
+                    <audio class="audio musicStationAudio" controls onplay="stopMusicRecord()">
+                        <source src="./audio/musicStation/xylophoneAndGuitarMusic.mp3" type="audio/mpeg">
+                    </audio>
+                    <p class="mt-3">זיהיתם כלי נגינה? לחצו עליו</p>
+                    <form class="disractors mt-3">
+                        <fieldset>
+                            <div class="d-flex justify-content-center gap-3 gap-md-4">
+                                <input type="checkbox" id="guitar3" name="checkbox-answer" value="גיטרה"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="guitar3">
+                                    <img src="./images/musicStation/musicalInstruments/guitar.svg" alt="גיטרה">
+                                </label>
+
+                                <input type="checkbox" id="xylophone4" name="checkbox-answer" value="קסילופון"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="xylophone4">
+                                    <img src="./images/musicStation/musicalInstruments/xylophone.svg" alt="קסילופון">
+                                </label>
+
+                                <input type="checkbox" id="piano4" name="checkbox-answer" value="פסנתר"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="piano4">
+                                    <img src="./images/musicStation/musicalInstruments/piano.svg" alt="פסנתר">
+                                </label>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4 gap-4">
+                                <input type="checkbox" id="drum4" name="checkbox-answer" value="תוף"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="drum4">
+                                    <img src="./images/musicStation/musicalInstruments/drum.svg" alt="תוף">
+                                </label>
+
+                                <input type="checkbox" id="bell4" name="checkbox-answer" value="פעמון"
+                                    onchange="changeBtnState('checkbox')">
+                                <label for="bell4">
+                                    <img src="./images/musicStation/musicalInstruments/bell.svg" alt="פעמון">
+                                </label>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="buttonsDiv mt-2">
+                        <button id="confirmBtnCheckbox4" type="button"
+                            class="confirmBtnCheckbox modalBtns opacityImg disabled" onclick="stopMusicRecord(), feedback_musicStation('4')"
+                            data-bs-toggle="modal" data-bs-target="#correctAnswerLevel13-MusicStation">
+                            <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- פופ-אפ תשובה שלב 13 -->
+                <div class="modal fade" id="correctAnswerLevel13-MusicStation"
+                    aria-labelledby="correctAnswerLevel13-MusicStationLabel" data-bs-backdrop="static"
+                    aria-hidden="true">
+                    <audio id="musicalInstrumentFeedback4_musicStationRecord" class="audio">
+                        <source src="./audio/musicStation/records/musicalInstrumentFeedback4_musicStation.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-center">
+                                    <p class="mt-md-5 mt-3 popupWiderP">כלי הנגינה שהופיעו בקטע ששמענו הם:</p>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3 p-3">
+                                    <img class="modalImages"
+                                        src="./images/musicStation/musicalInstruments/xylophone.svg" alt="קסילופון">
+                                    <img class="modalImages" src="./images/musicStation/musicalInstruments/guitar.svg"
+                                        alt="גיטרה">
+                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                    onclick="changeToFinishBackground(), updateActivity('checkbox',1007)">
+                                    <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- שלב 14 - סיום תחנה -->
+                <div id="finalStep" class="step finalStep mt-5" data-step="step14">
+                    <audio id="finishStationFeedbackAudio" class="audio">
+                        <source src="./audio/finishStationFeedback.mp3" type="audio/mpeg">
+                    </audio>
+                    <div id="finishMusicStationSign">
+                        <h2 class="finishStationSignH2" style="padding-top: 6.5rem;">כל הכבוד!</h2>
+                        <p class="finishStationSignP changeFontWeigth mt-5 pt-1 pe-3 ps-3">סיימנו את התחנה וזכינו בכוכב!
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <img class="userCharacter characterPositionStationsFinishPage" alt="">
+                    </div>
+                    <div class="buttonsDiv d-flex justify-content-between" style="right: 0%; left: 0%;">
+                        <button type="button" class="float-end regularBtns" data-bs-toggle="modal"
+                            data-bs-target="#playAgain">
+                            <img src="./images/buttons/playAgainBtn.svg" alt="שחקו שוב">
+                        </button>
+                        <button type="button" class="regularBtns" onclick="updateStation()">
+                            <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- פופ-אפ לאחר לחיצה על ״שחקו שוב״ -->
+                <div class="popupModal modal fade" id="playAgain" aria-labelledby="playAgainLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content mt-3">
+                            <div class="modal-body d-flex justify-content-center pt-1 pt-md-3">
+                                <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>להתחיל מחדש</b> את כל
+                                    המשימות בתחנה זו?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-5">
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                                    onclick="resetStationAndActivities(), removeFinishBackground()">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  הודעה במידה והמשתמש סיים את התחנה, נכנס שוב ורוצה לבצע אותה מחדש -->
+                <div id="msgDiv" class="step mt-5" data-step="startAgain">
+                    <div class="bubbleTextBig p-3">
+                        <h2 class="mt-3">שלום, אנחנו שוב כאן!</h2>
+                        <p class="bubbleTextBigP pt-2 ps-1">תרצו שנבצע את כל המשימות בתחנה <b>מההתחלה</b>?</p>
+                        <div class="d-flex justify-content-center mt-3 gap-5">
+                            <button type="button" class="modalBtns" onclick="resetStationAndActivities()">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </button>
+                            <a href="./Map.html" class="modalBtns">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <img class="userCharacter bigRigthPosition" alt="">
+                    </div>
+                </div>
+
+                <!-- הודעה במידה והמשתמש סרק את הברקוד מבלי להיות מחובר -->
+                <div class="modal popupModal fade" id="needToLogin" aria-labelledby="needToLoginLabel"
+                    data-bs-backdrop="static" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body mt-3">
+                                <p class="popupWiderP" style="margin-top: -2rem;">כדי להינות מהמשחק, עליכם להתחבר אליו
+                                </p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center pb-0">
+                                <a class="regularBtns" href="./Registration.html">
+                                    <img src="./images/buttons/registrationBtn.svg" alt="הרשמה למשחק">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

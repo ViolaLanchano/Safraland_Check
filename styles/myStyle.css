@@ -1,0 +1,2702 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: 100%;
+  text-align: center;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('../images/backgrounds/background.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: hsl(229, 58%, 19%);
+  position: relative;
+  margin: 0;
+}
+
+:root {
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: #141E4C;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  font-size: 0.7rem;
+  background-color: rgba(255, 255, 255, 0.416);
+}
+
+
+.noOpacity {
+  opacity: 0;
+}
+
+.lampIconShadow {
+  filter: drop-shadow(0px 0px 3px rgb(172, 171, 171));
+}
+
+.stationCode {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.shadowFilter {
+  filter: drop-shadow(0px 2px 2px rgb(93, 89, 89));
+}
+
+/* Backgrounds */
+body#mapBackground {
+  background-image: url('../images/backgrounds/mapBackground.svg');
+}
+
+body#startStationBackground {
+  background-image: url('../images/backgrounds/startStationBackground.svg');
+}
+
+.finishStationBackground {
+  background-image: url('../images/backgrounds/finishStationBackground.svg');
+}
+
+
+.changeFontWeigth {
+  font-weight: 600;
+}
+
+
+[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  outline: none;
+  overflow: hidden;
+}
+
+
+/* עיצוב הכותרות הראשיות */
+.titleH1 {
+  font-family: 'Fredoka', sans-serif;
+  background-image: url('../images/backgrounds/titleSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15rem auto;
+  height: 5rem;
+  color: white;
+}
+
+/* שקיפות על כפתורים */
+.opacityImg {
+  opacity: 0.4;
+}
+
+/* הצגת תמונה שהועלתה ע״י המשתמש */
+#previewImage {
+  width: 9rem;
+  height: 120px;
+  object-fit: cover;
+  object-position: top center;
+  outline: 5px solid white;
+}
+
+.postionAbsoluteMiddle {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+
+/* ------------------ וידאו ----------------------- */
+.video-outer {
+  width: 100%;
+}
+
+.video-inner {
+  padding-top: 56.25%;
+  height: 0px;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+/*-------------- עיצוב הפופ-אפים ---------------*/
+
+.popupModal .modal-content {
+  background-color: transparent;
+  background-image: url('../images/backgrounds/popUpBackground.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 53px;
+  border: none;
+}
+
+.popupScanQrCode .modal-content {
+  background-color: transparent;
+  background-image: url('../images/backgrounds/popupScanQrCode.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 24rem;
+  border: none;
+}
+
+.modalImages {
+  width: 5.5rem;
+}
+
+.popupSkipP {
+  width: 13rem;
+  margin: 0 auto;
+  line-height: 2rem;
+}
+
+.popupWiderP {
+  width: 15rem;
+  margin: 0 auto;
+  line-height: 2rem;
+}
+
+
+.modal-footer {
+  border-top: none;
+  transform: translateY(-1rem);
+}
+
+#reader {
+  width: 12rem;
+  height: 12rem;
+  margin: 0 auto;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+
+/* ----------------------------- */
+/*           Characters         */
+/*----------------------------- */
+
+.smallRigthPosition {
+  max-width: 8rem;
+  height: auto;
+  right: -4rem;
+  position: relative;
+  transform: rotate(-10.49deg);
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+.bigRigthPosition {
+  max-width: 55%;
+  height: auto;
+  transform: translateX(4.2rem);
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+/* עיצוב התמונה הראשית בעמודי הרשמה והתחברות */
+.loginAndRegistrationCharacter {
+  width: 5.5rem;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+/* עיצוב מיקום הדמות בדפי פתיחה */
+.characterPositionStationsStartPage {
+  max-width: 7rem;
+  height: auto;
+  transform: rotate(-17.62deg);
+  margin-right: -12rem;
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+/* עיצוב מיקום הדמות בדפי סיום */
+.characterPositionStationsFinishPage {
+  max-width: 8rem;
+  height: auto;
+  transform: rotate(-14.27deg);
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+/* עיצוב מיקום הדמות בעמוד משימת צילום */
+.photoStepCharacterPosition {
+  max-width: 6rem;
+  height: auto;
+  transform: rotate(-10.49deg);
+  margin-right: -8rem;
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+/* עיצוב מיקום הדמות בפעילות הגרירה בחדר הטיפולים */
+.characterPositionCardMiddle {
+  max-width: 6rem;
+  height: auto;
+  margin-right: -10rem;
+  margin-top: -3rem;
+  position: absolute;
+  transform: rotate(-10.49deg);
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+
+/* ----------------------------- */
+/*       Registration PAGE      */
+/*----------------------------- */
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+.form-group {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* עיצוב תיבות הטקסט */
+.form-group input,
+.qrCodeInput {
+  width: 17rem;
+  display: block;
+  margin: 0 auto;
+  border: solid 1px #E5E5E5;
+  border-radius: 15px;
+  box-shadow: 2px 2px 15px -9px rgb(0 0 0 / 53%);
+  height: 2.7rem;
+  padding: 2%;
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
+  font-size: 0.85em;
+}
+
+/* עיצוב הודעות ולידציה */
+#msgAboutNickName,
+#msgAboutNickName,
+.validationStationCode {
+  color: rgb(214, 32, 32);
+  font-size: 0.8em;
+}
+
+
+.overlayBtn {
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white)
+}
+
+.overlayBtnClicked {
+  filter: drop-shadow(0px 0px 2px rgb(95, 255, 135)) drop-shadow(0px 0px 2px rgb(95, 255, 135)) drop-shadow(0px 0px 2px rgb(95, 255, 135)) drop-shadow(0px 0px 2px rgb(95, 255, 135)) drop-shadow(0px 0px 2px rgb(95, 255, 135))
+}
+
+/* אנימציה לחץ מפה */
+.arrowOnBoardingMapBtn {
+  animation: upAndDown-OnBoardingMap 1s infinite alternate ease-in-out;
+}
+
+@keyframes upAndDown-OnBoardingMap {
+  from {
+    transform: translateY(-2rem) scaleX(-1);
+  }
+
+  to {
+    transform: translateY(0rem) scaleX(-1);
+  }
+}
+
+
+/* אנימציה לחץ אודיו */
+.arrowOnBoardingAudioBtn {
+  animation: upAndDown-OnBoardingAudio 1s infinite alternate ease-in-out;
+}
+
+@keyframes upAndDown-OnBoardingAudio {
+  from {
+    transform: translateY(-2rem);
+  }
+
+  to {
+    transform: translateY(0rem);
+  }
+}
+
+/* אנימציה לחץ הבא */
+.arrowOnBoardingNextBtn {
+  animation: upAndDown-OnBoardingNext 1s infinite alternate ease-in-out;
+}
+
+@keyframes upAndDown-OnBoardingNext {
+  from {
+    transform: translateY(0rem) scaleY(-1);
+  }
+
+  to {
+    transform: translateY(2rem) scaleY(-1);
+  }
+}
+
+/* ------------ כפתורים ------------- */
+
+/* עיצוב כפתורי הבא, הקודם ואישור */
+button.submit-btn,
+button.next-btn,
+button.previous-btn,
+.continue-btn,
+button.regularBtns,
+.modalBtns {
+  float: left;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+
+/* עיצוב כפתור סריקת ברקוד */
+/* .scanQrCodeBtn {
+  border: none;
+  background-color: transparent;
+  position: relative;
+  width: 9rem;
+} */
+
+.confirmBtn {
+  border: none;
+  background-color: transparent;
+  position: relative;
+  width: 7rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+
+.settingButtons {
+  border: none;
+  background-color: transparent;
+  padding-bottom: 0.5rem;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+/* כפתור דלג */
+button#skipBtn {
+  float: left;
+  width: 34%;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  text-decoration: underline;
+  padding-bottom: 1rem;
+  cursor: pointer;
+}
+
+/* עיצוב הכפתורים ״צילום״ + ״גלריה״ */
+.m-uploadFile label {
+  cursor: pointer;
+}
+
+/* כפתורי מחק ושיתוף */
+button#deleteBtn,
+button#shareBtn,
+#close-btn {
+  border: none;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+/* עיצוב הדיב של כפתור האיקס בתוך חלון הפופ-אפ */
+#close-btn {
+  width: 2.5rem;
+}
+
+/* עיצוב הכפתור איקס בתוך חלון הפופ-אפ */
+#close-btnDiv {
+  width: 40%;
+  margin: 0 auto;
+  padding-right: 15rem;
+  padding-left: -2rem;
+  padding-top: 2rem;
+}
+
+
+/* עיצוב הדיב של הכפתורים - הצמדה שלהם לתחתית העמוד */
+.buttonsDiv {
+  position: relative;
+  bottom: 0%;
+  width: 90%;
+  margin: 0 auto;
+  left: 2%;
+  right: 2%;
+  gap: 2rem;
+}
+
+/* ------------כפתורי רדיו------------- */
+
+
+/* הסתרת פקדי הרדיו */
+#genderCharacterBtn [type=radio],
+#ageBtn [type=radio],
+#favColor input[type="radio"],
+#facesMusic input[type="radio"],
+.disractors input[type="checkbox"],
+.radioDisractors input[type="radio"],
+#yesOrNo input[type="radio"],
+.staffMembers input[type="radio"] {
+  display: none;
+}
+
+#ageBtn input[type=radio]+label,
+#facesMusic label,
+.disractors label,
+.radioDisractors label,
+#yesOrNo label,
+.staffMembers input[type="radio"] {
+  cursor: pointer;
+}
+
+
+#favColor label {
+  width: 3rem;
+}
+
+#genderCharacterBtn img {
+  filter: drop-shadow(-2px 3px 2px black);
+}
+
+/* עיצוב כפתורי רדיו - סימון של אופציה שנבחרה */
+#favColor input[type=radio]:checked+label img,
+#ageBtn input[type=radio]:checked+label img,
+#genderCharacterBtn input[type=radio]:checked+label img,
+#facesMusic input[type="radio"]:checked+label img,
+.disractors input[type=checkbox]:checked+label img,
+.radioDisractors input[type="radio"]:checked+label img {
+  filter: drop-shadow(0px 0px 2px rgb(255, 255, 255)) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+}
+
+
+#yesOrNo input[type="radio"]:checked+label img {
+  filter: drop-shadow(0px 0px 2px rgb(172, 171, 171)) drop-shadow(0px 0px 2px rgb(172, 171, 171)) drop-shadow(0px 0px 2px rgb(172, 171, 171)) drop-shadow(0px 0px 2px rgb(172, 171, 171));
+}
+
+/*  עיצוב התמונות שבתוך כפתורי הרדיו - מגדר  */
+#genderCharacterBtn fieldset label,
+#genderCharacterBtn fieldset label img {
+  width: 7rem;
+  height: auto;
+  cursor: pointer;
+  transition: 500ms all;
+}
+
+#ageBtn label img {
+  width: 4.2rem;
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  padding: 0 2em;
+  line-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+.btn img {
+  width: 2em;
+  height: 2em;
+}
+
+/* ------------קרוסלה בחירת דמות + כפתורי רדיו------------ */
+
+#h2ChoosingCharacter {
+  width: 15rem;
+  margin: 0 auto;
+}
+
+
+/* עיצוב של הקרוסולה - בחירת דמות */
+#slider {
+  position: relative;
+  margin: 0 auto;
+  height: 19rem;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  margin-top: -3rem;
+}
+
+/* עיצוב של התמונות בתוך הקרוסולה - בחירת דמות */
+#slider label,
+#slider label img {
+  position: absolute;
+  width: 13rem;
+  height: auto;
+  cursor: pointer;
+  display: flex;
+  /*   align-items: center; */
+  justify-content: center;
+  transition: transform 400ms ease;
+}
+
+.carouselNavControl {
+  filter: drop-shadow(0px 2px 2px rgb(62, 60, 60));
+}
+
+
+
+/*-------- פונקציונליות של התמונות בקרוסלה --------*/
+
+/* תמונה פעילה */
+#s1:checked~#slide1,
+#s2:checked~#slide2,
+#s3:checked~#slide3,
+#s4:checked~#slide4,
+#s5:checked~#slide5 {
+  transform: translateY(4rem);
+  scale: 1;
+  height: auto;
+  filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+  z-index: -1;
+}
+
+/* תמונה הקודמת */
+#s1:checked~#slide2,
+#s2:checked~#slide3,
+#s3:checked~#slide4,
+#s4:checked~#slide5,
+#s5:checked~#slide1 {
+  transform: translate3d(16rem, 0, -71rem) translateY(6rem);
+  opacity: 0.5;
+}
+
+
+/* תמונה שאחרי הבאה */
+#s1:checked~#slide3,
+#s2:checked~#slide4,
+#s3:checked~#slide5,
+#s4:checked~#slide1,
+#s5:checked~#slide2 {
+  display: none;
+}
+
+/* תמונה שלפני הקודמת */
+#s1:checked~#slide4,
+#s2:checked~#slide5,
+#s3:checked~#slide1,
+#s4:checked~#slide2,
+#s5:checked~#slide3 {
+  display: none;
+}
+
+/* תמונה הבאה */
+#s1:checked~#slide5,
+#s2:checked~#slide1,
+#s3:checked~#slide2,
+#s4:checked~#slide3,
+#s5:checked~#slide4 {
+  transform: translate3d(-16rem, 0, -71rem) translateY(6rem);
+  opacity: 0.5;
+}
+
+/* עיצוב כפתורי הרדיו של הקרוסלה */
+#slider input[type=radio] {
+  position: relative;
+  top: 19rem;
+  margin: 1rem 0.4rem auto;
+  opacity: 0.4;
+  cursor: pointer;
+  accent-color: #141E4C;
+}
+
+
+/* עיצוב כפתור הרדיו הבחור של הקרוסלה */
+#slider input[type=radio]:checked {
+  opacity: 1;
+}
+
+#carouselNavControlDiv {
+  gap: 8rem;
+  ;
+}
+
+.carouselNavControl {
+  background-color: transparent;
+  border: none;
+}
+
+
+
+
+/*-----------  עיצוב של בועות הטקסט  -------------*/
+
+.bubbleTextNarrow {
+  background-image: url('../images/bubbleTextNarrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 14rem;
+}
+
+.bubbleTextNarrowP {
+  width: 12rem;
+  margin: auto;
+  line-height: 2rem;
+}
+
+.bubbleTextBig {
+  background-image: url('../images/bubbleTextBig.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 16em;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.bubbleTextBigP {
+  width: 16rem;
+  margin: auto;
+  line-height: 2rem;
+}
+
+.bubbleTextWider {
+  background-image: url('../images/bubbleTextWider.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: auto;
+  height: 7rem;
+  transform: rotate(-10.49deg);
+}
+
+.bubbleTextWiderP {
+  width: 8rem;
+  font-size: 0.9rem;
+  margin: auto;
+}
+
+
+.bubbleTextMiddleP {
+  width: 14rem;
+  margin: auto;
+  line-height: 2rem;
+}
+
+
+
+/* ----------------------------- */
+/*          MAP PAGE             */
+/*----------------------------- */
+
+#mapProgressBar img {
+  float: left;
+}
+
+#mapProgressBarDiv {
+  position: absolute;
+  transform: translate(-13px, 2px);
+  gap: 3.9px;
+}
+
+#activitiesProgressBarDiv {
+  position: absolute;
+  width: 11%;
+  transform: translate(-6px, 3.6px);
+  gap: 10%;
+}
+
+.starPositionMap {
+  position: absolute;
+  max-width: 3.5rem;
+}
+
+#dimotStationStarMap,
+#foodStationStarMap {
+  margin-top: -1rem;
+}
+
+#treatmentStationStarMap {
+  margin-top: -0.8rem;
+}
+
+#gamingStationStarMap {
+  margin-top: -0.9rem;
+}
+
+#educationalStationStarMap,
+#cinemaStationStarMap {
+  margin-top: -0.7rem;
+}
+
+.stationImages {
+  width: 8rem;
+  height: 8.5rem;
+}
+
+.titleH1Stations {
+  font-family: 'Fredoka', sans-serif;
+}
+
+.finishStationSignP {
+  width: 12rem;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.finishStationSignH2 {
+  font-size: 1.6rem;
+  font-family: 'Fredoka', sans-serif;
+  padding-top: 6.5rem;
+}
+
+/* רקע של חלוני הםופ-אפ של קבלת מדליות */
+#silverMedal .modal-content,
+#bronzeMedal .modal-content {
+  background-color: transparent;
+  background-image: url('../images/backgrounds/popupMedalsBackground.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 33px;
+  border: none;
+}
+
+#medal {
+  width: 2.5rem;
+  transform: translate(-4rem, -4.5rem) rotate(15deg);
+  filter: drop-shadow(0px 2px 2px rgb(19, 19, 19));
+
+}
+
+hr {
+  width: 9rem;
+  ;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ------------------------------------- */
+/*          PHOTO ALBUM PAGE             */
+/*------------------------------------- */
+
+.photoAlbumDiv {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.photoAlbumRight {
+  transform: rotate(12.64deg);
+}
+
+.photoAlbumMiddle {
+  transform: translateY(-1rem);
+  background: #fff;
+}
+
+.photoAlbumLeft {
+  transform: rotate(-12.64deg);
+}
+
+.polaroid {
+  background: #fff;
+  padding: 0.3rem;
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+}
+
+.photoSize {
+  width: 5rem;
+  height: 72.7945px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.captionsForPloariod {
+  line-height: 1.5rem;
+  font-size: 0.84rem;
+}
+
+
+
+/* ------------------------------- */
+/*          DIPLOMA PAGE           */
+/*-------------------------------- */
+
+
+/* עיצוב הרקע של הדיפלומה */
+.diploma {
+  background-image: url('../images/backgrounds/diplomaBackground.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 17.5rem auto;
+  height: 25rem;
+  z-index: -1;
+}
+
+/* עיצוב הדמויות שעמוד דיפלומה */
+
+/* ארנב */
+#bunnyDiploma {
+  margin-top: -27rem;
+  margin-right: -14rem;
+  width: 5rem;
+  transform: rotate(-21deg);
+  filter: drop-shadow(0px 2px 2px rgb(70, 70, 70));
+}
+
+/* אריה */
+#lionDiploma {
+  margin-top: -6rem;
+  margin-right: 0rem;
+  width: 7rem;
+  filter: drop-shadow(0px 2px 2px rgb(70, 70, 70));
+}
+
+/* חתולה */
+#catDiploma {
+  margin-top: -6rem;
+  margin-right: 13.5rem;
+  width: 7rem;
+  filter: drop-shadow(0px 2px 2px rgb(70, 70, 70));
+}
+
+/* דובי */
+#teddyBearDiploma {
+  margin-top: -6rem;
+  margin-right: -13rem;
+  width: 7rem;
+  filter: drop-shadow(0px 2px 2px rgb(70, 70, 70));
+}
+
+/* פינגיוון */
+#penguinDiploma {
+  margin-top: -27rem;
+  width: 5rem;
+  margin-right: 14rem;
+  transform: rotate(21deg);
+  filter: drop-shadow(0px 2px 2px rgb(70, 70, 70));
+}
+
+/* ------------------------------------- */
+/*          MUSIC STATION PAGE           */
+/*-------------------------------------- */
+
+
+#musicStationStartPage {
+  background-image: url('../images/musicStation/musicStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+#correctAnswerLevel10-MusicStation .modal-content,
+#correctAnswerLevel11-MusicStation .modal-content,
+#correctAnswerLevel12-MusicStation .modal-content,
+#correctAnswerLevel13-MusicStation .modal-content {
+  background-color: transparent;
+  background-image: url('../images/musicStation/popupCorrectAnswerMusic.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 96px;
+  border: none;
+}
+
+#finishMusicStationSign {
+  background-image: url('../images/musicStation/finishMusicStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+
+
+#bellNotes,
+#drumNotes,
+#xylophoneNotes,
+#trumpetNotes,
+#guitarNotes,
+#pianoNotes {
+  z-index: -1;
+}
+
+
+/* ------------------------------------- */
+/*          GAMING STATION PAGE           */
+/*-------------------------------------- */
+
+
+#gamingStationStartPage {
+  background-image: url('../images/gamingStation/gamingStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishGamingStationSign {
+  background-image: url('../images/gamingStation/finishGamingStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+
+
+/*--------- משחק הזיכרון ---------*/
+
+.memory-game {
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2rem;
+  margin: auto;
+  padding: 1rem;
+  perspective: 1000px;
+}
+
+.memory-card {
+  position: relative;
+  height: 5rem;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+
+.front-face {
+  position: absolute;
+  width: 6rem;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.back-face {
+  width: 6rem;
+  backface-visibility: hidden;
+
+}
+
+.flipCards {
+  transition: transform 1s;
+  transform: rotateY(180deg);
+}
+
+
+.matchCards {
+  transform: rotateY(180deg);
+  animation: correct 0.3s ease-in-out;
+}
+
+@keyframes correct {
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+
+  50% {
+    transform: scaleX(1.15) scaleY(1.1);
+  }
+
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+.wrongCards {
+  animation: wrong 0.25s ease-in-out;
+}
+
+@keyframes wrong {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-15deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  75% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.showCards {
+  transform: rotateY(0deg);
+}
+
+#correctAnswerLevel4 .modal-content,
+#correctAnswerLevel5 .modal-content,
+#correctAnswerLevel6 .modal-content,
+#correctAnswerLevel7 .modal-content,
+#winMessageMemoryGame .modal-content,
+#winMessageMoleGame .modal-content,
+#onBoardingPopup .modal-content,
+#correctAnswerLevel7-TreatmentStation .modal-content,
+#correctAnswerLevel8-TreatmentStation .modal-content,
+#winMessageBreathingAnimation .modal-content,
+#winMessage_dragAndDrop_myRoom .modal-content {
+  background-color: transparent;
+  background-image: url('../images/backgrounds/popupWellDone.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 96px;
+  border: none;
+}
+
+
+
+/*--------- משחק ״הכה בחפרפרת״ ---------*/
+
+
+#whackAMoleGame {
+  max-width: 18rem;
+  height: 18rem;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  margin: 0 auto;
+  gap: 0.7rem
+}
+
+
+.hole {
+  overflow: hidden;
+  position: relative;
+}
+
+.hole:after {
+  display: block;
+  background: url('../images/gamingStation/hole.svg') bottom center no-repeat;
+  background-size: contain;
+  content: "";
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  z-index: 2;
+  bottom: -0.3rem;
+}
+
+.mole {
+  background: url('../images/gamingStation/mole.svg') bottom center no-repeat;
+  background-size: 54%;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 90%;
+  transition: all 0.4s;
+}
+
+.hole.up .mole {
+  top: 0;
+}
+
+.whackAMoleGameHr {
+  height: 0.2rem;
+  border-radius: 5px;
+  width: 4rem;
+  margin-bottom: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+
+
+
+
+/* ------------------------------------------- */
+/*          EDUCATIONAL STATION PAGE           */
+/*-------------------------------------------- */
+
+
+#educationalStationStartPage {
+  background-image: url('../images/educationalStation/educationalStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishEducationalStationSign {
+  background-image: url('../images/educationalStation/finishEducationalStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+.whiteCard {
+  background-image: url('../images/educationalStation/whiteCard.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 21rem;
+  margin: auto;
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+#WhiteCardScene {
+  perspective: 2000px;
+}
+
+#cardToFilp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform-origin: center right;
+  transition: transform 1s;
+}
+
+
+#cardBack {
+  transform: rotateY(180deg);
+}
+
+.is-flipped {
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+
+
+/* ------------------------------------------- */
+/*             CINEMA STATION PAGE             */
+/*-------------------------------------------- */
+
+#cinemaStationStartPage {
+  background-image: url('../images/cinemaStation/cinemaStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishCinemaStationSign {
+  background-image: url('../images/cinemaStation/finishCinemaStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+
+#correctAnswerLevel4-CinemaStation .modal-content,
+#correctAnswerLevel5-CinemaStation .modal-content,
+#correctAnswerLevel6-CinemaStation .modal-content,
+#correctAnswerLevel7-CinemaStation .modal-content {
+  background-color: transparent;
+  background-image: url('../images/cinemaStation/popupCorrectAnswerCinema.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 96px;
+  border: none;
+}
+
+.expressionImage {
+  width: 12rem;
+  border-radius: 40px;
+  box-shadow: 0px 1px 8px rgb(72, 72, 72, 0.53)
+}
+
+
+.expressionModalImage {
+  width: 9rem;
+  border-radius: 25px;
+  box-shadow: 0px 1px 8px rgb(72, 72, 72, 0.83)
+}
+
+
+
+
+/* ------------------------------------------- */
+/*             FOOD STATION PAGE               */
+/*-------------------------------------------- */
+
+#foodStationStartPage {
+  background-image: url('../images/foodStation/foodlStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishFoodStationSign {
+  background-image: url('../images/foodStation/finishFoodStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+
+/*-------- פירמידת המזון ---------*/
+
+/* עיצוב חלקי הפירמידה */
+.foodPyramidLevels {
+  filter: drop-shadow(1px 3px 4px rgb(136, 136, 136));
+}
+
+.questionMarkPyramid {
+  width: 2rem;
+}
+
+/* שינוי מיקום תגיות חלקי הפירמידה */
+.foodPyramidLabels {
+  z-index: -1;
+}
+
+/*  שינוי גודל רספונסיבי של התגיות בפירמידה השלמה  */
+#sweetsLabel {
+  width: 4.3rem;
+  transform: translate(-0.3rem, 0.5rem);
+}
+
+#fatsLabel {
+  width: 7rem;
+}
+
+#proteinsLabel {
+  width: 8.3rem;
+  transform: translateX(1rem);
+}
+
+#vitaminsLabel {
+  width: 9.9rem;
+  transform: translateX(1.6rem);
+}
+
+#carbohydratesLabel {
+  width: 8rem;
+  margin-top: 3.8rem;
+}
+
+
+/* עיצוב הטקסטים של גבי התגיות */
+#sweetsLabelText {
+  transform: translate(5.7rem, -0.5rem);
+  font-size: 0.9rem;
+  z-index: -1;
+}
+
+#fatsLabelText {
+  transform: translate(7.5rem, -0.7rem);
+  font-size: 0.9rem;
+  z-index: -1;
+}
+
+#proteinsLabelText {
+  transform: translate(11rem, -0.7rem);
+  font-size: 0.9rem;
+  z-index: -1;
+}
+
+#vitaminsLabelText {
+  transform: translate(13.3rem, -1.4rem);
+  font-size: 0.9rem;
+  z-index: -1;
+}
+
+#carbohydratesLabelText {
+  transform: translate(10.3rem, 0rem);
+  font-size: 0.9rem;
+  z-index: -1;
+}
+
+
+/* הצבת התמונות בכל קומה בפירמידה */
+#sweetsGroup {
+  position: absolute;
+  width: 5.9rem;
+  margin: 0 auto;
+  left: -0.5rem;
+  top: 0.7rem;
+  right: 0;
+  z-index: 1;
+}
+
+#fatsGroup {
+  position: absolute;
+  width: 7.9rem;
+  margin: 0 auto;
+  left: 0;
+  top: 6rem;
+  right: 0;
+  z-index: 1;
+}
+
+#proteinsGroup {
+  position: absolute;
+  width: 11rem;
+  margin: 0 auto;
+  left: 0;
+  top: 9.2rem;
+  right: 0;
+  z-index: 1;
+}
+
+#vitaminsGroup {
+  position: absolute;
+  width: 15rem;
+  margin: 0 auto;
+  left: 0;
+  top: 12.8rem;
+  right: 0.7rem;
+  z-index: 1;
+}
+
+#carbohydratesGroup {
+  position: absolute;
+  width: 19rem;
+  margin: 0 auto;
+  left: 0;
+  top: 16.7rem;
+  right: 0.7rem;
+  z-index: 1;
+}
+
+
+/* ----- משימת גרירה חצי פירמידת מזון ------ */
+
+.foodPyramidLevelsDragAndDrop {
+  margin-top: 4rem;
+}
+
+.draggable-foodPyramid {
+  position: absolute;
+}
+
+/* עיצוב המדף של משימת הגרירה */
+.smallShelf {
+  width: 9.5rem;
+  margin-top: 4.5rem;
+}
+
+
+/* עיצוב הכתב שעל המדף במשימת גרירה לפירמידה */
+.shelfPyramidText {
+  margin-top: 5.4rem;
+  font-size: 1rem;
+}
+
+/* עיצוב האלמנטים של גבי המדף */
+#shelfPyramidChallah {
+  width: 5rem;
+  transform: rotate(45deg);
+  filter: drop-shadow(1px 3px 4px rgb(0, 0, 0))
+}
+
+#shelfPyramidCheeseAndHotDog {
+  width: 7rem;
+  margin-right: 1rem;
+  filter: drop-shadow(1px 3px 4px rgb(0, 0, 0));
+}
+
+#shelfPyramidCake {
+  width: 3.7rem;
+  margin-top: 1rem;
+  filter: drop-shadow(1px 3px 4px rgb(0, 0, 0));
+}
+
+#shelfPyramidWwatermelon {
+  width: 4rem;
+  margin-right: 0.5rem;
+  transform: rotate(-69deg);
+  filter: drop-shadow(1px 0px 3px rgb(0, 0, 0));
+}
+
+
+/*  שינוי גודל רספונסיבי של התגיות בפירמידה השלמה  */
+#sweetsLabelHalf {
+  width: 5rem;
+  transform: translate(5.7rem, 2.3rem);
+}
+
+#fatsLabelHalf {
+  width: 7rem;
+  transform: translate(8.8rem, 1.1rem);
+}
+
+#proteinsLabelHalf {
+  width: 8.3rem;
+  transform: translate(11rem, 1.3rem);
+}
+
+#vitaminsLabelHalf {
+  width: 9.9rem;
+  transform: translate(13.5rem, 1.2rem);
+}
+
+#carbohydratesLabelHalf {
+  width: 8rem;
+  transform: translate(15.6rem, 1.2rem);
+}
+
+
+/* עיצוב הטקסטים של גבי התגיות בפירמידה החצויה */
+#sweetsLabelTextHalf {
+  transform: translate(2.5rem, -1.3rem);
+  font-size: 0.9rem;
+  margin-top: -4rem;
+}
+
+#fatsLabelTextHalf {
+  transform: translate(5.5rem, -0.5rem);
+  font-size: 0.9rem;
+  margin-top: -2.5rem;
+}
+
+#proteinsLabelTextHalf {
+  transform: translate(7.4rem, -0.6rem);
+  font-size: 0.9rem;
+  margin-top: -2.5rem;
+}
+
+#vitaminsLabelTextHalf {
+  transform: translate(10rem, 0.1rem);
+  font-size: 0.9rem;
+  margin-top: -4rem;
+}
+
+#carbohydratesLabelTextHalf {
+  transform: translate(12.7rem, -0.9rem);
+  font-size: 0.9rem;
+  margin-top: -2.5rem;
+}
+
+
+/* עיצוב של האלמנטים לאחר ״זריקתם״ על גבי השלבים בפירמידה */
+.carbohydratesDropped-foodPyramid {
+  width: 5rem;
+  transform: translate(8.2rem, -4.5rem) rotate(45deg);
+  filter: drop-shadow(2px 1px 3px rgb(0, 0, 0));
+}
+
+.proteinsDropped-foodPyramid {
+  width: 7rem;
+  transform: translate(6.6rem, -4.4rem);
+  filter: drop-shadow(2px 1px 3px rgb(0, 0, 0));
+}
+
+.sweetsDropped-foodPyramid {
+  width: 3rem;
+  transform: translate(3.1rem, -2.5rem);
+  filter: drop-shadow(2px 1px 3px rgb(0, 0, 0));
+}
+
+.vitaminsDropped-foodPyramid {
+  width: 3rem;
+  transform: translate(5.7rem, -4.7rem) rotate(-69deg);
+  filter: drop-shadow(2px 1px 3px rgb(0, 0, 0));
+}
+
+/* עיצוב חלון פופ-אפ להצלחת משימת הגרירה בפירדמידה */
+#correctAnswersFoodPyramid .modal-content {
+  background-color: transparent;
+  background-image: url('../images/foodStation/popupCorrectAnswersFoodPyramid.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 96px;
+  border: none;
+}
+
+
+
+
+/*------ אתגר ״הצלחת הבריאה שלי״ -------*/
+
+.draggable-myHealthyPlate {
+  position: absolute;
+}
+
+/* מיקום התמונות של הפירות */
+#watermelonDiv {
+  margin-top: -2rem;
+  margin-right: -4.7rem;
+}
+
+#bananaDiv {
+  margin-right: -13.7rem;
+  margin-top: -1.5rem;
+}
+
+#appleDiv {
+  margin-right: -12rem;
+  margin-top: 1.3rem;
+}
+
+#pearDiv {
+  margin-right: -12.6rem;
+  margin-top: -0.5rem;
+}
+
+#orangeDiv {
+  margin-right: -10.4rem;
+  margin-top: -1.5rem;
+}
+
+#greenGrapesDiv {
+  margin-top: -3.5rem;
+  margin-right: -6.7rem;
+}
+
+#purpleGrapesDiv {
+  margin-top: 3.2rem;
+  margin-right: -5.1rem;
+}
+
+#peachDiv {
+  margin-top: -4rem;
+  margin-right: -7.6rem;
+}
+
+#strawberryDiv {
+  margin-top: 3rem;
+  margin-right: -10rem;
+}
+
+
+/* מיקום התמונות של הירקות */
+
+#gambaDiv {
+  margin-right: 2.2rem;
+  margin-top: 1.6rem;
+}
+
+#cucumberDiv {
+  margin-top: 1.7rem;
+}
+
+#carrotDiv {
+  margin-top: -3.5rem;
+  margin-right: -0.8rem;
+}
+
+#mushroomsDiv {
+  margin-right: -2.3rem;
+  margin-top: 3rem;
+}
+
+#lettuceDiv {
+  margin-right: -6.4rem;
+  margin-top: -2.7rem;
+}
+
+#tomatoDiv {
+  margin-right: -5.6rem;
+  margin-top: 2rem;
+}
+
+#cornDiv {
+  margin-right: -9rem;
+  margin-top: -2rem;
+}
+
+
+/* מיקום התמונות של החלבונים */
+
+#milkDiv {
+  margin-right: -8.3rem;
+  margin-top: -2.2rem;
+}
+
+#eggDiv {
+  margin-right: -10.5rem;
+  margin-top: 3.3rem;
+}
+
+#cheeseDiv {
+  margin-right: -2.8rem;
+  margin-top: 3.1rem;
+}
+
+#yogurtDiv {
+  margin-top: 3.6rem;
+  margin-right: 1.6rem;
+}
+
+#cottageDiv {
+  margin-right: -6.5rem;
+  margin-top: -2.4rem;
+}
+
+#steakDiv {
+  margin-top: -7.3rem;
+  margin-right: 2.3rem;
+}
+
+#chickenDiv {
+  margin-right: -4.5rem;
+  margin-top: -5.5rem;
+}
+
+#sardinesDiv {
+  margin-right: 4.5rem;
+  margin-top: 5.5rem;
+}
+
+#fishDiv {
+  margin-right: 4.8rem;
+  margin-top: 4.6rem;
+}
+
+#hamburgerDiv {
+  margin-right: 2.2rem;
+  margin-top: 6.5rem;
+}
+
+#hotDogDiv {
+  margin-right: -1.5rem;
+  margin-top: -5.8rem;
+}
+
+
+
+/* מיקום התמונות של הפחמימות */
+
+#pastaDiv {
+  margin-right: -9.4rem;
+  margin-top: 1rem;
+}
+
+#riceDiv {
+  margin-right: -4.3rem;
+}
+
+#challahDiv {
+  margin-top: -3.9rem;
+  margin-right: -7.9rem;
+}
+
+#baguetteBigDiv {
+  margin-right: -8.8rem;
+  margin-top: 2.5rem;
+}
+
+#baguetteSmallDiv {
+  margin-right: -1rem;
+  margin-top: -5.7rem;
+}
+
+#bagelDiv {
+  margin-right: -3.8rem;
+  margin-top: 2.6rem;
+}
+
+#spelledBreadDiv {
+  margin-right: 0.5rem;
+  margin-top: 4.5rem;
+}
+
+#hamburgerBunDiv {
+  margin-right: -2.3rem;
+  margin-top: 5.2rem;
+}
+
+/* שינוי גודל רספוניסיבי של חלקי הצלחת */
+.quarterWidth {
+  width: 5.3rem;
+}
+
+/* מיקום של הפירות שנגררו בצלחת */
+.fruitsDropped {
+  z-index: 1;
+  transform: translate(3rem, 1.5rem);
+}
+
+/* מיקום של הפחמימות שנגררו בצלחת */
+.carbohydratesDropped {
+  z-index: 1;
+  transform: translate(5rem, 1rem);
+}
+
+/* מיקום של החלבונים שנגררו בצלחת */
+.proteinsDropped {
+  z-index: 1;
+  transform: translate(4rem, 0.4rem);
+}
+
+/* מיקום של הירקות שנגררו בצלחת */
+.vegetablesDropped {
+  z-index: 1;
+  transform: translate(69px, 14px);
+}
+
+
+.resetTransform {
+  transform: unset;
+  ;
+}
+
+
+
+/* ------------------------------------------- */
+/*             DIMOT STATION PAGE              */
+/*-------------------------------------------- */
+
+#dimotStationStartPage {
+  background-image: url('../images/dimotStation/dimotStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishDimotStationSign {
+  background-image: url('../images/dimotStation/finishDimotStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+#correctAnswerLevel4-DimotStation .modal-content {
+  background-color: transparent;
+  background-image: url('../images/musicStation/popupCorrectAnswerMusic.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 96px;
+  border: none;
+}
+
+
+/* עיצוב הגודל של הכרטיסיות המתהפכות */
+.shortWhiteCard {
+  width: 19.3rem;
+}
+
+/* עיצוב של הכותרת בכאטיסיות המתהפכות */
+.cardsTitles {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+/* עיצוב התמונות של המכונות צילום */
+.dimotMachineImgs {
+  filter: drop-shadow(2px 1px 3px rgb(0, 0, 0));
+}
+
+
+#MRITitle {
+  transform: translateX(-2.5rem);
+}
+
+
+/* עיצוב ההסבר על מכונת ה-MRI */
+#MRIInfo {
+  margin-top: 1.3rem;
+  margin-right: -3rem;
+  text-align: right;
+  font-size: 1rem;
+}
+
+#ultrasoundTitle {
+  transform: translateX(2.5rem);
+}
+
+/* עיצוב ההסבר על מכונת האולטרסאונד */
+#ultrasoundInfo {
+  width: 11.3rem;
+  margin: auto;
+  margin-top: 1.3rem;
+  margin-right: -4rem;
+  text-align: right;
+  font-size: 1rem;
+  transition: opacity 0.5s linear 0s;
+}
+
+#ultrasoundMachineCard {
+  transform: translateX(-4rem);
+}
+
+#xRayTitle {
+  transform: translateX(-4rem);
+}
+
+/* עיצוב ההסבר על מכונת הרנטגן */
+#xRayInfo {
+  width: 12rem;
+  margin: auto;
+  margin-top: 1.3rem;
+  margin-right: -3rem;
+  text-align: right;
+  font-size: 1rem;
+  transition: opacity 0.5s linear 0s;
+}
+
+#xRayMachineCard {
+  transform: translateX(2.5rem)
+}
+
+
+/* אנימציה של חץ עולה ויורד */
+.arrow {
+  animation: upAndDown 1s infinite alternate ease-in-out;
+  transform: translate(8rem, -3rem);
+}
+
+@keyframes upAndDown {
+  from {
+    transform: translate(8rem, -3rem);
+  }
+
+  to {
+    transform: translate(8rem, 0rem);
+  }
+}
+
+.draggable-scanning {
+  position: absolute;
+  filter: drop-shadow(0px 2px 2px rgb(93, 89, 89));
+}
+
+/* עיצוב מכשיר הרנטנגן */
+.droppable-scanning {
+  width: 17rem;
+  filter: drop-shadow(2px 1px 3px rgb(0, 0, 0));
+}
+
+/* עיצוב של האלמנטים על גבי מכונת הרנטגן לאחר גרירה */
+.handDropped {
+  transform: translateY(8rem);
+}
+
+.phoneDropped,
+.legDropped,
+.carDropped {
+  transform: translateY(7rem);
+}
+
+/* עיצוב של רקע חלון הפופ-אפ */
+.popupModalDimot .modal-content {
+  background-color: transparent;
+  background-image: url('../images/backgrounds/popUpBackgroudBigger.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 53px;
+  border: none;
+}
+
+/* עיצוב גודל של התמונות של התנועות גוף */
+.poseImages {
+  width: 7.7rem;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px rgb(72, 72, 72, 0.83)
+}
+
+/* עיצוב הטיימר */
+.timer {
+  width: 6rem;
+}
+
+/* עיצוב הזמן של הטיימר */
+.time-left-Dimot {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.timerAnimation{
+  animation: timer-animation 1s ease-in-out;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+
+
+/* אנימציה של טיימר */
+@keyframes timer-animation {
+  from {
+    transform: rotate(10deg);
+  }
+
+  to {
+    transform: rotate(-10deg);
+  }
+}
+
+
+
+/* ----------------------------------------------- */
+/*             TREATMENT STATION PAGE              */
+/*------------------------------------------------ */
+
+#treatmentStationStartPage {
+  background-image: url('../images/treatmentStation/treatmentStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishTreatmentStationSign {
+  background-image: url('../images/treatmentStation/finishTreatmentStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+}
+
+#correctAnswerLevel4-TreatmentStation .modal-content {
+  background-color: transparent;
+  background-image: url('../images/treatmentStation/popupCorrectAnswerTreatment.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 96px;
+  border: none;
+}
+
+/* -------- פעילות מציאת פלסטר -------- */
+
+#plaster1 {
+  transform: translate(-5.5rem, 3.3rem) rotate(150deg);
+  width: 2.3rem;
+}
+
+#plaster2 {
+  transform: translate(8rem, 5rem) rotate(101deg);
+  width: 2.3rem;
+}
+
+#plaster3 {
+  transform: translate(0.1rem, 8rem) rotate(150deg);
+  width: 1.8rem;
+}
+
+#plaster4 {
+  transform: translate(0.7rem, 14.7rem) rotate(239deg);
+  width: 2rem;
+}
+
+#plaster5 {
+  transform: translate(-5.9rem, 19.3rem) rotate(99deg);
+  width: 2rem;
+}
+
+
+/* -------- פעילות מציאת מבחנות -------- */
+
+.bloodTestTube{
+  width: 2rem;
+}
+
+#bloodTestTube1 {
+  transform: translate(0.5rem, 3.8rem) rotate(251deg);
+  width: 2.3rem;
+}
+
+#bloodTestTube2 {
+  transform: translate(7rem, 10rem) rotate(-17deg);
+  width: 1.8rem;
+}
+
+#bloodTestTube3 {
+  transform: translate(-3rem, 15.8rem) rotate(-17deg);
+  width: 1.8rem;
+}
+
+#bloodTestTube4 {
+  transform: translate(6.7rem, 19.9rem) rotate(251deg);
+  width: 2rem;
+}
+
+#bloodTestTube5 {
+  transform: translate(-7.5rem, 22.3rem) rotate(-17deg);
+  width: 2rem;
+}
+
+
+/* הוספת צל לפלסטרים ומבחנות שנמצאו ונלחצו */
+.plasterAndTubeFound {
+  filter: drop-shadow(0px 0px 2px rgb(126, 225, 126)) drop-shadow(0px 0px 3px rgb(126, 225, 126)) drop-shadow(0px 0px 3px rgb(126, 225, 126)) drop-shadow(0px 0px 3px rgb(126, 225, 126));
+}
+
+
+
+/* ---------- הצגת תמונה בתוך תג --------- */
+
+#textDivBadgeImage {
+  margin-right: -6rem;
+  margin-top: 3.7rem;
+  text-align: right;
+}
+
+#textDivBadgeImage>p {
+  font-size: 0.95rem;
+}
+
+
+
+/* ---------- פעילויות גרירה --------- */
+
+/* עיצוב של הכרטיסייה שעליה נמצאים הפריטים */
+.shortWhiteCardTreatment {
+  background-image: url('../images/treatmentStation/shortWhiteCardTreatment.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 12rem;
+}
+
+/* עיצוב גודל הדובי */
+.teddyBear {
+  max-width: 14rem;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+/* עיצוב הצללה לפריטים */
+.treatmentObjShadow {
+  filter: drop-shadow(0px 2px 2px rgb(93, 89, 89))
+}
+
+/* עיצוב גדול ומיקום של המדחום */
+#thermometer {
+  width: 4rem;
+}
+
+/* קביעת גודל של האיזור גרירה של המדחום */
+.thermometerRectSize {
+  width: 3rem;
+  height: 2rem;
+}
+
+/* עיצוב גדול ומיקום של המדחום לאחר גרירה */
+.thermometerDropped {
+  transform: translate(1.9rem, 5rem);
+  width: 4rem;
+}
+
+/* עיצוב גדול ומיקום של הסטטוסקופ */
+#stethoscope {
+  width: 4rem;
+  transform: rotate(95deg);
+}
+
+/* קביעת גודל של האיזור גרירה של הסטטוסקופ */
+.stethoscopeRectSize {
+  width: 5rem;
+  height: 5rem;
+}
+
+/* עיצוב גדול ומיקום של הסטטוסקופ לאחר גרירה */
+.stethoscopeDropped {
+  margin-top: 6.5rem;
+  margin-right: -3rem;
+  width: 4rem;
+  transform: rotate(95deg);
+}
+
+/* עיצוב גדול ומיקום של הפלסטר */
+#plaster {
+  width: 3rem;
+  transform: rotate(30deg);
+}
+
+/* קביעת גודל של האיזור גרירה של הפלסטר */
+.plasterRectSize {
+  width: 5.8rem;
+  height: 5.8rem;
+}
+
+/* עיצוב גדול ומיקום של הפלסטר לאחר גרירה */
+.plasterDropped {
+  margin-right: 3.5rem;
+  width: 3rem;
+  transform: rotate(30deg);
+}
+
+/* עיצוב ואנימציה של לב פועם */
+#heartBeatingAnimation {
+  width: 4rem;
+  transform: rotate(21deg);
+  animation: heartBeating-animation 1s ease-in-out;
+  animation-name: heartBeating-animation;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+/* אנימציה של לב פועם */
+@keyframes heartBeating-animation {
+  from {
+    width: 4rem;
+  }
+
+  to {
+    width: 5rem;
+  }
+}
+
+
+/* ---------------------------------------------- */
+/*             MY WORLD STATION PAGE             */
+/*--------------------------------------------- */
+
+#MyWorldStationStartPage {
+  background-image: url('../images/myWorldStation/myWorldStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 19rem;
+}
+
+#finishMyWorldStationSign {
+  background-image: url('../images/myWorldStation/finishMyWorldStationSign.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 20rem;
+
+}
+
+.popupMyWorldStationBtn {
+  transform: translate(-6rem, -1.5rem)
+}
+
+/* עיצוב ומיקום של המסגרת של מחסן האלמנטים במשימת הגרירה */
+#roomDragAndDrop {
+  background-color: transparent;
+  background-image: url('../images/myWorldStation/imgStorageFrame.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 200px;
+  border: none;
+}
+
+
+/* עיצוב המדבקות של גבי האלמנטים */
+.stickerSize {
+  width: 1rem;
+}
+
+/* עיצוב האלמנטים של משימת הגרירה בחדר */
+/* ספא */
+#sofa {
+  width: 5rem;
+}
+
+#sofaDiv {
+  margin-top: 7rem;
+  margin-right: -14rem;
+}
+
+#sofaTarget {
+  transform: translate(6.3rem, -3.8rem);
+}
+
+#sofaTarget img:first-child,
+.sofaDropped {
+  width: 7rem;
+}
+
+
+/* לחצן קריאה */
+#emergencyButton {
+  width: 2.5rem;
+}
+
+#emergencyButtonDiv {
+  margin-top: -5rem;
+  margin-right: -14rem;
+}
+
+#emergencyButtonTarget {
+  transform: translate(2.5rem, -10.5rem);
+}
+
+#emergencyButtonTarget img:first-child {
+  width: 4rem;
+}
+
+.emergencyButtonDropped {
+  width: 3rem;
+}
+
+
+/* בלונים */
+#ballons {
+  width: 3rem;
+}
+
+#ballonsDiv {
+  margin-top: 4rem;
+  margin-right: -4rem;
+}
+
+#ballonsTarget {
+  transform: translate(7.5rem, -14rem);
+}
+
+#ballonsTarget img:first-child,
+.ballonsDropped {
+  width: 4.5rem;
+}
+
+
+/* עמוד אינפוזיה */
+#infusion {
+  width: 4rem;
+}
+
+#infusionDiv {
+  margin-top: 3rem;
+  margin-right: 4rem;
+}
+
+#infusionTarget {
+  transform: translate(-7.2rem, -8.9rem);
+}
+
+#infusionTarget img:first-child {
+  width: 5rem;
+}
+
+.infusionDropped {
+  width: 7.5rem;
+  transform: translate(1rem, 1.2rem);
+}
+
+/* מיטת חולה */
+#sleepBed {
+  width: 4rem;
+}
+
+#sleepBedDiv {
+  margin-top: 6.5rem;
+  margin-right: 14rem;
+}
+
+#sleepBedTarget {
+  transform: translate(-2.5rem, -5.1rem);
+}
+
+#sleepBedTarget img:first-child,
+.sleepBedDropped {
+  width: 10rem;
+}
+
+
+/* לוח מטופל */
+#patientBoard {
+  width: 2.5rem;
+}
+
+#patientBoardDiv {
+  margin-top: -6.5rem;
+  margin-right: 14rem;
+}
+
+#patientBoardTarget {
+  transform: translate(-2.5rem, -5rem);
+}
+
+#patientBoardTarget img:first-child {
+  width: 4rem;
+}
+
+.patientBoardDropped {
+  width: 3rem;
+  transform: translateY(-0.5rem);
+}
+
+/* סבון חיטוי */
+#disinfectant {
+  width: 1.5rem;
+}
+
+#disinfectantDiv {
+  margin-top: -7.5rem;
+  margin-right: 0rem;
+}
+
+#disinfectantTarget {
+  transform: translate(3.3rem, -15rem);
+}
+
+#disinfectantTarget img:first-child {
+  width: 4.5rem;
+}
+
+.disinfectantDropped {
+  width: 1.5rem;
+  transform: translate(1rem, 0rem);
+}
+
+/* -------הכרת אנשי הצוות------- */
+
+/* עיצוב הכותרות הראשיות */
+#MedicalStaffTitle {
+  font-family: 'Fredoka', sans-serif;
+  background-image: url('../images/myWorldStation/MedicalStaffTitle.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 13rem auto;
+  height: 8rem;
+}
+
+.staffRoleTitles {
+  margin-top: -2.7rem;
+  font-size: 1.5rem;
+}
+
+/* עיצוב של האופציה שנבחרה מחברי הצוות */
+.staffMembers input[type="radio"]:checked+label img {
+  stroke: white;
+  stroke-width: 2;
+  filter: drop-shadow(0px 0px 2px rgb(255, 255, 255)) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);
+  opacity: 1;
+  transform: scale(1);
+  animation: staffMembers-animation 1s ease-in-out;
+  animation-iteration-count: 1;
+}
+
+/* עיצוב של האופציה שלא נבחרה מחברי הצוות */
+.staffMembers input[type=radio]+label img {
+  opacity: 0.5;
+  transform: scale(0.5);
+}
+
+.staffMembersRole {
+  animation: staffMembers-animation 1s ease-in-out;
+}
+
+/* אנימציה של חברי הצוות */
+@keyframes staffMembers-animation {
+  from {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+#correctAnswerLevel8-MyWorldStation .modal-content,
+#correctAnswerLevel9-MyWorldStation .modal-content,
+#correctAnswerLevel10-MyWorldStation .modal-content {
+  background-color: transparent;
+  background-image: url('../images/myWorldStation/popupCorrectAnswerMyWorld.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 87px;
+  border: none;
+}
+
+
+/* --------------------------------------- */
+/*             DATA TABLE PAGE             */
+/* --------------------------------------- */
+
+/* תפריט ניווט */
+.navbar {
+  padding: 0rem;
+  box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.23);
+  font-size: 0.8rem;
+}
+
+.navbar-nav {
+  gap: 1rem;
+  flex-direction: unset;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: unset;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #000105;
+  font-weight: 600;
+}
+
+.navbar-light .navbar-brand {
+  color: #141E4C;
+  font-size: 1rem;
+}
+
+/* טבלאות */
+.backgroundTables {
+  background-color: white;
+  border-radius: 18px 18px 18px 18px;
+}
+
+.tablesTitle {
+  color: white;
+  background-color: #141E4C;
+  border-radius: 18px 18px 0px 0px;
+  font-size: 1rem;
+}
+
+.row>* {
+  padding-left: unset;
+  padding-right: unset;
+}
+
+.verticalLine {
+  width: 4%;
+  height: 4rem;
+  background: linear-gradient(to right,
+      transparent 0%,
+      transparent calc(50% - 0.81px),
+      black calc(50% - 0.8px),
+      black calc(50% + 0.8px),
+      transparent calc(50% + 0.81px),
+      transparent 100%);
+}
+
+#chartdiv {
+  width: 100%;
+  height: 12rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.8rem;
+}
+
+/*---------- פופ-אפ אודות -----------*/
+#aboutUs .modal-content {
+  background-color: transparent;
+  background-image: url('../images/backgrounds/aboutUsBackgroundPhone.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-top: 8.3rem;
+  border: none;
+}
+
+#aboutUs p {
+  font-size: 0.7rem;
+  font-family: 'Fredoka', sans-serif;
+}
+
+#aboutUs .modal-dialog {
+  max-width: 40rem;
+}
+
+#aboutUs .modal-body {
+  padding: unset;
+}
+
+#logoSafralandAboutUs {
+  width: 7rem;
+}
+
+#logoHitAboutUs {
+  width: 5rem;
+}
+
+#logoSafraAboutUs {
+  width: 5.4rem;
+}
+
+#logoAndInfoDiv,
+#UsInfo {
+  transform: translateY(-5rem);
+}
+
+#UsInfo {
+  margin-right: 1.5rem;
+}
+
+.infoText {
+  width: 8.5rem;
+}
+
+#UsInCollaboration {
+  transform: translateY(-3.3rem);
+  margin-right: 1.5rem;
+}
+
+#collaborationText {
+  width: 9.1rem;
+  padding-left: 1rem
+}
+
+#creditsText {
+  transform: translateY(-1.8rem)
+}
+
+#InfoAboutUs {
+  width: 19rem;
+  margin: 0 auto;
+}
+
+#closeAbout {
+  cursor: pointer;
+  transform: translate(8rem, -6.5rem);
+  width: 2.2rem;
+  z-index: 1;
+}
+
+
+/* ------------------------------------------------------- */
+/* ----------------  עיצוב רספונסיבי  -------------------- */
+/* ------------------------------------------------------- */
+
+
+@media only screen and (min-width: 576px) {
+  .stationImages {
+    height: unset;
+  }
+
+  .finishStationSignH2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+  :root {
+    font-size: 24px;
+  }
+
+  #aboutUs .modal-content {
+    background-color: transparent;
+    background-image: url('../images/backgrounds/aboutUsBackground.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    padding-top: 33px;
+    border: none;
+  }
+
+  #aboutUs .modal-dialog {
+    max-width: 40rem;
+  }
+
+  #logoSafralandAboutUs {
+    width: 7rem;
+    padding-top: 2rem;
+  }
+
+  #logoHitAboutUs {
+    width: 4rem;
+  }
+
+  #logoSafraAboutUs {
+    width: 8rem;
+  }
+
+  .infoText {
+    width: unset;
+  }
+
+  #logoAndInfoDiv,
+  #UsInfo {
+    transform: translateY(-2rem);
+  }
+
+  #UsInfo {
+    margin-right: 3rem;
+  }
+
+  #UsInCollaboration {
+    transform: translateY(-1.3rem);
+    margin-right: 2.5rem;
+  }
+
+  #collaborationText {
+    width: 13rem;
+  }
+
+  #creditsText {
+    transform: translateY(-1.1rem)
+  }
+
+  #InfoAboutUs {
+    width: 25rem;
+    margin: 0 auto;
+  }
+
+  #closeAbout {
+    transform: translate(12rem, 0rem);
+  }
+}

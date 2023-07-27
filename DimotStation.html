@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+</head>
+
+<body id="body" lang="he" dir="rtl"
+    onload="needToLogIn(), showCharacterImages(), checkIfStationAlreadyCompleted(), scanningDragAndDrop()">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <section>
+            <div class="d-flex mt-2 ms-1 me-1 pt-3 align-items-center justify-content-around">
+                <div class="me-1">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                </div>
+                <div style="transform: translateY(-5px);">
+                    <div class="d-flex align-items-center">
+                        <div id="activitiesProgressBarDiv" class="d-flex">
+                            <img id="1activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="2activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="3activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="4activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="5activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="6activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="7activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                        </div>
+                        <img class="justify-content-center" src="./images/activitiesProgressBarUncompleted.svg">
+                    </div>
+                </div>
+                <div class="ms-1">
+                    <img src="./images/buttons/audioBtn.svg" alt=""
+                        onclick="changeAudioStep_DimotStation(), playAudioStep_DimotStation()">
+                    <audio id="dimotStationRecords" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <!-- שלב 1 -->
+            <div class="step firstStep mt-4 mt-md-1 active" data-step="step1">
+                <div class="bubbleTextBig p-2">
+                    <h2 class="mt-4 pt-3 pe-1">ברוכים הבאים למכון הדימות!</h2>
+                    <p class="bubbleTextBigP">מה דעתכם על צילום "סלפי" של הגוף? ידעתם שיש מצלמות
+                        קסם שיודעות לצלם
+                        מבחוץ את מה שנמצא בתוך הגוף?</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 2 - הקדמה לקראת צפייה בסרטון -->
+            <div class="step mt-5 mt-md-1" data-step="step2">
+                <div class="bubbleTextNarrow p-2">
+                    <img class="position-absolute" src="./images/videoIcon.svg" alt=""
+                        style="transform:translate(4.6rem, -3rem); width: 9rem;">
+                    <p class="bubbleTextNarrowP mt-3 ps-1">במיוחד בשבילכם אני ואוליב הליצנית צילמנו סרטון שמראה את מכון
+                        הרנטגן! בואו נצפה
+                        בו
+                        יחד!
+                    </p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 3 - סרטון הצגת ״מכון הדימות״ -->
+            <div id="videoDiv" class="step mt-5" data-step="step3">
+                <div class="video-outer p-2">
+                    <div class="video-inner">
+                        <iframe class="video" src="https://player.vimeo.com/video/831116742?h=8b8f4870ec" width="640"
+                            height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div>
+                    <div class="bubbleTextWider mt-4 pt-4" style="height: 6rem;">
+                        <p class="bubbleTextWiderP">צפייה מהנה!</p>
+                    </div>
+                    <div style="margin-top: -3.4rem;">
+                        <img class="userCharacter photoStepCharacterPosition mt-5" alt="" style="max-width: 9rem;">
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 4 - שאלת חד ברירה על הסרטון -->
+            <div id="1activityStation" class="step" data-step="step4">
+                <h3 class="mt-4 mb-0 changeFontWeigth">הסתכלו על התמונות,</h3>
+                <h3 class="pt-2 changeFontWeigth">זוכרים איזו בדיקה הופיעה בסרטון?</h3>
+                <form class="radioDisractors mt-3">
+                    <fieldset>
+                        <div>
+                            <input type="radio" id="ultrasound" name="answer" value="אולטרסאונד"
+                                onchange="changeBtnState('radio')">
+                            <label for="ultrasound">
+                                <img src="./images/dimotStation/ultrasoundOption.svg" alt="אולטרסאונד">
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-center gap-5">
+                            <input type="radio" id="xRay" name="answer" value="רנטגן"
+                                onchange="changeBtnState('radio')">
+                            <label for="xRay">
+                                <img src="./images/dimotStation/xRayOption.svg" alt="רנטגן">
+                            </label>
+
+                            <input type="radio" id="MRI" name="answer" value="מכונת MRI"
+                                onchange="changeBtnState('radio')">
+                            <label for="MRI">
+                                <img src="./images/dimotStation/MRIOption.svg" alt="מכונת MRI">
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+                <div>
+                    <img class="userCharacter smallRigthPosition" alt="" style="max-width: 6rem;">
+                </div>
+                <div class="buttonsDiv">
+                    <button id="confirmBtnRadio1" type="button" class="confirmBtnRadio regularBtns opacityImg disabled"
+                        data-bs-toggle="modal" data-bs-target="#correctAnswerLevel4-DimotStation" onclick="feedback_dimotStation()">
+                        <img src="./images/buttons/checkBtn.svg" alt="בדיקה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 4 -->
+            <div class="modal fade" id="correctAnswerLevel4-DimotStation" data-step="step4"
+                aria-labelledby="correctAnswerLevel4-DimotStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="videoQuesionFeedback_dimotStationRecord" class="audio">
+                    <source src="./audio/dimotStation/videoQuesionFeedback_dimotStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body pt-1">
+                            <div class="mt-5">
+                                <p class="mt-md-5 popupWiderP">במכון הרנטגן בבניין הילדים עושים צילומי
+                                    <b>רנטגן</b>
+                                </p>
+                                <img class="modalImages" src="./images/dimotStation/xRayOption.svg" alt="רנטגן">
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center pt-0">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="updateActivity('radio',1031)">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 5 - כרטיסיות מתהפכות -->
+            <div id="2activityStation" class="step mt-2" data-step="step5">
+                <h3 class="changeFontWeigth bubbleTextBigP">לחצו על הכרטיסיות והכירו את
+                    סוגי הבדיקות והצילומים</h3>
+                <div class="mt-3">
+                    <div class="align-items-center d-flex justify-content-center" onclick="dimoMachineCardClick('MRI')">
+                        <audio id="MRIAudio" class="audio">
+                            <source src="./audio/dimotStation/MRI_dimotStation.mp3" type="audio/mpeg">
+                        </audio>
+                        <img class="shortWhiteCard" src="./images/backgrounds/shortWhiteCard.svg" alt="">
+                        <p id="MRITitle" class="cardsTitles position-absolute mb-4">
+                            MRI</p>
+                        <p id="MRIInfo" class="noOpacity position-absolute bubbleTextNarrowP">
+                            הוא כמו מצלמה ענקית שסורקת ומצלמת את הגוף בעזרת מגנט חזק וגלי
+                            רדיו.</p>
+                        <img id="MRIMachineCard" class="dimotMachineImgs position-absolute"
+                            src="./images/dimotStation/MRIMachine.svg" alt="מכונת MRI">
+                    </div>
+
+
+                    <div class="align-items-center d-flex justify-content-center"
+                        onclick="dimoMachineCardClick('ultrasound')">
+                        <audio id="ultrasoundAudio" class="audio">
+                            <source src="./audio/dimotStation/ultrasound_dimotStation.mp3" type="audio/mpeg">
+                        </audio>
+                        <img class="shortWhiteCard" src="./images/backgrounds/shortWhiteCard.svg" alt="">
+                        <p id="ultrasoundTitle" class="cardsTitles position-absolute mb-4">
+                            אולטרסאונד</p>
+                        <p id="ultrasoundInfo" class="noOpacity position-absolute bubbleTextNarrowP">
+                            היא בדיקה בה אפשר לראות את אברי הגוף למשל את הבטן באמצעות גלי קול. </p>
+                        <img id="ultrasoundMachineCard" class="dimotMachineImgs position-absolute"
+                            src="./images/dimotStation/ultrasoundMachine.svg" alt="מכונת אולטרסאונד">
+                    </div>
+
+                    <div class="align-items-center d-flex justify-content-center"
+                        onclick="dimoMachineCardClick('xRay')">
+                        <audio id="xRayAudio" class="audio">
+                            <source src="./audio/dimotStation/rentgen_dimotStation.mp3" type="audio/mpeg">
+                        </audio>
+                        <img class="shortWhiteCard" src="./images/backgrounds/shortWhiteCard.svg" alt="">
+                        <p id="xRayTitle" class="cardsTitles position-absolute mb-4">
+                            רנטגן</p>
+                        <p id="xRayInfo" class="noOpacity position-absolute bubbleTextNarrowP">
+                            הוא צילום המשתמש בקרני רנטגן, בעזרתו נוצרת תמונה ברורה של השלד והשיניים. </p>
+                        <img id="xRayMachineCard" class="dimotMachineImgs position-absolute"
+                            src="./images/dimotStation/xRayMachine.svg" alt="מכונת רנטגן">
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button id="machineCardsBtn" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1032), cleanActivities_DimotStation('flippedCards')">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 6 - הסבר והפחתת חרדה מתהליך צילומי הדימות -->
+            <div class="step mt-5 pt-md-3 pt-4" data-step="step6">
+                <img class="position-absolute" src="./images/dimotStation/missile.svg" alt="" style="transform: rotateZ(-96deg) translate(2rem, 8rem);
+            max-width: 5rem; z-index: -1;">
+                <div class="bubbleTextBig p-2">
+                    <p class="bubbleTextMiddleP mt-4 pt-2">חשוב שתדעו כי צילומי הדימות
+                        <b>לא כואבים בכלל!</b>
+                    </p>
+                    <p class="bubbleTextBigP">אם תפעילו את הדמיון והסקרנות, תוכלו לדמיין שאתם בהרפתקה בחלל או אפילו
+                        בלונה
+                        פארק :)</p>
+                </div>
+                <img class="position-absolute" src="./images/dimotStation/missile.svg" alt="" style="transform: translate(0rem, -5rem) rotateZ(-208deg);
+            z-index: -1; max-width: 9rem;">
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="" style="max-width: 50%;">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 7 - פעילות גרירת דברים למכשיר הרנטגן - חלק 1 -->
+            <div id="3activityStation" class="step mt-4 mt-md-1 pt-md-3" data-step="step7">
+                <div class="p-2">
+                    <h3 class="bubbleTextBigP changeFontWeigth">רוצים לראות איך נראים דברים שונים במצלמת הרנטגן?</h3>
+                    <p class="mt-4">גררו את <b>היד</b> למכשיר הרנטגן וגלו</p>
+                </div>
+                <div id="handDivBeforeScanning"
+                    class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/backgrounds/shortWhiteCard.svg" alt="" style="width: 15rem;">
+                    <img id="hand" class="draggable-scanning" src="./images/dimotStation/handBeforeScanning.svg"
+                        alt="יד" data-draggable="hand" style="width: 9rem;">
+                </div>
+                <div>
+                    <img class="position-absolute arrow" src="./images/arrow.svg" alt="">
+                </div>
+                <div id="handDroppedDiv" class="d-flex justify-content-center mt-5 mb-1 position-relative">
+                    <img class="droppable-scanning" src="./images/dimotStation/xRayMachine.svg" alt="מכשיר רנטגן"
+                        data-droppable="hand">
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 7 -->
+            <div class="popupModalDimot modal fade" id="correctAnswerLevel7-DimotStation"
+                aria-labelledby="correctAnswerLevel7-DimotStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body pb-2">
+                            <img src="./images/dimotStation/handAfterScanning.svg" alt="יד לאחר סריקה"
+                                style="width: 15rem;">
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="cleanActivities_DimotStation('hand')">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 8 - פעילות גרירת דברים למכשיר הרנטגן - חלק 2-->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step8">
+                <div class="p-2">
+                    <h3 class="bubbleTextBigP changeFontWeigth">רוצים לראות איך נראים דברים שונים במצלמת הרנטגן?</h3>
+                    <p class="mt-4">גררו את <b>הפלאפון</b> למכשיר הרנטגן וגלו</p>
+                </div>
+                <div id="phoneDivBeforeScanning"
+                    class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/backgrounds/shortWhiteCard.svg" alt="" style="width: 15rem;">
+                    <img id="phone" class="draggable-scanning" src="./images/dimotStation/phoneBeforeScanning.svg"
+                        alt="פלאפון" data-draggable="phone" style="width: 7rem;">
+                </div>
+                <div id="phoneDroppedDiv" class="d-flex justify-content-center mt-5 mb-1 position-relative">
+                    <img class="droppable-scanning" src="./images/dimotStation/xRayMachine.svg" alt="מכשיר רנטגן"
+                        data-droppable="phone">
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 8 -->
+            <div class="popupModalDimot modal fade" id="correctAnswerLevel8-DimotStation"
+                aria-labelledby="correctAnswerLevel8-DimotStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body pb-2">
+                            <img src="./images/dimotStation/phoneAfterScanning.svg" alt="פלאפון לאחר סריקה"
+                                style="width: 15rem;">
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="cleanActivities_DimotStation('phone')">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 9 - פעילות גרירת דברים למכשיר הרנטגן - חלק 3-->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step9">
+                <div class="p-2">
+                    <h3 class="bubbleTextBigP changeFontWeigth">רוצים לראות איך נראים דברים שונים במצלמת הרנטגן?</h3>
+                    <p class="mt-4">גררו את <b>הרגל</b> למכשיר הרנטגן וגלו</p>
+                </div>
+                <div id="legDivBeforeScanning"
+                    class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/backgrounds/shortWhiteCard.svg" alt="" style="width: 15rem;">
+                    <img id="leg" class="draggable-scanning" src="./images/dimotStation/legBeforeScanning.svg" alt="רגל"
+                        data-draggable="leg" style="width: 7rem;">
+                </div>
+                <div id="legDroppedDiv" class="d-flex justify-content-center mt-5 mb-1 position-relative">
+                    <img class="droppable-scanning" src="./images/dimotStation/xRayMachine.svg" alt="מכשיר רנטגן"
+                        data-droppable="leg">
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 9 -->
+            <div class="popupModalDimot modal fade" id="correctAnswerLevel9-DimotStation"
+                aria-labelledby="correctAnswerLevel9-DimotStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body pb-2">
+                            <img src="./images/dimotStation/legAfterScanning.svg" alt="רגל לאחר סריקה"
+                                style="width: 15rem;">
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="cleanActivities_DimotStation('leg')">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 10 - פעילות גרירת דברים למכשיר הרנטגן - חלק 4-->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step10">
+                <div class="p-2">
+                    <h3 class="bubbleTextBigP changeFontWeigth">רוצים לראות איך נראים דברים שונים במצלמת הרנטגן?</h3>
+                    <p class="mt-4">גררו את <b>הרכב</b> למכשיר הרנטגן וגלו</p>
+                </div>
+                <div id="carDivBeforeScanning"
+                    class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/backgrounds/shortWhiteCard.svg" alt="" style="width: 15rem;">
+                    <img id="car" class="draggable-scanning" src="./images/dimotStation/carBeforeScanning.svg"
+                        alt="מכונית" data-draggable="car" style="width: 10rem;">
+                </div>
+                <div id="carDroppedDiv" class="d-flex justify-content-center mt-5 position-relative">
+                    <img class="droppable-scanning" src="./images/dimotStation/xRayMachine.svg" alt="מכשיר רנטגן"
+                        data-droppable="car">
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ תשובה שלב 10 -->
+            <div class="popupModalDimot modal fade" id="correctAnswerLevel10-DimotStation"
+                aria-labelledby="correctAnswerLevel10-DimotStationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body pb-2">
+                            <img src="./images/dimotStation/carAfterScanning.svg" alt="מכונית לאחר סריקה"
+                                style="width: 15rem;">
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="updateActivity('noCorrectAnswer',1033), cleanActivities_DimotStation('car')">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 11 - הקדמה לפעילות ״אסור לזוז״ -->
+            <div class="step mt-4 pt-4 mt-md-1" data-step="step11">
+                <div class="bubbleTextNarrow p-2">
+                    <p class="bubbleTextNarrowP mt-4 pt-3" style="width: 15rem;"> לא משנה איזה צילום צריך לעשות,
+                        חשוב <b>לא לזוז</b> כדי שהתמונות לא יצאו מטושטשות.
+                    </p>
+                </div>
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 12 - פעילות ״אסור לזוז״ חלק 1 -->
+            <div id="4activityStation" class="step mt-4 mt-md-1 pt-md-3" data-step="step12">
+                <h3 class="changeFontWeigth bubbleTextBigP">כמה זמן אתם מסוגלים להישאר באותה התנועה מבלי לזוז?</h3>
+                <div class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/dimotStation/poseWhiteCard.svg" alt="" style="width: 21rem;">
+                    <div class="d-flex align-items-center mt-2 gap-2 position-absolute">
+                        <p style="width: 8rem;">הצמידו את כפות הידיים ועמדו על רגל אחת</p>
+                        <img class="poseImages" src="./images/dimotStation/pose1.png" alt="תמונה של תנועה">
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="">
+                </div>
+                <p class="changeFontWeigth mt-3">מוכנים?</p>
+                <p class="mt-2 mb-1">לחצו על השעון וספרו לאחור,</p>
+                <p class="mb-0">נסו להישאר באותה התנועה מבלי לזוז.</p>
+                <!-- טיימר -->
+                <div>
+                    <img class="timer shadowFilter mt-4" src="./images/dimotStation/timer.svg" alt="טיימר"
+                        onclick="turnOnTimer('firstPosition')">
+                    <div class="timerOnDiv shadowFilter d-none">
+                        <p class="time-left-Dimot position-absolute postionAbsoluteMiddle"
+                            style="transform: translateY(3.2rem); z-index: 1;">10</p>
+                        <img id="timerOnImg1" class="mt-4" src="./images/dimotStation/timerBackgroundOn.svg" style="width: 6rem;" alt="">
+                        <audio id="timeEndTimerRecordFirstPosition" class="audio">
+                            <source src="./audio/dimotStation/alarmClock.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button id="timerPosition1" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1034)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 13 - פעילות ״אסור לזוז״ חלק 2 -->
+            <div id="5activityStation" class="step mt-4 mt-md-1 pt-md-3" data-step="step13">
+                <h3 class="bubbleTextBigP changeFontWeigth">כמה זמן אתם מסוגלים להישאר באותה התנועה מבלי לזוז?</h3>
+                <div class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/dimotStation/poseWhiteCard.svg" alt="" style="width: 21rem;">
+                    <div class="d-flex align-items-center mt-2 gap-2 position-absolute">
+                        <p class="mb-0" style="width: 8.8rem;">עצמו עיניים, הצמידו את המרפקים לגוף וחברו את האגודלים
+                            לאצבעות
+                        </p>
+                        <img class="poseImages" src="./images/dimotStation/pose2.png" alt="תמונה של תנועה">
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="">
+                </div>
+                <p class="changeFontWeigth mt-3">מוכנים?</p>
+                <p class="mt-2 mb-1">לחצו על השעון וספרו לאחור,</p>
+                <p class="mb-0">נסו להישאר באותה התנועה מבלי לזוז.</p>
+                <!-- טיימר -->
+                <div>
+                    <img class="timer shadowFilter mt-4" src="./images/dimotStation/timer.svg" alt="טיימר"
+                        onclick="turnOnTimer('secondPosition')">
+                    <div class="timerOnDiv shadowFilter d-none">
+                        <p class="time-left-Dimot position-absolute postionAbsoluteMiddle"
+                            style="transform: translateY(3.2rem); z-index: 1;">10</p>
+                        <img id="timerOnImg2" class="mt-4" src="./images/dimotStation/timerBackgroundOn.svg" style="width: 6rem;" alt="">
+                        <audio id="timeEndTimerRecordSecondPosition" class="audio">
+                            <source src="./audio/dimotStation/alarmClock.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button id="timerPosition2" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1035)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 14 - פעילות ״אסור לזוז״ חלק 3 -->
+            <div id="6activityStation" class="step mt-4 mt-md-1 pt-md-3" data-step="step14">
+                <h3 class="bubbleTextBigP changeFontWeigth">כמה זמן אתם מסוגלים להישאר באותה התנועה מבלי לזוז?</h3>
+                <div class="d-flex justify-content-center align-items-center position-relative">
+                    <img src="./images/dimotStation/poseWhiteCard.svg" alt="" style="width: 21rem;">
+                    <div class="d-flex align-items-center mt-2 gap-2 position-absolute">
+                        <p style="width: 8rem;">הרימו רגל אחת ועשו אגרוף עם היד כלפי מעלה</p>
+                        <img class="poseImages" src="./images/dimotStation/pose3.png" alt="תמונה של תנועה">
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <img class="userCharacter characterPositionCardMiddle" alt="">
+                </div>
+                <p class="changeFontWeigth mt-3">מוכנים?</p>
+                <p class="mt-2 mb-1">לחצו על השעון וספרו לאחור,</p>
+                <p class="mb-0">נסו להישאר באותה התנועה מבלי לזוז.</p>
+                <!-- טיימר -->
+                <div>
+                    <img class="timer shadowFilter mt-4" src="./images/dimotStation/timer.svg" alt="טיימר"
+                        onclick="turnOnTimer('thirdPosition')">
+                    <div class="timerOnDiv shadowFilter d-none">
+                        <p class="time-left-Dimot position-absolute postionAbsoluteMiddle"
+                            style="transform: translateY(3.2rem); z-index: 1;">10</p>
+                        <img id="timerOnImg3" class="mt-4" src="./images/dimotStation/timerBackgroundOn.svg" style="width: 6rem;" alt="">
+                        <audio id="timeEndTimerRecordThirdPosition" class="audio">
+                            <source src="./audio/dimotStation/alarmClock.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button id="timerPosition3" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1036)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 15 - צילום תמונה -->
+            <div id="7activityStation" class="step mt-4" data-step="step15">
+                <div>
+                    <h3 class="bubbleTextBigP changeFontWeigth" style="width: 17rem;">אחרי שתרגלנו תנועות שונות מבלי
+                        לזוז,
+                        התמונות לא יהיו מטושטשות.</h3>
+                    <h3 class="changeFontWeigth mt-2">רוצים לבדוק?</h3>
+                </div>
+
+                <!-- כפתורי צילום והעלאת תמונה -->
+                <div id="m-uploadInputs" class="mt-4">
+                    <div>
+                        <p class="ps-4 pe-4">עשו תנועה מיוחדת עם הגוף הצטלמו ותראו בעצמכם</p>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="mt-4">
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="takePicture" id="takePicture" capture="camera"
+                                    onchange="readURL(this)">
+                                <label for="takePicture">
+                                    <img src="./images/buttons/cameraBtn.svg" alt="צילום">
+                                </label>
+                            </div>
+
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="pickPhoto" id="pickPhoto"
+                                    onchange="readURL(this)">
+                                <label for="pickPhoto">
+                                    <img src="./images/buttons/galleryBtn.svg" alt="גלריה">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- אפשרות דילוג -->
+                    <div>
+                        <div class="bubbleTextWider mt-4 pt-4">
+                            <p class="bubbleTextWiderP">לא רוצים להצטלם? לחצו על כפתור ״דלג״</p>
+                        </div>
+                        <div style="margin-top: -3.4rem;">
+                            <img class="userCharacter photoStepCharacterPosition mt-5" alt="">
+                        </div>
+                        <div class="buttonsDiv">
+                            <button id="skipBtn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropSkip" onclick="stopAudio(), skipPopupAudio()">
+                                <img src="./images/buttons/skipBtn.svg" alt="דלג">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - דלג על משימה -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropSkip" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropSkipLabel" aria-hidden="true">
+                    <audio id="skipPopupAudio" class="audio">
+                        <source src="./audio/skipActivity.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupSkipP">האם אתם בטוחים שאתם רוצים <b>לדלג</b>
+                                    על המשימה?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" data-bs-dismiss="modal" class="next-btn modalBtns"
+                                    style="width: 6rem;" onclick="updateActivity('noCorrectAnswer',1037), stopAudio()">
+                                    <img src="./images/buttons/yesBtn.svg" alt=כן">
+                                </button>
+                                <button type="button" data-bs-dismiss="modal" class="modalBtns" style="width: 6rem;" onclick="stopAudio(), checkIfScroll()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- הצגת תמונה + כפתורי מחיקה ושיתוף -->
+                <div id="previewImageDiv" class="d-none mt-5">
+                    <!-- כפתור מחק -->
+                    <button id="deleteBtn" class="pe-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdropDelete" onclick="stopAudio(), deletPhotoPopupAudio()">
+                        <img src="./images/buttons/deleteBtn.svg" alt="מחיקת תמונה">
+                    </button>
+                    <!-- הצגת תמונה -->
+                    <img id="previewImage" alt="התמונה שהעלת">
+                    <!-- כפתור שיתוף -->
+                    <button id="shareBtn" class="ps-4" type="button" onclick="shareImage()">
+                        <img src="./images/buttons/shareBtn.svg" alt="שיתוף תמונה">
+                    </button>
+
+                    <div>
+                        <div class="bubbleTextWider mt-5" style="padding-top: 1.6rem; height: 6rem;">
+                            <p class="bubbleTextWiderP">וואו איזו תמונה!</p>
+                        </div>
+                    </div>
+                    <!-- תמונה דמות -->
+                    <div>
+                        <img class="userCharacter photoStepCharacterPosition" alt="">
+                    </div>
+                    <div class="buttonsDiv">
+                        <button type="button" class="next-btn" onclick="updateActivity('photo',1037)">
+                            <img src="./images/buttons/sendBtn.svg" alt="שליחה">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - מחיקת תמונה  -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropDelete" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropDeleteLabel" aria-hidden="true">
+                    <audio id="deletPhotoPopupAudio" class="audio">
+                        <source src="./audio/deletePhoto.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content m-4">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>למחוק</b> את
+                                    התמונה
+                                    שצילמתם?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" onclick="deleteImage(), stopAudio(), checkIfScroll()"
+                                    style="width: 6rem;">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" style="width: 6rem;" onclick="stopAudio()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 16 - סיכום התחנה -->
+            <div class="step mt-4 mt-md-1 pt-md-3" data-step="step16">
+                <div class="bubbleTextBig p-2">
+                    <p class="bubbleTextBigP mt-4"><b>עוד שניה ואנחנו מקבלים כוכב!</b></p>
+                    <p class="bubbleTextMiddleP pt-2">רק לפני שנסיים, תדעו שאם קיבלתם הזמנה לצילום, אתם יכולים
+                        לקבל הכנה לקראתו מהצוות החינוכי בבית החולים.</p>
+                </div>
+                <div class="mt-2">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn" onclick="changeToFinishBackground()">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 17 - סיום תחנה -->
+            <div id="finalStep" class="step finalStep" data-step="step17">
+                <audio id="finishStationFeedbackAudio" class="audio">
+                    <source src="./audio/finishStationFeedback.mp3" type="audio/mpeg">
+                </audio>
+                <div id="finishDimotStationSign" class="mt-5">
+                    <h2 class="finishStationSignH2">כל הכבוד!</h2>
+                    <p class="finishStationSignP changeFontWeigth mt-5 pe-3 ps-3">סיימנו את התחנה וזכינו בכוכב!</p>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionStationsFinishPage" alt="">
+                </div>
+                <div class="buttonsDiv d-flex justify-content-between" style="right: 0%; left: 0%;">
+                    <button type="button" class="float-end regularBtns" data-bs-toggle="modal"
+                        data-bs-target="#playAgain">
+                        <img src="./images/buttons/playAgainBtn.svg" alt="שחקו שוב">
+                    </button>
+                    <button type="button" class="regularBtns" onclick="updateStation()">
+                        <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ לאחר לחיצה על ״שחקו שוב״ -->
+            <div class="popupModal modal fade" id="playAgain" aria-labelledby="playAgainLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content mt-3">
+                        <div class="modal-body d-flex justify-content-center pt-1 pt-md-3">
+                            <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>להתחיל מחדש</b> את כל
+                                המשימות בתחנה זו?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center gap-5">
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                                onclick="resetStationAndActivities(), removeFinishBackground()">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </button>
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- הודעה במידה והמשתמש סיים את התחנה, נכנס שוב ורוצה לבצע אותה מחדש -->
+            <div id="msgDiv" class="step mt-5" data-step="startAgain">
+                <div class="bubbleTextBig p-3">
+                    <h2 class="mt-3">שלום, אנחנו שוב כאן!</h2>
+                    <p class="bubbleTextBigP pt-2 ps-1">תרצו שנבצע את כל המשימות בתחנה <b>מההתחלה</b>?</p>
+                    <div class="d-flex justify-content-center mt-3 gap-5">
+                        <button type="button" class="modalBtns" onclick="resetStationAndActivities()">
+                            <img src="./images/buttons/yesBtn.svg" alt="כן">
+                        </button>
+                        <a href="./Map.html" class="modalBtns">
+                            <img src="./images/buttons/noBtn.svg" alt="לא">
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+            </div>
+
+
+            <!-- הודעה במידה והמשתמש סרק את הברקוד מבלי להיות מחובר -->
+            <div class="modal popupModal fade" id="needToLogin" aria-labelledby="needToLoginLabel"
+                data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-3">
+                            <p class="popupWiderP" style="margin-top: -2rem;">כדי להינות מהמשחק, עליכם להתחבר אליו</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center pb-0">
+                            <a class="regularBtns" href="./Registration.html">
+                                <img src="./images/buttons/registrationBtn.svg" alt="הרשמה למשחק">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

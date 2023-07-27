@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+</head>
+
+<body id="mapBackground" lang="he" dir="rtl" onload="checkStationsNum(), setUserInfo()">
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+
+    <section id="all">
+        <section>
+            <div class="d-flex">
+                <div class="d-flex flex-nowrap gap-1 gap-md-3 mt-3 mb-2 ms-1 me-1 ms-sm-3 me-sm-3" style="flex: auto;">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                    <img src="./images/buttons/infoBtn.svg" data-bs-toggle="modal" data-bs-target="#aboutUs"
+                        alt="אודות">
+                </div>
+                <div class="d-flex align-items-center position-relative">
+                    <div id="mapProgressBarDiv" class="d-flex">
+                        <img id="1star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="2star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="3star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="4star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="5star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="6star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="7star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="8star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    </div>
+                    <img src="./images/mapPage/MapProgressBarUncompleted.svg" alt="מד התקדמות">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h1 class="titleH1 pt-4 mt-2">הגדרות</h1>
+                <img id="medal" class="position-absolute d-none" src="" alt="מדליה"
+                    style="transform: translate(-4rem, -4.5rem) rotate(15deg)">
+                <!-- הזנת שם -->
+                <div class="form-group mt-4">
+                    <label for="nickNameRegistration">
+                        <h3>שם/כינוי</h3>
+                    </label>
+                    <input type="text" id="nickNameRegistration" name="nick-name" placeholder="הקלידו כאן" required>
+                </div>
+
+                <!-- בחירת צבע אהוב -->
+                <div id="favColor" class="mt-4">
+                    <h3>איזה צבע אתם הכי אוהבים?</h3>
+                    <fieldset class="d-flex justify-content-center mt-2 mb-5 gap-1">
+                        <input type="radio" id="blueRadioBtn" name="favColor" value="כחול" />
+                        <label for="blueRadioBtn">
+                            <img src="./images/RegistrationPage/blueBtn.svg" alt="כחול">
+                        </label>
+                        <input type="radio" id="greenRadioBtn" name="favColor" value="ירוק" />
+                        <label for="greenRadioBtn">
+                            <img src="./images/RegistrationPage/greenBtn.svg" alt="ירוק">
+                        </label>
+                        <input type="radio" id="redRadioBtn" name="favColor" value="אדום" />
+                        <label for="redRadioBtn">
+                            <img src="./images/RegistrationPage/redBtn.svg" alt="אדום">
+                        </label>
+                        <input type="radio" id="yellowRadioBtn" name="favColor" value="צהוב" />
+                        <label for="yellowRadioBtn">
+                            <img src="./images/RegistrationPage/yellowBtn.svg" alt="צהוב">
+                        </label>
+                        <input type="radio" id="purpleRadioBtn" name="favColor" value="סגול" />
+                        <label for="purpleRadioBtn">
+                            <img src="./images/RegistrationPage/purpleBtn.svg" alt="סגול">
+                        </label>
+                    </fieldset>
+                </div>
+
+
+                <!-- בחירת דמות -->
+                <div>
+                    <div>
+                        <h3 class="changeFontWeigth">מעוניינים להחליף דמות?</h3>
+                        <p class="mb-0">לאיזו דמות תרצו להחליף?</p>
+                    </div>
+                    <div id="slider" style="margin-top: -2rem;">
+                        <input type="radio" name="character" class="radio1"
+                            value="./images/characters/penguinCharacter.svg" id="s1">
+                        <input type="radio" name="character" class="radio2"
+                            value="./images/characters/teddyBearCharacter.svg" id="s2">
+                        <input type="radio" name="character" class="radio3" value="./images/characters/catCharacter.svg"
+                            id="s3">
+                        <input type="radio" name="character" class="radio4"
+                            value="./images/characters/lionCharacter.svg" id="s4">
+                        <input type="radio" name="character" class="radio5"
+                            value="./images/characters/bunnyCharacter.svg" id="s5">
+
+                        <label for="s1" id="slide1">
+                            <img class="dropShadowFilter" src="./images/characters/penguinCharacter.svg" alt="פינגווין">
+                        </label>
+                        <label for="s2" id="slide2">
+                            <img src="./images/characters/teddyBearCharacter.svg" alt="דובי">
+                        </label>
+                        <label for="s3" id="slide3">
+                            <img src="./images/characters/catCharacter.svg" alt="חתולה">
+                        </label>
+                        <label for="s4" id="slide4">
+                            <img src="./images/characters/lionCharacter.svg" alt="אריה">
+                        </label>
+                        <label for="s5" id="slide5">
+                            <img src="./images/characters/bunnyCharacter.svg" alt="ארנבת">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="carouselNavControlDiv" class="d-flex justify-content-evenly mt-2">
+                    <button class="carouselNavControl" type="button" onclick="carouselNav('previous')">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carouselNavControl" type="button" onclick="carouselNav('next')">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+
+                <div class="buttonsDiv mt-4">
+                    <button class="settingButtons" onclick="updateUserInfo()">
+                        <img src="./images/buttons/saveChangesBtn.svg" alt="שמירת שינויים">
+                    </button>
+                    <button class="settingButtons" onclick="logOut()">
+                        <img src="./images/buttons/logoutBtn.svg" alt="יציאה מהמערכת">
+                    </button>
+                </div>
+                <p class="mt-3" style="font-size: 0.7rem; background-color: azure;">רוב היצירות עוצבו ע״י
+                    <span>
+                        <a href="https://www.freepik.com/" target="_blank">Freepik</a>
+                    </span>
+                </p>
+            </div>
+        </section>
+
+
+        <!-- פופ-אפ אודות -->
+        <section>
+            <div class="modal fade" id="aboutUs" aria-labelledby="aboutUsLabel" data-bs-backdrop="static"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img id="closeAbout" class="position-absolute" src="./images/buttons/xBtn.svg" alt="סגירה"
+                                data-bs-dismiss="modal" aria-label="Close">
+
+                            <div id="logoAndInfoDiv">
+                                <img id="logoSafralandAboutUs" src="./images/logo.png" alt="">
+                                <p id="InfoAboutUs" class="p-3 mb-0 pb-0">אפליקציית WEB לסיור אינטראקטיבי להכרת מתחמים
+                                    שונים
+                                    ברחבי בית החולים בקרב ילדים מאושפזים בבית החולים ספרא לילדים </p>
+                                <p class="bubbleTextMiddleP">פרוייקט גמר, תשפ”ג</p>
+                                <a href="https://www.hit.ac.il/telem/overview" style="font-size: 0.6rem;
+                     text-decoration: underline; color: cadetblue;">הפקולטה לטכנולוגיות למידה</a>
+                            </div>
+                            <div class="ps-2 pe-2">
+                                <div id="UsInfo"
+                                    class="d-flex justify-content-center gap-3 align-items-center mt-2 pe-1">
+                                    <div>
+                                        <img id="logoHitAboutUs" src="./images/hitLogo.svg"
+                                            alt="לוגו של המכון הטכנולוגי">
+                                    </div>
+                                    <div class="verticalLine"></div>
+                                    <div class="mt-2">
+                                        <div style="text-align: right;">
+                                            <p class="changeFontWeigth mb-0">צוות הפרוייקט:</p>
+                                            <p class="infoText mb-0">ויולה עדן לנצ׳אנו ואביב ספקטור</p>
+                                        </div>
+                                        <div class="mt-2" style="text-align: right;">
+                                            <p class="changeFontWeigth mb-0">מנחים:</p>
+                                            <p class="infoText mb-0">ד״ר דורותי לננגלי וליאור שפיגלר</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="UsInCollaboration"
+                                    class="d-flex justify-content-center gap-3 align-items-center">
+                                    <div>
+                                        <img id="logoSafraAboutUs" src="./images/safraLogo.png"
+                                            alt="לוגו של בית החולים ספרא לילדים">
+                                    </div>
+                                    <div class="verticalLine"></div>
+                                    <div style="text-align: right;">
+                                        <p id="collaborationText" class="mb-0">בשיתוף עם בית החולים לילדים אדמונד ולילי
+                                            ספרא
+                                            ונציגת הארגון גב׳ חלי צים</p>
+                                    </div>
+                                </div>
+                                <div id="creditsText">
+                                    <p class="mb-0" style="font-size: 0.6rem;">© כל הזכויות שמורות למכון טכנולוגי חולון
+                                        HIT
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </section>
+
+
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

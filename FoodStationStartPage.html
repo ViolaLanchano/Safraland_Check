@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+    <script src="./jScripts/qrScript.js" type="text/javascript"></script>
+
+
+</head>
+
+<body id="startStationBackground" lang="he" dir="rtl" data-station="foodStation"
+    onload="showCharacterImages(), checkStationsNum();">
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <section class="container mt-4" id="statusBar">
+            <div class="d-flex justify-content-around align-items-center">
+                <div class="me-1">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                </div>
+                <div class=" d-flex align-items-center position-relative">
+                    <div id="mapProgressBarDiv" class="d-flex">
+                        <img id="1star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="2star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="3star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="4star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="5star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="6star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="7star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="8star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    </div>
+                    <img src="./images/mapPage/MapProgressBarUncompleted.svg">
+                </div>
+                <div class="ms-1">
+                    <img src="./images/buttons/audioBtn.svg" alt=""
+                        onclick="playAudioInstructions('foodStation'), playAudioInstructions_FoodStation()">
+                    <audio id="foodStationRecord" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <div id="foodStationStartPage" class="mt-4">
+                    <h1 class="titleH1Stations" style="padding-top: 2.5rem;">עולם האוכל</h1>
+                    <div class="pt-2">
+                        <div class="d-flex mb-1 pe-3 justify-content-center gap-2">
+                            <img src="./images/footStepsIcon.svg" alt="">
+                            <h2 class="mb-0">איך מגיעים?</h2>
+                        </div>
+                        <p class="mb-0">בית הקפה נמצא בקומה 0</p>
+                        <p>באזור המיון</p>
+                    </div>
+                    <div>
+                        <div class="d-flex mb-1 pe-3 justify-content-center gap-2">
+                            <img src="./images/clockIcon.svg" alt="">
+                            <h2 class="mb-0">שעות פתיחה</h2>
+                        </div>
+                        <p>מ-7 בבוקר עד 19 בערב</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p class="mt-2 ms-4 me-4">בכניסה לתחנה מחכה לכם ברקוד, סרקו אותו,
+                    כנסו
+                    לפעילות ובסיומה תזכו בכוכב נוסף
+                    :)
+                </p>
+                <div class="uploadFile">
+                    <div id="reader" class="d-flex justify-content-center"></div>
+                    <p id="msgAboutStationQRCode" class="noOpacity validationStationCode mt-1">הברקוד לא תואם לתחנה, אנא
+                        סרקו ברקוד
+                        מתאים
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <div>
+                    <p class="mb-0">או הקלידו את מספר התחנה</p>
+                    <p class="stationCode">מספר התחנה - 102</p>
+                    <input class="qrCodeInput" type="text" placeholder="הקלידו כאן" id="stationInput">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <p id="msgAboutStationCode" class="noOpacity validationStationCode">הקוד לא תואם לתחנה, אנא הזינו
+                        קוד
+                        מתאים
+                    </p>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button class="confirmBtn" type="button" onclick="checkWhichStation('foodStation');">
+                        <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                    </button>
+                </div>
+                <div>
+                    <img class="userCharacter characterPositionStationsStartPage" alt="">
+                </div>
+        </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

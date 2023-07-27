@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+</head>
+
+<body id="mapBackground" lang="he" dir="rtl"
+    onload="checkStationsNum(), setUserName(), changeToFinishBackground(), diplomaAudio(), checkIfScroll()">
+
+
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+
+    <section id="all">
+        <audio id="diplomaRecord" class="audio">
+            <source src="./audio/diploma.mp3" type="audio/mpeg">
+        </audio>
+        <section class="mt-3 ms-1 me-1 ms-sm-3 me-sm-3">
+            <div class="d-flex">
+                <div class="d-flex flex-nowrap gap-1 gap-md-3" style="flex: auto;">
+                    <a href="./SettingsPage.html">
+                        <img src="./images/mapPage/settingsBtn.svg" alt="הגדרות">
+                    </a>
+                    <a href="./PhotoAlbumPage.html">
+                        <img src="./images/mapPage/galleryBtnSmall.svg" alt="אלבום תמונות">
+                    </a>
+                </div>
+                <div class="d-flex align-items-center position-relative">
+                    <div id="mapProgressBarDiv" class="d-flex">
+                        <img id="1star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="2star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="3star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="4star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="5star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="6star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="7star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        <img id="8star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                    </div>
+                    <img src="./images/mapPage/MapProgressBarUncompleted.svg" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="pt-2">
+            <div class="diploma mt-5">
+                <img src="./images/goldMedal.svg" alt="" style="width: 6rem; margin-top: -2rem;">
+                <div>
+                    <h3 id="userName" class="changeFontWeigth mt-4" style="font-size: 2rem;"></h3>
+                    <hr class="mt-0">
+                    <p class="changeFontWeigth mb-2">כל הכבוד!</p>
+                    <p class="bubbleTextBigP">סיימתם בהצלחה את מסלול ההרפתקאות והלמידה של גיבורי ספרא, בית החולים לילדים</p>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center position-relative">
+                <img id="bunnyDiploma" class="position-absolute" src="./images/characters/bunnyCharacter.svg"
+                    alt="ארנב">
+                <img id="lionDiploma" class="position-absolute" src="./images/characters/lionCharacter.svg" alt="אריה">
+                <img id="catDiploma" class="position-absolute" src="./images/characters/catCharacter.svg" alt="חתולה">
+                <img id="teddyBearDiploma" class="position-absolute" src="./images/characters/teddyBearCharacter.svg"
+                    alt="דובי">
+                <img id="penguinDiploma" class="position-absolute" src="./images/characters/penguinCharacter.svg"
+                    alt="פינגווין">
+            </div>
+
+            <div class="buttonsDiv d-flex justify-content-between">
+                <button type="button" class="regularBtns"">
+                <img src=" ./images/buttons/resetStationBtn.svg" alt="איפוס התחנות" data-bs-toggle="modal"
+                    data-bs-target="#resetAllStationsAndActivities">
+                </button>
+                <button type="button" class="regularBtns" onclick="window.location.replace('./Map.html')">
+                    <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                </button>
+            </div>
+        </section>
+        <section>
+            <!-- פופ-אפ לאחר לחיצה על ״איפוס תחנות״ -->
+            <div class="popupModal modal fade" id="resetAllStationsAndActivities"
+                aria-labelledby="resetAllStationsAndActivitiesLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content mt-3">
+                        <div class="modal-body d-flex justify-content-center pt-1 pt-md-3">
+                            <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>לאפס</b> את כל
+                                התחנות ולהתחיל מחדש?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center gap-5">
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                                onclick="resetAllStationsAndActivities()">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </button>
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

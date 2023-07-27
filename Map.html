@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+</head>
+
+<body id="mapBackground" lang="he" dir="rtl" onload="showCharacterANDcheckStation(), mapPlayAudio()">
+    <section class="mt-3 ms-1 me-1 ms-sm-3 me-sm-3">
+        <section id="safralandLogoLandscape" class="d-none">
+            <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+        </section>
+
+        <section id="all">
+        <audio id="mapRecord" class="audio">
+            <source src="./audio/mapPage.mp3" type="audio/mpeg">
+        </audio>
+            <section>
+                <div class="d-flex">
+                    <div class="d-flex flex-nowrap gap-1 gap-md-3" style="flex: auto;">
+                        <a href="./SettingsPage.html">
+                            <img src="./images/mapPage/settingsBtn.svg" alt="הגדרות">
+                        </a>
+                        <a href="./PhotoAlbumPage.html">
+                            <img src="./images/mapPage/galleryBtnSmall.svg" alt="אלבום תמונות">
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center position-relative">
+                        <div id="mapProgressBarDiv" class="d-flex">
+                            <img id="1star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="2star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="3star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="4star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="5star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="6star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="7star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                            <img id="8star" src="./images/mapPage/StarProgressBar.svg" class="d-none" alt="">
+                        </div>
+                        <img src="./images/mapPage/MapProgressBarUncompleted.svg" alt="מד התקדמות">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="stations" class="mt-md-0">
+                <h1 class="titleH1 pt-4 mt-2 mb-0">ספראלנד!</h1>
+                <img id="medal" class="position-absolute d-none" src="" alt="מדליה">
+                <!-- עולם המוזיקה -->
+                <div class="d-flex justify-content-center position-relative pt-2">
+                    <img id="musicStationStarMap" src="./images/star.svg" alt="" class="starPositionMap d-none">
+                    <a href="./MusicStationStartPage.html">
+                        <img class="stationImages" src="./images/mapPage/musicStation.svg" alt="עולם המוזיקה">
+                    </a>
+                </div>
+
+                <div class="d-flex justify-content-around align-items-center gap-5" style="margin-top: -38px;">
+                    <!-- עולם הדימות -->
+                    <div class="d-flex justify-content-center position-relative">
+                        <img id="dimotStationStarMap" src="./images/star.svg" alt=""
+                            class="starPositionMap me-2 d-none">
+                        <a href="./DimotStationStartPage.html">
+                            <img class="stationImages" src="./images/mapPage/dimotStation.svg" alt="עולם הצילומים">
+                        </a>
+                    </div>
+
+                    <!-- עולם המשחקים -->
+                    <div class="d-flex justify-content-center position-relative">
+                        <img id="gamingStationStarMap" src="./images/star.svg" alt="" class="starPositionMap d-none">
+                        <a href="./GamimgStationStartPage.html">
+                            <img class="stationImages" src="./images/mapPage/gamingStation.svg" alt="עולם המשחקים">
+                        </a>
+                    </div>
+                </div>
+
+                <section id="CharacterTextMap" class="position-relative">
+                    <div style="position: absolute; left: 0; right: 0; transform: translateY(-23px);">
+                        <div>
+                            <img src="./images/mapPage/bubleTextMap.svg" alt="בחרו תחנה ובואו נצא לדרך!"
+                                style="width: 8rem;">
+                        </div>
+                        <div>
+                            <img class="userCharacter" alt=""
+                                style="width: 7rem; height: auto; transform: rotate(-8.49deg); filter: drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white) drop-shadow(0px 0px 2px white);">
+                        </div>
+                    </div>
+                </section>
+
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <!-- עולם האוכל -->
+                    <div class="d-flex justify-content-center position-relative">
+                        <img id="foodStationStarMap" src="./images/star.svg" alt="" class="starPositionMap d-none">
+                        <a href="./FoodStationStartPage.html">
+                            <img class="stationImages" src="./images/mapPage/foodStation.svg" alt="קפה פלפלת">
+                        </a>
+                    </div>
+
+                    <!-- חדר הבדיקות -->
+                    <div class="d-flex justify-content-center position-relative">
+                        <img id="treatmentStationStarMap" src="./images/star.svg" alt="" class="starPositionMap d-none">
+                        <a href="./TreatmentStationStartPage.html">
+                            <img class="stationImages" src="./images/mapPage/treatmentRoom.svg" alt="המרכז החינוכי">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-around align-items-center gap-5">
+                    <!-- סינימה קידס -->
+                    <div class="d-flex justify-content-center position-relative">
+                        <img id="cinemaStationStarMap" src="./images/star.svg" alt="" class="starPositionMap d-none">
+                        <a href="./CinemaStationStartPage.html">
+                            <img class="stationImages" src="./images/mapPage/cinemaKidsStation.svg" alt="סינימה קידס">
+                        </a>
+                    </div>
+
+                    <!-- המרכז החינוכי -->
+                    <div class=" d-flex justify-content-center position-relative">
+                        <img id="educationalStationStarMap" src="./images/star.svg" alt=""
+                            class="starPositionMap d-none">
+                        <a href="./EducationalStationStartPage.html">
+                            <img class="stationImages" src="./images/mapPage/educationalRoom.svg" alt="חדר הטיפולים">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- העולם שלי -->
+                <div class=" d-flex justify-content-center position-relative" style="margin-top: -38px;">
+                    <img id="myRoomStationStarMap" src="./images/star.svg" alt="" class="starPositionMap d-none">
+                    <a href="./MyWorldtStationStartPage.html">
+                        <img class="stationImages" src="./images/mapPage/myRoomStation.svg" alt="העולם שלי">
+                    </a>
+                </div>
+
+
+
+                <!-- פופ-אפ קבלת מדליית ארד -->
+                <div class="modal fade" id="bronzeMedal" aria-labelledby="bronzeMedalLabel" data-bs-backdrop="static"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <audio id="bronzeMedalRecord" class="audio">
+                                    <source src="./audio/bronzeMedal.mp3" type="audio/mpeg">
+                                </audio>
+                                <img class="position-absolute" src="./images/bronzeMedal.svg" alt="" style="width: 8rem;
+                        left: 0; right: 0; margin: -7rem auto;">
+                                <p class="changeFontWeigth mb-2 mt-5 pt-3">יש! איזה כיף!</p>
+                                <p class="bubbleTextMiddleP">השלמנו 4 תחנות וזכינו ב<b>מדליית ארד!</b></p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center pb-0">
+                                <button type="button" class="regularBtns" data-bs-dismiss="modal" aria-label="Close" onclick="stopAudio()">
+                                    <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- פופ-אפ קבלת מדליית כסף -->
+                <div class="modal fade" id="silverMedal" aria-labelledby="silverMedalLabel" data-bs-backdrop="static"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <audio id="silverMedalRecord" class="audio">
+                                    <source src="./audio/silverMedal.mp3" type="audio/mpeg">
+                                </audio>
+                                <img class="position-absolute" src="./images/silverMedal.svg" alt="" style="width: 8rem;
+                         left: 0; right: 0; margin: -7rem auto;">
+                                <p class="changeFontWeigth mb-2 mt-5 pt-3">כל הכבוד!</p>
+                                <p class="bubbleTextMiddleP">השלמנו 6 תחנות וזכינו ב<b>מדליית כסף!</b></p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center pb-0">
+                                <button type="button" class="regularBtns" data-bs-dismiss="modal" aria-label="Close" onclick="stopAudio()">
+                                    <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+        <section>
+            <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+                data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="padding-top: 143px;">
+                        <div class="modal-body mt-3">
+                            <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">
+                                כדי
+                                להינות מהמשחק, עליכם להפוך את המסך</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+
+</html>

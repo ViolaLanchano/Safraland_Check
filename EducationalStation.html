@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+</head>
+
+<body id="body" lang="he" dir="rtl" onload="needToLogIn(), showCharacterImages(), checkIfStationAlreadyCompleted()">
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <section>
+            <div class="d-flex mt-2 ms-1 me-1 pt-3 align-items-center justify-content-around">
+                <div class="me-1">
+                    <a href="./Map.html">
+                        <img src="./images/buttons/mapBtn.svg" alt="למפה">
+                    </a>
+                </div>
+                <div style="transform: translateY(-5px);">
+                    <div class="d-flex align-items-center">
+                        <div id="activitiesProgressBarDiv" class="d-flex">
+                            <img id="1activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="2activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="3activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="4activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="5activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="6activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                            <img id="7activity" src="./images/activityProgressBar.svg" class="d-none" alt="">
+                        </div>
+                        <img class="justify-content-center" src="./images/activitiesProgressBarUncompleted.svg" alt="">
+                    </div>
+                </div>
+                <div class="ms-1">
+                    <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                        onclick="changeAudioStep_EducationalStation(), playAudioStep_EducationalStation()">
+                    <audio id="educationalStationRecords" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- שלב 1 -->
+            <div class="step firstStep mt-4 mt-md-1 active" data-step="step1">
+                <div class="bubbleTextBig pt-4">
+                    <h2 class="mt-4">ברוכים הבאים למרכז החינוכי!</h2>
+                    <p class="bubbleTextBigP pt-3 ps-2 pe-2" style="width: 17rem;">ידעתם שאם תרצו, הצוות המקצועי במרחב החינוכי יכין אתכם
+                        לבדיקות רפואיות שתעברו במהלך האשפוז?</p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 2 - שאלת כן ולא -->
+            <div id="1activityStation" class="step mt-4 mt-md-1" data-step="step2">
+                <div class="bubbleTextBig pt-3">
+                    <h2 class="mt-4">לפני שנתחיל יש לי שאלה!</h2>
+                    <p class="bubbleTextBigP ps-2 pe-2">האם גם אתם, כמוני, חוששים קצת לפני בדיקה רפואית?</p>
+                    <form id="yesOrNo" class="mt-3">
+                        <fieldset class="d-flex justify-content-center ps-2 pe-2 gap-5">
+                            <input type="radio" id="yes" name="answer" value="כן" class="next-btn"
+                                onclick="updateActivity('radio',1071)">
+                            <label for="yes">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </label>
+
+                            <input type="radio" id="no" name="answer" value="לא" class="next-btn"
+                                onclick="updateActivity('radio',1071)">
+                            <label for="no">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </label>
+                        </fieldset>
+                    </form>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+            </div>
+
+
+            <!-- שלב 3 - שאלת רב ברירה -->
+            <div id="2activityStation" class="step mt-3" data-step="step3">
+                <h3 class="changeFontWeigth bubbleTextBigP">מה עוזר לכם לעבור את הבדיקה יותר בקלות?</h3>
+                <form class="disractors">
+                    <fieldset>
+                        <div class="d-flex justify-content-center gap-3">
+                            <input type="checkbox" id="learnAboutTheTest" name="checkbox-answer" value="ללמוד על הבדיקה"
+                                onchange="changeBtnState('checkbox'), addUserCharacterText()">
+                            <label for="learnAboutTheTest">
+                                <img src="./images/educationalStation/learnAboutTheTest.svg" alt="ללמוד על הבדיקה">
+                            </label>
+
+                            <input type="checkbox" id="laugh" name="checkbox-answer" value="לצחוק"
+                                onchange="changeBtnState('checkbox'),addUserCharacterText()">
+                            <label for="laugh">
+                                <img src="./images/educationalStation/laugh.svg" alt="לצחוק">
+                            </label>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-2 gap-md-3 ms-2 me-2">
+                            <input type="checkbox" id="breathe" name="checkbox-answer" value="לנשום"
+                                onchange="changeBtnState('checkbox'), addUserCharacterText()">
+                            <label for="breathe">
+                                <img src="./images/educationalStation/breathe.svg" alt="לנשום">
+                            </label>
+
+                            <input type="checkbox" id="listenToSongs" name="checkbox-answer" value="לשמוע שירים"
+                                onchange="changeBtnState('checkbox'), addUserCharacterText()">
+                            <label for="listenToSongs">
+                                <img src="./images/educationalStation/listenToSongs.svg" alt="לשמוע שירים">
+                            </label>
+
+                            <input type="checkbox" id="familiy" name="checkbox-answer" value="המשפחה"
+                                onchange="changeBtnState('checkbox'), addUserCharacterText()">
+                            <label for="familiy">
+                                <img src="./images/educationalStation/familiy.svg" alt="המשפחה">
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div style="margin-right: -18%;">
+                    <div id="userCharacterText" class="bubbleTextWider d-none" style="padding-top: 1.1rem; height: 6rem;">
+                        <p class="bubbleTextWiderP" style="width: 7rem;">זה רעיון נהדר! אולי אני גם אעשה אותו!</p>
+                    </div>
+                    <div>
+                        <img class="userCharacter smallRigthPosition" alt="" style="max-width: 5rem;">
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button id="confirmBtnCheckbox1" type="submit"
+                        class="next-btn confirmBtnCheckbox opacityImg disabled"
+                        onclick="updateActivity('checkbox',1072), removeUserCharacterText()">
+                        <img src="./images/buttons/confirmBtn.svg" alt="אישור">
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- שלב 4 - הידעתם -->
+            <div id="3activityStation" class="step mt-4  mt-md-1" data-step="step4">
+                <div class="bubbleTextBig pt-2">
+                    <img class="lampIconShadow" src="./images/lampIcon.svg" alt="">
+                    <h2 class="mb-0">הידעתם?</h2>
+                    <p class="bubbleTextBigP">ישנן שיטות שונות שאפשר ללמוד ולתרגל כדי להרגיש טוב
+                        יותר בזמן בדיקה או בכל דבר אחר בחיים.
+                        אחת הדרכים היא <b>נשימות מסודרות</b>.
+                    </p>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn" onclick="updateActivity('noCorrectAnswer',1073)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 5 - הסבר על נשימות -->
+            <div id="4activityStation" class="step mt-4" data-step="step5">
+                <h2 class="bubbleTextBigP pt-3 mt-4">לחצו על הכרטיסייה ונגלה יחד כיצד הנשימות עוזרות לנו</h2>
+                <div>
+                    <img class="userCharacter smallRigthPosition position-absolute" alt="" style="max-width: 6rem; right: 0rem; z-index: 1;">
+                </div>
+                <div id="WhiteCardScene" class="position-relative mt-4" style="height: 25rem;">
+                    <div id="cardToFilp" onclick="whiteCardsClicked()">
+                        <div class="whiteCard mt-5 pt-4">
+                            <h1 class="titleH1Stations mt-3 mb-4">נשימות</h1>
+                            <img class="mt-3" src="./images/educationalStation/breathingGifCard.gif" alt="gif"
+                                style="width: 15rem;">
+                        </div>
+                        <div id="cardBack" class="whiteCard mt-5 pt-4">
+                            <audio id="breathingCardAudio" class="audio">
+                                <source src="./audio/educationalStation/breathingCard_educationalStation.mp3"
+                                    type="audio/mpeg">
+                            </audio>
+                            <p class="bubbleTextBigP mb-2 p-1">נשימות מסודרות עוזרות לנו להירגע לפני בדיקה
+                                רפואית ואפילו
+                                במהלך
+                                הבדיקה
+                                עצמה. הנשימות מרגיעות את הגוף ומורידות את רמת הלחץ שאנו מרגישים.
+                            </p>
+                            <img class="mt-2" src="./images/educationalStation/breathingGifCard.gif" alt="gif"
+                                style="width: 9rem;">
+                        </div>
+                    </div>
+                </div>
+                <div class="buttonsDiv">
+                    <button id="breathingCard" type="button" class="next-btn opacityImg disabled"
+                        onclick="updateActivity('noCorrectAnswer',1074)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 6 - הקדמה פעילות תרגול נשימות -->
+            <div id="5activityStation" class="step mt-4 mt-md-1" data-step="step6">
+                <div class="bubbleTextBig pt-4">
+                    <p class="bubbleTextBigP pt-2 ps-2 pe-2 mt-4">בואו נתרגל יחד נשימות
+                        ובפעם הבאה שתהיה לכם בדיקה רפואית, תדעו מה לעשות כדי להירגע ולהרגיש טוב יותר.
+                    </p>
+                </div>
+                <div>
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+                <div class="buttonsDiv mt-3">
+                    <button type="button" class="next-btn" onclick="updateActivity('noCorrectAnswer', 1075)">
+                        <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 7 - תרגול נשימות - הקדמה -->
+            <div id="6activityStation" class="step mt-3 mt-md-1" data-step="step7">
+                <div class="bubbleTextNarrow pt-2" style="height: 12rem;">
+                    <p class="bubbleTextNarrowP pt-4 pe-1" style="width: 13rem;">כשאתם מרגישים מוכנים לחצו על כפתור
+                        <b>״קדימה לתרגול״</b> ונתחיל לתרגל
+                        יחד
+                    </p>
+                </div>
+                <div>
+                    <img class="userCharacter smallRigthPosition" alt=""
+                        style="z-index: 1; max-width: 6rem; top: -0.5rem;">
+                </div>
+                <div style="margin-top: -3rem;">
+                    <img src="./images/educationalStation/breathingAnimationPart1.gif" alt="אנימציית נשימה"
+                        style="width: 18rem;">
+                </div>
+                <div class="buttonsDiv">
+                    <button type="button" class="next-btn" onclick="changePartAnimation()">
+                        <img src="./images/buttons/toThePractice.svg" alt="קדימה לתרגול">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- שלב 8 - תרגול נשימות - חלק 1 -->
+            <div id="firstPartAnimation" class="step mt-4 mt-md-1" data-step="step8">
+                <audio id="firstPartAnimationAudio" class="audio">
+                    <source src="./audio/educationalStation/step8_educationalStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="bubbleTextNarrow pt-2" style="height: 12rem;">
+                    <p class="bubbleTextNarrowP mt-4">דרך האף, נכניס אוויר לריאות וניקח נשימה עמוקה ואיטית (שאיפה).</p>
+                </div>
+                <div>
+                    <img class="userCharacter smallRigthPosition" alt=""
+                        style="z-index: 1; max-width: 6rem; top: -0.5rem;">
+                </div>
+                <div style="transform: translateY(-2.5rem);">
+                    <div>
+                        <img src="./images/educationalStation/breathingAnimationPart2.gif" alt="אנימציית נשימה"
+                            style="width: 18rem;">
+                    </div>
+                    <div>
+                        <img class="progressBarGif" src="./images/educationalStation/progressBar.gif"
+                            alt="גיף מד התקדמות">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 9 - תרגול נשימות - חלק 2 -->
+            <div id="secondPartAnimation" class="step mt-4 mt-md-1" data-step="step9">
+                <audio id="secondPartAnimationAudio" class="audio">
+                    <source src="./audio/educationalStation/step9_educationalStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="bubbleTextNarrow pt-2" style="height: 12rem;">
+                    <p class="bubbleTextNarrowP mt-4 pt-3">נשאיר את האוויר בפנים ונספור בלב עד חמש.</p>
+                </div>
+                <div>
+                    <img class="userCharacter smallRigthPosition" alt=""
+                        style="z-index: 1; max-width: 6rem; top: -0.5rem;">
+                </div>
+                <div style="transform: translateY(-2.5rem);">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img id="breathingAnimationPart3" src="./images/educationalStation/breathingAnimationPart3.gif"
+                            alt="אנימציית נשימה" style="width: 18rem;">
+                        <img id="timerGif" class="position-absolute"
+                            src="./images/educationalStation/breathingAnimationCounter.gif" alt="אנימציית נשימה"
+                            style="width: 7rem; transform: translate(-5rem, -8rem);">
+                    </div>
+                    <div>
+                        <img class="progressBarGif" src="" alt="גיף מד התקדמות">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 10 - תרגול נשימות - חלק 3 -->
+            <div id="thirdPartAnimation" class="step mt-4 mt-md-1" data-step="step10">
+                <audio id="thirdPartAnimationAudio" class="audio">
+                    <source src="./audio/educationalStation/step10_educationalStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="bubbleTextNarrow pt-2 pe-2" style="height: 12rem;">
+                    <p class="bubbleTextNarrowP mt-4 pt-2">עכשיו, נוציא את האוויר דרך הפה לאט, לאט (נשיפה).</p>
+                </div>
+                <div>
+                    <img class="userCharacter smallRigthPosition" alt=""
+                        style="z-index: 1; max-width: 6rem; top: -0.5rem;">
+                </div>
+                <div style="transform: translateY(-2.5rem);">
+                    <div>
+                        <img id="breathingAnimationPart4" src="./images/educationalStation/breathingAnimationPart4.gif"
+                            alt="אנימציית נשימה" style="width: 18rem;">
+                    </div>
+                    <div>
+                        <img class="progressBarGif" src="" alt="גיף מד התקדמות">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ - תרגול נשימות -->
+            <div class="modal fade" id="winMessageBreathingAnimation"
+                aria-labelledby="winMessageBreathingAnimationLabel" data-bs-backdrop="static" aria-hidden="true">
+                <audio id="breathingAnimationFeedback_educationalStationRecord" class="audio">
+                    <source src="./audio/educationalStation/breathingAnimationFeedback_educationalStation.mp3" type="audio/mpeg">
+                </audio>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p class="mt-5 mb-3 bubbleTextMiddleP">
+                                סיימתם את תרגול הנשימות. עכשיו אתם יודעים איך להיעזר בנשימות כדי להירגע ולהרגיש טוב
+                                יותר.
+                            </p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center" class="pt-0">
+                            <button type="button" class="modalBtns next-btn" data-bs-dismiss="modal"
+                                onclick="updateActivity('noCorrectAnswer', 1076)">
+                                <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 11 - צילום תמונה -->
+            <div id="7activityStation" class="step mt-4" data-step="step11">
+                <h3 class="changeFontWeigth bubbleTextNarrowP">יצא לכם לפגוש כבר את הצוות החינוכי?</h3>
+
+                <!-- כפתורי צילום והעלאת תמונה -->
+                <div id="m-uploadInputs" class="pt-4">
+                    <div>
+                        <p class="bubbleTextBigP mb-0">מוזמנים להצטלם במרחב החינוכי עם איש/ת צוות.</p>
+                        <p>אל תשכחו לחייך כמובן!</p>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="mt-4">
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="takePicture" id="takePicture" capture="camera"
+                                    onchange="readURL(this)">
+                                <label for="takePicture">
+                                    <img src="./images/buttons/cameraBtn.svg" alt="צילום">
+                                </label>
+                            </div>
+
+                            <div class="m-uploadFile">
+                                <input type="file" accept="image/*" name="pickPhoto" id="pickPhoto"
+                                    onchange="readURL(this)">
+                                <label for="pickPhoto">
+                                    <img src="./images/buttons/galleryBtn.svg" alt="גלריה">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- אפשרות דילוג -->
+                    <div>
+                        <div class="bubbleTextWider mt-4 pt-4">
+                            <p class="bubbleTextWiderP">לא רוצים להצטלם? לחצו על כפתור ״דלג״</p>
+                        </div>
+                        <div style="margin-top: -3.4rem;">
+                            <img class="userCharacter photoStepCharacterPosition mt-5" alt="">
+                        </div>
+                        <div class="buttonsDiv">
+                            <button id="skipBtn" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropSkip" onclick="stopAudio(), skipPopupAudio()">
+                                <img src="./images/buttons/skipBtn.svg" alt="דלג">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - דלג על משימה -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropSkip" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropSkipLabel" aria-hidden="true">
+                    <audio id="skipPopupAudio" class="audio">
+                        <source src="./audio/skipActivity.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupSkipP">האם אתם בטוחים שאתם רוצים <b>לדלג</b>
+                                    על המשימה?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" data-bs-dismiss="modal" class="next-btn modalBtns"
+                                    style="width: 6rem;"
+                                    onclick="updateActivity('noCorrectAnswer',1077), changeToFinishBackground(), stopAudio()">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" data-bs-dismiss="modal" class="modalBtns" style="width: 6rem;" onclick="stopAudio(), checkIfScroll()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- הצגת תמונה + כפתורי מחיקה ושיתוף -->
+                <div id="previewImageDiv" class="d-none mt-5">
+                    <!-- כפתור מחק -->
+                    <button id="deleteBtn" class="pe-4" type="button" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdropDelete" onclick="stopAudio(), deletPhotoPopupAudio()">
+                        <img src="./images/buttons/deleteBtn.svg" alt="מחיקת תמונה">
+                    </button>
+                    <!-- הצגת תמונה -->
+                    <img id="previewImage" alt="התמונה שהעלת">
+                    <!-- כפתור שיתוף -->
+                    <button id="shareBtn" class="ps-4" type="button" onclick="shareImage()">
+                        <img src="./images/buttons/shareBtn.svg" alt="שיתוף תמונה">
+                    </button>
+
+                    <div>
+                        <div class="bubbleTextWider mt-4" style="padding-top: 1.6rem; height: 6rem;">
+                            <p class="bubbleTextWiderP">וואו איזו תמונה!</p>
+                        </div>
+                    </div>
+                    <!-- תמונה דמות -->
+                    <div>
+                        <img class="userCharacter photoStepCharacterPosition" alt="">
+                    </div>
+                    <div class="buttonsDiv">
+                        <button type="button" class="next-btn"
+                            onclick="updateActivity('photo',1077), changeToFinishBackground()">
+                            <img src="./images/buttons/sendBtn.svg" alt="שליחה">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- פופ-אפ - מחיקת תמונה  -->
+                <div class="popupModal modal fade show p-0" id="staticBackdropDelete" data-bs-backdrop="static"
+                    data-bs-keyboard="false" aria-labelledby="staticBackdropDeleteLabel" aria-hidden="true">
+                    <audio id="deletPhotoPopupAudio" class="audio">
+                        <source src="./audio/deletePhoto.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content m-4">
+                            <div class="modal-body d-flex justify-content-center">
+                                <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>למחוק</b> את
+                                    התמונה
+                                    שצילמתם?</p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center gap-3">
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" onclick="deleteImage(), stopAudio(), checkIfScroll()"
+                                    style="width: 6rem;">
+                                    <img src="./images/buttons/yesBtn.svg" alt="כן">
+                                </button>
+                                <button type="button" class="modalBtns" data-bs-dismiss="modal" style="width: 6rem;" onclick="stopAudio()">
+                                    <img src="./images/buttons/noBtn.svg" alt="לא">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- שלב 12 - סיום תחנה -->
+            <div id="finalStep" class="step finalStep" data-step="step12">
+                <audio id="finishStationFeedbackAudio" class="audio">
+                    <source src="./audio/finishStationFeedback.mp3" type="audio/mpeg">
+                </audio>
+                <div id="finishEducationalStationSign" class="mt-5">
+                    <h2 class="finishStationSignH2">כל הכבוד!</h2>
+                    <p class="finishStationSignP changeFontWeigth mt-5 pt-2 pe-3 ps-3">סיימנו את התחנה וזכינו בכוכב!</p>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter characterPositionStationsFinishPage" alt="">
+                </div>
+                <div class="buttonsDiv d-flex justify-content-between" style="right: 0%; left: 0%;">
+                    <button type="button" class="float-end regularBtns" data-bs-toggle="modal"
+                        data-bs-target="#playAgain">
+                        <img src="./images/buttons/playAgainBtn.svg" alt="שחקו שוב">
+                    </button>
+                    <button type="button" class="regularBtns" onclick="updateStation()">
+                        <img src="./images/buttons/toTheMapBtn.svg" alt="קדימה למפה">
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- פופ-אפ לאחר לחיצה על ״שחקו שוב״ -->
+            <div class="popupModal modal fade" id="playAgain" aria-labelledby="playAgainLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content mt-3">
+                        <div class="modal-body d-flex justify-content-center pt-1 pt-md-3 pb-3">
+                            <p class="ps-2 pe-2 popupWiderP">האם אתם בטוחים שאתם רוצים <b>להתחיל מחדש</b> את כל
+                                המשימות בתחנה זו?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center gap-5">
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal"
+                                onclick="resetStationAndActivities(), removeFinishBackground()">
+                                <img src="./images/buttons/yesBtn.svg" alt="כן">
+                            </button>
+                            <button type="button" class="modalBtns" data-bs-dismiss="modal">
+                                <img src="./images/buttons/noBtn.svg" alt="לא">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--  הודעה במידה והמשתמש סיים את התחנה, נכנס שוב ורוצה לבצע אותה מחדש -->
+            <div id="msgDiv" class="step mt-5" data-step="startAgain">
+                <div class="bubbleTextBig p-3">
+                    <h2 class="mt-3">שלום, אנחנו שוב כאן!</h2>
+                    <p class="bubbleTextBigP pt-2 ps-1">תרצו שנבצע את כל המשימות בתחנה <b>מההתחלה</b>?</p>
+                    <div class="d-flex justify-content-center mt-3 gap-5">
+                        <button type="button" class="modalBtns" onclick="resetStationAndActivities()">
+                            <img src="./images/buttons/yesBtn.svg" alt="כן">
+                        </button>
+                        <a href="./Map.html" class="modalBtns">
+                            <img src="./images/buttons/noBtn.svg" alt="לא">
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <img class="userCharacter bigRigthPosition" alt="">
+                </div>
+            </div>
+
+            <!-- הודעה במידה והמשתמש סרק את הברקוד מבלי להיות מחובר -->
+            <div class="modal popupModal fade" id="needToLogin" aria-labelledby="needToLoginLabel"
+                data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body mt-3">
+                            <p class="popupWiderP" style="margin-top: -2rem;">כדי להינות מהמשחק, עליכם להתחבר אליו</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center pb-0">
+                            <a class="regularBtns" href="./Registration.html">
+                                <img src="./images/buttons/registrationBtn.svg" alt="הרשמה למשחק">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

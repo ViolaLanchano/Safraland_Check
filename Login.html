@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ספראלנד!</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./styles/bootstrap.rtl.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="./styles/myStyle.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- bootstrap -->
+    <script src="./jScripts/bootstrap.bundle.js"></script>
+
+
+    <!-- manifest.json file -->
+    <link rel="manifest" href="./manifest.json">
+    <script src="./jScripts/main.js"></script>
+
+</head>
+
+<body lang="he" dir="rtl" onload="checkIfScroll()">
+    <section id="safralandLogoLandscape" class="d-none">
+        <img src="./images/logo.png" alt="" class="mt-5" style="max-width: 16rem;">
+    </section>
+
+    <section id="all">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between mt-3 container">
+                <img src="./images/safraLogo.png" alt="" style="width: 8rem;">
+                <div>
+                    <img src="./images/buttons/audioBtn.svg" alt="הוראה קולית"
+                        onclick="changeAudioStep_Login(), playAudioStep_Login()">
+                    <audio id="LoginRecords" class="audio">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <section id="loginInputs" class="step active" data-step="step1">
+                <img src="./images/logo.png" alt="" class="pt-3 mt-2" style="max-width: 15rem;">
+                <img src="./images/penguinHandUpOnly.svg" alt="" class="loginAndRegistrationCharacter mt-3">
+                <form id="RegistrationForm">
+                    <div>
+                        <h2 class="mt-3">איזה כיף שחזרתם!</h2>
+                        <div class="form-group mt-4 mt-md-3">
+                            <label for="nickNameLogin">
+                                <h3>מהו השם או הכינוי שלכם?</h3>
+                            </label>
+                            <input type="text" id="nickNameLogin" name="nick-name" placeholder="הקלידו כאן" required
+                                oninput="checkLogin()">
+                        </div>
+                        <div id="favColor" class="mt-4">
+                            <h3>איזה צבע אתם הכי אוהבים?</h3>
+                            <fieldset class="d-flex justify-content-center mt-2 gap-1">
+                                <input type="radio" id="blueRadioBtn" name="favColor" value="כחול"
+                                    onchange="checkLogin()" />
+                                <label for="blueRadioBtn">
+                                    <img src="./images/RegistrationPage/blueBtn.svg" alt="כחול">
+                                </label>
+                                <input type="radio" id="greenRadioBtn" name="favColor" value="ירוק"
+                                    onchange="checkLogin()" />
+                                <label for="greenRadioBtn">
+                                    <img src="./images/RegistrationPage/greenBtn.svg" alt="ירוק"> </label>
+                                <input type="radio" id="redRadioBtn" name="favColor" value="אדום"
+                                    onchange="checkLogin()" />
+                                <label for="redRadioBtn">
+                                    <img src="./images/RegistrationPage/redBtn.svg" alt="אדום"> </label>
+                                <input type="radio" id="yellowRadioBtn" name="favColor" value="צהוב"
+                                    onchange="checkLogin()" />
+                                <label for="yellowRadioBtn">
+                                    <img src="./images/RegistrationPage/yellowBtn.svg" alt="צהוב"> </label>
+                                <input type="radio" id="purpleRadioBtn" name="favColor" value="סגול"
+                                    onchange="checkLogin()" />
+                                <label for="purpleRadioBtn">
+                                    <img src="./images/RegistrationPage/purpleBtn.svg" alt="סגול"> </label>
+                            </fieldset>
+                        </div>
+                        <div class="mt-4">
+                            <span>משתמשים חדשים?</span>
+                            <a href="./Registration.html">לחצו כאן</a>
+                            <p id="msgAboutNickName" class="noOpacity mt-2 mb-1">משתמש לא קיים</p>
+                        </div>
+                    </div>
+                    <div class="buttonsDiv">
+                        <button id="nickNameNextBtnLogin" type="button" onclick="entrance()" disabled
+                            class="regularBtns opacityImg">
+                            <img src="./images/buttons/nextBtn.svg" alt="הבא">
+                        </button>
+                    </div>
+                </form>
+        </div>
+    </section>
+
+    <section id="characterText" class="step" data-step="step2">
+        <div class="container">
+            <h1 class="titleH1 pt-4 mt-md-2">ספראלנד</h1>
+            <div class="bubbleTextBig mt-3" style="margin-right: 0.5rem; margin-left: 0.5rem;"">
+                    <div class=" pt-1">
+                <h3 class="changeFontWeigth mt-4 pt-2 pe-3">ברוכים השבים לספראלנד!</h3>
+                <p class="bubbleTextBigP">בואו נמשיך יחד בהרפתקה ברחבי בית החולים ספרא
+                    חולים, נאסוף כוכבים ולבסוף נקבל תעודת הצטיינות של בית החולים.
+                </p>
+            </div>
+        </div>
+        <div>
+            <img id="userCharacter" class="bigRigthPosition" alt="" style="max-width: 53%;">
+        </div>
+
+        <div class="buttonsDiv">
+            <a href="./Map.html" class="continue-btn">
+                <img src="./images/loginPage/letsContinue.svg" alt="בואו נמשיך">
+            </a>
+        </div>
+        </div>
+    </section>
+    </section>
+
+    <!-- פופ-אפ כאשר המשתמש הופך את המסך -->
+    <section>
+        <div class="modal popupModal fade" id="needToRotate" aria-labelledby="needToLoginLabel"
+            data-bs-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="padding-top: 143px;">
+                    <div class="modal-body mt-3">
+                        <p class="popupWiderP position-absolute postionAbsoluteMiddle" style="margin-top: -7rem;">כדי
+                            להינות מהמשחק, עליכם להפוך את המסך</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
