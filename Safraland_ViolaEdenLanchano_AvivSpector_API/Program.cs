@@ -20,6 +20,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+var options = new DefaultFilesOptions();
+
+options.DefaultFileNames.Clear();
+
+options.DefaultFileNames.Add("Registration.html");
+
+app.UseDefaultFiles(options);
+
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
